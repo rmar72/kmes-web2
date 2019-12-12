@@ -28,11 +28,20 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "./node_modules/chart.js/dist/Chart.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/assets/fontawesome/css/fontawesome.css",
+              "node_modules/ionicons/dist/css/ionicons.css",
+              "node_modules/jvectormap/jquery-jvectormap.css",
+              "node_modules/admin-lte/dist/css/AdminLTE.css",
+              "node_modules/admin-lte/dist/css/skins/_all-skins.css",
+              "src/styles.css"
             ],
             "scripts": [
-              "./node_modules/chart.js/dist/Chart.js"
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/fastclick/lib/fastclick.js",
+              "node_modules/admin-lte/dist/js/adminlte.js",
+              "node_modules/admin-lte/dist/js/demo.js"
             ]
           },
           "configurations": {
