@@ -15,7 +15,7 @@ import { LoginModule } from './login/login.module';
     BrowserAnimationsModule,
     LoginModule,
     RootRoutingModule,
-    AppModule
+    AppModule,
   ],
   bootstrap: [RootComponent]
 })

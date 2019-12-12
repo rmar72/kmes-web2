@@ -1,2 +1,16 @@
-<p>login works!</p>
-<button routerLink="/">aoeu</button>
+<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    <div>
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" />
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" />
+    </div>
+    
+    <button>
+        <span *ngIf="loading" >loading</span>
+        Login
+    </button>
+</form>
