@@ -1,16 +1,33 @@
-<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-    <div>
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" />
+
+  
+<div class="container loginbox">
+    <!-- Icon -->
+    <div class="fadeIn first iconbox">
+        <img src="../assets/logo-animated-small.gif" id="icon" alt="User Icon" />
     </div>
 
-    <div>
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" />
+    <div class="row">
+        <div class="col-md-3"></div>
+        <!-- form-->
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="col-md-6">
+        
+            <div class="form-group">
+                <label class="form-check-label" for="username">Username</label>
+                <input class="form-control" type="text" formControlName="username" />
+            </div>
+        
+            <div class="form-group">
+                <label class="form-check-label" for="password">Password</label>
+                <input class="form-control" type="password" formControlName="password" />
+            </div>
+            
+            <button class="btn btn-primary">
+                <span *ngIf="loading" >loading</span>
+                Login
+            </button>
+        </form>
+
+        <div class="col-md-3"></div>
     </div>
-    
-    <button>
-        <span *ngIf="loading" >loading</span>
-        Login
-    </button>
-</form>
+
+</div>

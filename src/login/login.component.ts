@@ -36,8 +36,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(username.value, password.value);
 
     // REPLACE
-    // for now just a means to correct a wrong password
-    if(this.loginForm.controls.password.value === "test"){
+    if(this.loginForm.controls.password.value){
       this.router.navigate(['/']);
     } else {
       localStorage.removeItem('currentUser');
