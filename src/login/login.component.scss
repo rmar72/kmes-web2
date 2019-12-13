@@ -1,7 +1,100 @@
 .loginbox{
     margin-top: 50px;
     text-align: center;
+    width: 100%;
 }
-label{
-    text-align: right;
+
+.card {
+    margin-top: 30px;
+    height: 197px;
+    width: 778px;
+    font-family:Roboto, sans-serif;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
+.card-header{
+    height: 40px;
+    text-align: left;
+    background-color: #F9F9F9;
+
+    p {
+        float: left;
+        font-size: 16px;
+        font-weight: 500;
+        color: #768599;
+        margin-top: -2px;
+
+        small {
+            font-size: 10px;
+        }
+    }
+
+    span {
+        float: right;
+        width: 30px;
+        height: 24px;
+
+        img {
+            height: 30px;
+            width: 30px;
+            margin-top: -10px;
+            opacity: 0.6;
+        }
+    }
+}
+.card-body{
+    background-color: #F2F2F3;
+    text-align: left;
+    padding-left: 50px;
+
+    p {
+        color:rgb(151, 160, 179);
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .form-wrap {
+        margin-left: 0;
+        padding: 0;
+        font-size: 10px;
+
+        input {
+            border-radius: 0px;
+            font-size: 13px;
+            height: 35px;
+
+            &:focus{
+                box-shadow: none;
+                border: 0.5px solid #3c8dbc;
+                transition: ease-in-out .15s,ease-in-out .15s;
+            }
+
+            &::placeholder{
+                color: #999999;
+            }
+            &:ms-input-placeholder {
+                color: #999999;
+            }
+            &::-ms-input-placeholder{
+                color: #999999;
+            }
+        }
+
+        .username {
+            border-top-left-radius: 4px;
+        }
+
+        .password {
+            border-bottom-left-radius: 4px;
+        }
+    }
+
+    .btn-light{
+        height: 70px;
+        margin-left: 0;
+        padding: 0;
+        background-color: #f1f3f5;
+        border-bottom-color: #b3b3b3;
+
+    }
+}
+
