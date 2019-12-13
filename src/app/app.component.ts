@@ -18,7 +18,7 @@ export class AppComponent {
   ngOnInit() {
     this.userSignedIn = this.authService.getCurrentUser();
     if (this.userSignedIn) {
-      this.router.navigate(['/home/dashboard']);
+      this.router.navigate(['/dashboard']);
     }
   }
   
