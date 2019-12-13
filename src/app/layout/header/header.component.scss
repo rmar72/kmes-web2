@@ -2,14 +2,32 @@
     content: "\f068";
 }
 
+.logo {
+    background-image: url(/assets/img/logo-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 52px;
+}
+
+.list-unstyled {
+    li {
+        display: block;
+    }
+}
+
 .product-name-dropdown .dropdown-toggle, .user-menu .dropdown-toggle {
-    // height: 50px;
-    color: #888;
-    background: linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(241,241,241,1) 35%, rgba(238,238,238,1) 100%) !important;
-    padding: 10px;
+    height: 52px;
+    background: linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(241,241,241,1) 35%, rgba(238,238,238,1) 100%);
+    padding: 5px 15px;
     font-size: 12px;
     display: flex;
     justify-content: space-between;
+    color: #888 !important;
+    border-right: 1px solid #d2d6de;
+    border-left: 1px solid #d2d6de;
+    &:hover {
+        background: linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(241,241,241,1) 35%, rgba(238,238,238,1) 100%) !important;
+    }
 }
 
 .new-device-name {
@@ -18,9 +36,8 @@
     }
     .device-caret {
         width: 30px;
-        float: right;
         text-align: right;
-        padding-top: 5px;
+        margin-top: 10px;
         i {
             color: #888;
             font-size: 14px;
@@ -47,13 +64,17 @@
     display: inline-block;
     background: #3c8dbc;
     border-radius: 50%;
-    margin-right: 10px;
     padding-top: 10px;
-    margin-top: 5px;
     text-align: center;
 }
 
 .user-menu-caret {
     display: inline-block;
+}
+
+.account-list {
+    .account-list-1 {
+        text-transform: uppercase;
+    }
 }
 

@@ -1,37 +1,131 @@
-<!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
-
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-    
-        <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search...">
-            <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-                </span>
-        </div>
-        </form>
-        <!-- /.search form -->
-    
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-            <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
+            <li class="menuVanish collapse in active"><a href="#" routerLink="/dashboard"><i class="fa fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li class="menuVanish collapse in"><a href="#" routerLink="/identity-management"><i class="fa fa-user-circle"></i><span>Identity Management</span></a></li>
+            <li class="treeview">
+                <a class="sysadmin" data-toggle="collapse" data-target=".menuVanish" aria-expanded="true" aria-controls=".menuVanish">
+                    <span class="sysadmin-one"><i class="fa fa-tools"></i><span>System Administration</span></span>
+                    <span class="sysadmin-two"><i class="fa fa-arrow-circle-left"></i>&nbsp; <span>Back</span></span>
                 </a>
-            <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-            </ul>
-        </li>
+                <ul id="mainSearch" class="items treeview-menu">
+                    <div class="searchwrapper">
+                        <input id="sidebarSearch" class="searchbox" type="text" name="" placeholder="Search" data-search>
+                    </div>
+                    <li class="treeview" data-filter-item data-filter-name="device administration update firmware hardware certificates device functions set date time cryptographic">
+                        <a href="device-administration.html">Device Administration<span class="treeview-menu-spacer"></span></a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="device administration update firmware" class="searchable"><a href="device-administration.html"><span class="treeview-menu-spacer"></span>Update firmware</a></li>
+                            <li data-filter-item data-filter-name="device administration hardware certificates" class="searchable"><a href="device-administration.html"><span class="treeview-menu-spacer"></span>Hardware certificates</a></li>
+                            <li data-filter-item data-filter-name="device administration device functions" class="searchable"><a href="device-administration.html"><span class="treeview-menu-spacer"></span>Device functions</a></li>
+                            <li data-filter-item data-filter-name="device administration set date time" class="searchable"><a href="device-administration.html"><span class="treeview-menu-spacer"></span>Set date/time</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="ethernet smtp network tcp ftp tls ssl ping web server">
+                        <a href="network-management.html"><span class="treeview-menu-spacer"></span>Network Management</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="network ethernet" class="searchable"><a href="network-management.html"><span class="treeview-menu-spacer"></span>Ethernet</a></li>
+                            <li data-filter-item data-filter-name="network smtp" class="searchable"><a href="network-management.html"><span class="treeview-menu-spacer"></span>SMTP configuration</a></li>
+                            <li data-filter-item data-filter-name="network" class="searchable"><a href="network-management.html"><span class="treeview-menu-spacer"></span>Network options</a></li>
+                            <li data-filter-item data-filter-name="network tcp" class="searchable"><a href="network-management.html"><span class="treeview-menu-spacer"></span>TCP configuration</a></li>
+                            <li data-filter-item data-filter-name="network ftp" class="searchable"><a href="network-management.html"><span class="treeview-menu-spacer"></span>FTP configuration</a></li>
+                            <li data-filter-item data-filter-name="network tls ssl" class="searchable"><a href="network-management.html"><span class="treeview-menu-spacer"></span>TLS/SSL settings</a></li>
+                            <li data-filter-item data-filter-name="network ping" class="searchable"><a href="network-management.html"><span class="treeview-menu-spacer"></span>Ping</a></li>
+                            <li data-filter-item data-filter-name="network web server" class="searchable"><a href="network-management.html"><span class="treeview-menu-spacer"></span>Set web server</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="command">
+                        <a href="command-management.html"><span class="treeview-menu-spacer"></span>Command Management</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="command" class="searchable"><a href="command-management.html"><span class="treeview-menu-spacer"></span>Command management</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="feature available features feature requests">
+                        <a href="feature-management.html"><span class="treeview-menu-spacer"></span>Feature Management</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="available features" class="searchable"><a href="feature-management.html"><span class="treeview-menu-spacer"></span>Available features</a></li>
+                            <li data-filter-item data-filter-name="feature requests" class="searchable"><a href="feature-management.html"><span class="treeview-menu-spacer"></span>Feature requests</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="key keys major convert">
+                        <a href="key-management.html"><span class="treeview-menu-spacer"></span>Key Management</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="major keys" class="searchable"><a href="key-management.html"><span class="treeview-menu-spacer"></span>Major keys</a></li>
+                            <li data-filter-item data-filter-name="convert keys" class="searchable"><a href="key-management.html"><span class="treeview-menu-spacer"></span>Convert keys</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="cryptographic fips pci hsm security mode password crl security">
+                        <a href="security-management.html"><span class="treeview-menu-spacer"></span>Security Management</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="security mode" class="searchable"><a href="security-management.html"><span class="treeview-menu-spacer"></span>Encryption security mode</a></li>
+                            <li data-filter-item data-filter-name="security password" class="searchable"><a href="security-management.html"><span class="treeview-menu-spacer"></span>Password settings</a></li>
+                            <li data-filter-item data-filter-name="cryptographic module crl" class="searchable"><a href="security-management.html"><span class="treeview-menu-spacer"></span>Cryptographic module crl</a></li>
+                            <li data-filter-item data-filter-name="security" class="searchable"><a href="security-management.html"><span class="treeview-menu-spacer"></span>Security settings</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="function certificate kmip scsa registration authority iot mccas">
+                        <a href="functionality-specific-settings.html"><span class="treeview-menu-spacer"></span>Function Settings</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="function certificate" class="searchable"><a href="functionality-specific-settings.html"><span class="treeview-menu-spacer"></span>Certificate options</a></li>
+                            <li data-filter-item data-filter-name="function kmip" class="searchable"><a href="functionality-specific-settings.html"><span class="treeview-menu-spacer"></span>KMIP options</a></li>
+                            <li data-filter-item data-filter-name="function scsa" class="searchable"><a href="functionality-specific-settings.html"><span class="treeview-menu-spacer"></span>SCSA options</a></li>
+                            <li data-filter-item data-filter-name="function registration authority" class="searchable"><a href="functionality-specific-settings.html"><span class="treeview-menu-spacer"></span>Registration authority</a></li>
+                            <li data-filter-item data-filter-name="function ocsp" class="searchable"><a href="functionality-specific-settings.html"><span class="treeview-menu-spacer"></span>OCSP options</a></li>
+                            <li data-filter-item data-filter-name="function iot mccas" class="searchable"><a href="functionality-specific-settings.html"><span class="treeview-menu-spacer"></span>IOT device management (MCCAS)</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="automated tasks events ftp export database backup">
+                        <a href="automated-tasks.html"><span class="treeview-menu-spacer"></span>Automated Tasks</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="automated ftp export" class="searchable"><a href="automated-tasks.html#ftpExports"><span class="treeview-menu-spacer"></span>FTP Exports</a></li>
+                            <li data-filter-item data-filter-name="automated database backup" class="searchable"><a href="automated-tasks.html#databaseBackup"><span class="treeview-menu-spacer"></span>Database Backup</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="authentication methods smart card permission ldap binding">
+                        <a href="authentication-methods.html"><span class="treeview-menu-spacer"></span>Authentication Methods</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="authentication smart card" class="searchable"><a href="authentication-methods.html"><span class="treeview-menu-spacer"></span>Manage smart card</a></li>
+                            <li data-filter-item data-filter-name="authentication permission" class="searchable"><a href="authentication-methods.html"><span class="treeview-menu-spacer"></span>Permission options</a></li>
+                            <li data-filter-item data-filter-name="authentication ldap directory" class="searchable"><a href="authentication-methods.html"><span class="treeview-menu-spacer"></span>LDAP directory</a></li>
+                            <li data-filter-item data-filter-name="authentication ldap binding" class="searchable"><a href="authentication-methods.html"><span class="treeview-menu-spacer"></span>LDAP binding</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="log last transaction reference syslog levels">
+                        <a href="log-management.html"><span class="treeview-menu-spacer"></span>Log Management</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="log" class="searchable"><a href="log-management.html"><span class="treeview-menu-spacer"></span>Log settings</a></li>
+                            <li data-filter-item data-filter-name="log last transaction reference" class="searchable"><a href="log-management.html"><span class="treeview-menu-spacer"></span>Last transaction reference</a></li>
+                            <li data-filter-item data-filter-name="log syslog levels" class="searchable"><a href="log-management.html"><span class="treeview-menu-spacer"></span>Syslog levels</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="connected devices printers">
+                        <a href="connected-devices.html"><span class="treeview-menu-spacer"></span>Connected Devices</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="connected devices printers" class="searchable"><a href="connected-devices.html"><span class="treeview-menu-spacer"></span>Printers</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="notification email">
+                        <a href="notifications.html"><span class="treeview-menu-spacer"></span>Notifications</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="email notifications" class="searchable"><a href="notifications.html"><span class="treeview-menu-spacer"></span>Email notifications</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="system device tools manage duplicate objects">
+                        <a href="system-tools.html"><span class="treeview-menu-spacer"></span>System Tools</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="system tools manage duplicate objects" class="searchable"><a href="system-tools.html"><span class="treeview-menu-spacer"></span>Manage duplicate objects</a></li>
+                            <li data-filter-item data-filter-name="device tools" class="searchable"><a href="system-tools.html"><span class="treeview-menu-spacer"></span>Device Tools</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview" data-filter-item data-filter-name="templates">
+                        <a href="templates.html"><span class="treeview-menu-spacer"></span>Templates</a>
+                        <ul class="treeview-menu module-menu">
+                            <li data-filter-item data-filter-name="templates" class="searchable"><a href="templates.html"><span class="treeview-menu-spacer"></span>Templates</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
