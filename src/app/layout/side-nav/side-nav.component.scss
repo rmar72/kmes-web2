@@ -1,0 +1,104 @@
+.main-sidebar {
+    background-color: #F4F4F2;
+}
+
+.sidebar-menu {
+    background-color: #F4F4F2;
+    li {
+        border-bottom: 1px solid #ddd;
+        a {
+            background-color: #F4F4F2;
+            &:hover {
+                background-color: #eaeaea;
+            }
+        }
+    }
+    a.active {
+        background-color: #eaeaea;
+    }
+    li span, li i {
+        color: #666;
+        font-size: 13px;
+        font-weight: normal;
+    }
+    .fa, .fas {
+        width: 20px;
+    }
+}
+
+.treeview {
+    li a {
+        &:hover {
+            color: #666;
+        }
+    }
+    .sysadmin {
+        cursor: pointer;
+    }
+    .sysadmin-one {
+        display: block;
+    }
+    .sysadmin-two {
+        display: none;
+    }
+}
+
+.treeview.menu-open {
+    .sysadmin-one {
+        display: none;
+    }
+    .sysadmin-two {
+        display: block;
+    }
+}
+
+a .treeview-menu-spacer {
+    display: inline;
+    float: right;
+}
+
+.treeview-menu-spacer::after {
+    content: "\f105";
+    font-family: "fontawesome";
+    color: #aaa;
+}
+
+.searchwrapper {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    .searchbox {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-left: 10px;
+        background-color: #fff;
+        font-size: 12px;
+        width: 100%;
+        &:focus {
+            outline: none;
+            border: 1px solid #82b0cb;
+        }
+    }
+}
+
+.treeview-menu.module-menu {
+    padding: 5px 0px 15px 15px;
+    li {
+        border: none;
+        line-height: 20px;
+        a {
+            padding: 0px;
+            font-size: 10px;
+            color: #768599;
+            text-align: left;
+            span {
+                display: none;
+            }
+            &:hover {
+                background-color: #F4F4F2;
+            }
+        }
+    }
+}

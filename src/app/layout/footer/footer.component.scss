@@ -1,0 +1,14 @@
+.main-footer {
+    border-top: 1px solid #d2d6de;
+    height: 51px;
+    display: flex; 
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    img {
+        width: 75px;
+    }
+    a {
+        color: #888;
+    }
+}
