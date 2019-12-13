@@ -5,14 +5,14 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/home/dashboard', pathMatch: 'full' },
+ { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       routes,
-      //{ enableTracing: true }
+      // { enableTracing: true }
     )],
   exports: [RouterModule]
 })

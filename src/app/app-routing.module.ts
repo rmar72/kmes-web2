@@ -8,25 +8,20 @@ import { SystemAdminComponent } from './system-admin/system-admin.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: AppComponent,
     children: [
       {
-        path: '',
-        children: [
-          {
-            path: 'dashboard',
-            component: DashboardComponent,
-          },
-          {
-            path: 'identity-management',
-            component: IdentityManagementComponent,
-          },
-          {
-            path: 'system-admin',
-            component: SystemAdminComponent
-          }
-        ]
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'identity-management',
+        component: IdentityManagementComponent,
+      },
+      {
+        path: 'system-admin',
+        component: SystemAdminComponent
       }
     ]
   }

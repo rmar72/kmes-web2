@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { IdentityManagementComponent } from './identity-management/identity-management.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SideNavComponent } from './layout/side-nav/side-nav.component';
-import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { FooterComponent } from './layout/footer/footer.component';
     IdentityManagementComponent,
     SystemAdminComponent,
     HeaderComponent,
-    SideNavComponent,
-    FooterComponent
+    SideNavComponent
   ],
   imports: [
     CommonModule,
