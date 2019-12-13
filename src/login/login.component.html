@@ -7,27 +7,39 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
-        <!-- form-->
-        <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="col-md-6">
-        
-            <div class="form-group">
-                <label class="form-check-label" for="username">Username</label>
-                <input class="form-control" type="text" formControlName="username" />
-            </div>
-        
-            <div class="form-group">
-                <label class="form-check-label" for="password">Password</label>
-                <input class="form-control" type="password" formControlName="password" />
-            </div>
-            
-            <button class="btn btn-primary">
-                <span *ngIf="loading" >loading</span>
-                Login
-            </button>
-        </form>
+        <div class="col-md-2"></div>
 
-        <div class="col-md-3"></div>
+        <div class="col-md-8 form-box">
+            <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+                <div class="card">
+                    <div class="card-header">
+                        <p>
+                            KMES Series 3 <small>10.0.5.10</small>
+                        </p>
+                        <span>
+                            <img src="../assets/favicon-mono.png">
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <p> Identity 1 login </p>
+                        <div class="row">
+                            <div class="form-group col-md-9 form-wrap">
+                                <input class="form-control username" type="text" formControlName="username" placeholder="username" />
+                                <input class="form-control password" type="password" formControlName="password" placeholder="password" />
+                            </div>
+                            
+                            <button class="btn btn-light col-md-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>            
+            </form>
+        </div>
+        
+        <div class="col-md-2"></div>
     </div>
 
 </div>
