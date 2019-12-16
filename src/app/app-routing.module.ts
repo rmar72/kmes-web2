@@ -5,13 +5,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppComponent } from './app.component';
 import { IdentityManagementComponent } from './identity-management/identity-management.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
+import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
 
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   {
     path: '',
-    component: AppComponent,
-    canActivate: [ AuthGuard ],
+    component: MainComponent,
     children: [
       {
         path: 'dashboard',
@@ -19,18 +21,23 @@ const routes: Routes = [
       },
       {
         path: 'identity-management',
-        component: IdentityManagementComponent,
+        component: IdentityManagementComponent
       },
       {
         path: 'system-admin',
         component: SystemAdminComponent
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
       }
     ]
-  }
+ }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

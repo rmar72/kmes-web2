@@ -9,9 +9,12 @@ declare var $;
 })
 export class SideNavComponent implements OnInit {
 
-    constructor() { }
+  constructor() { }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+    $(document).ready(() => {
+      $('.sidebar-menu').tree();
+    });
+  }
 
 }

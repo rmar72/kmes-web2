@@ -1,0 +1,41 @@
+<div class="container-fluid login-section">
+    <div class="fadeIn first iconbox">
+        <img src="assets/img/logo-animated-small.gif" id="icon" alt="User Icon" />
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6 form-box">
+            <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+                <div class="card">
+                    <div class="card-header">
+                        <p>
+                            KMES Series 3 <small>10.0.5.10</small>
+                        </p>
+                        <span>
+                            <img src="assets/img/favicon-mono.png" alt="Futurex small icon" />
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <p> Identity 1 login </p>
+                        <div class="row">
+                            <div class="form-group col-md-9 form-wrap">
+                                <input class="form-control username" type="text" formControlName="username" placeholder="username" />
+                                <input class="form-control password" type="password" formControlName="password" placeholder="password" />
+                            </div>
+                            
+                            <button id="mobile-btn" class="btn btn-light col-md-2">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>            
+            </form>
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+
+</div>
