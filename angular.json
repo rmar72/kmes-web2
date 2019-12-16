@@ -59,7 +59,6 @@
               "node_modules/admin-lte/bower_components/fastclick/lib/fastclick.js",
               "node_modules/admin-lte/dist/js/adminlte.min.js",
               "node_modules/admin-lte/dist/js/pages/dashboard.js",
-              "node_modules/admin-lte/dist/js/demo.js",
               "node_modules/admin-lte/plugins/iCheck/icheck.min.js"
             ]
           },
