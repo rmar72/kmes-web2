@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { AuthService } from '../app/shared/services/auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
-
+import { LogoutService } from 'src/logout';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,35 +13,29 @@ export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
-  })
+  });
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) {
     // redirect to home if already logged in
-    if (this.authService.getCurrentUser()) {
-      this.router.navigate(['/dashboard']);
-    }
+    // if (this.authService.getCurrentUser()) {
+    //   this.router.navigate(['/dashboard']);
+    // }
    }
 
   ngOnInit() {
+    this.router.navigate(['/login']);
   }
 
-  submitForm(){
+  submitForm() {
     const { username, password } = this.loginForm.controls;
 
-    console.log(username, password)
-
-    this.authService.login(username.value, password.value);
-
-    // REPLACE
-    if(this.loginForm.controls.password.value){
-      this.router.navigate(['/']);
-    } else {
-      localStorage.removeItem('currentUser');
-      this.loginForm.reset();
-    }
+    this.authService.loginPost({
+      authCredentials: { username: (username as FormControl).value, password: (password as FormControl).value }
+    }).subscribe(() => {
+      this.router.navigate(['']);
+    });
   }
-
 }
