@@ -12,7 +12,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IdentityManagementComponent } from './identity-management/identity-management.component';
 import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  // providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
