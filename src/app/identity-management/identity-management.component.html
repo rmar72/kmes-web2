@@ -5,15 +5,17 @@
         <div class="panel-heading">
           Identity Management
         </div>
-        <div class="panel-body identity-manage-panel">
+        <div class="panel-toolbar">
           <ul class="nav nav-tabs" role="tablist">
-              <li class="active nav-item btn-group" role="presentation">
-                  <a id="idGroupBtn" href="#groups" aria-controls="groups" role="tab" data-toggle="tab" aria-expanded="false" class="">Identity Groups<span class="label blue-label">(0)</span></a>
-              </li>
-              <li class="nav-item btn-group" role="presentation">
-                <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab" aria-expanded="false" class="">Identities<span class="label blue-label">(7)</span></a>
-              </li>
+            <li class="active nav-item btn-group" role="presentation">
+                <a id="idGroupBtn" href="#groups" aria-controls="groups" role="tab" data-toggle="tab" aria-expanded="false" class="">Identity Groups<span class="label blue-label">(0)</span></a>
+            </li>
+            <li class="nav-item btn-group" role="presentation">
+              <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab" aria-expanded="false" class="">Identities<span class="label blue-label">(0)</span></a>
+            </li>
           </ul>
+        </div>
+        <div class="panel-body identity-manage-panel">
           <div class="tab-content">
             <div class="tab-pane active" id="groups">
               <div class="panel-btns">
@@ -22,7 +24,7 @@
                 <button (click)="submitCreateGroup()" *ngIf="showCreateGroup" class="create-btn btn btn-primary btn-sm"><i class="fa fa-save mr-5"></i>Create</button>
               </div>
               <div *ngIf="!showCreateGroup">Identity Group List</div>
-              <div *ngIf="showCreateGroup">Create Identity Group</div>
+              <div *ngIf="showCreateGroup">Create Identity Groups</div>
             </div>
             <div class="tab-pane" id="allusers">
                 <div class="panel-btns">
@@ -31,7 +33,99 @@
                   <button (click)="submitCreateIdentity()" *ngIf="showCreateIdentity" class="create-btn btn btn-primary btn-sm"><i class="fa fa-save mr-5"></i>Create</button>
                 </div>
               <div *ngIf="!showCreateIdentity">Identity List</div>
-              <div *ngIf="showCreateIdentity">Create Identity</div>
+              <div *ngIf="showCreateIdentity">
+                  <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                      <li class="active nav-item"><a href="#grouptab1" data-toggle="pill">General</a></li>
+                      <li class="nav-item"><a href="#grouptab2" data-toggle="pill">Password</a></li>
+                      <li class="nav-item"><a href="#grouptab3" data-toggle="pill">Permissions</a></li>
+                      <li class="nav-item"><a href="#grouptab4" data-toggle="pill">OAuth</a></li>
+                      <li class="nav-item"><a href="#grouptab5" data-toggle="pill">One-time password</a></li>
+                      <li class="nav-item"><a href="#grouptab6" data-toggle="pill">Biometric</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-9 tab-content">
+                      <div class="tab-pane fade in active" name="general-tab" id="grouptab1">
+													<form>
+														<div class="list-group">
+
+															<div class="list-group-item">
+																<span class="list-group-title">Group name</span>
+																<span class="user-input">
+																	<input type="text" class="form-control" placeholder="Name">
+																</span>
+															</div>
+
+															<div class="list-group-item">
+																<span class="list-group-title">Group type</span>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Select <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#">Normal</a></li>
+                                    <li><a href="#">Key management</a></li>
+                                  </ul>
+                                </div>
+															</div>
+
+															<div class="list-group-item">
+																<span class="list-group-title">Identities required to log in</span>
+																<div class="input-group number-tumbler">
+																	<span class="input-group-btn">
+																		<button class="btn btn-default" data-dir="dwn"><i class="fa fa-minus"></i></button>
+																	</span>
+																	<input type="text" class="form-control text-center" value="1">
+																	<span class="input-group-btn">
+																		<button class="btn btn-default" data-dir="up"><i class="fa fa-plus"></i></button>
+																	</span>
+																</div>
+															</div>
+
+															<div class="list-group-item">
+                                <span class="list-group-title">Storage location</span>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Select <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#">Database</a></li>
+                                    <li><a href="#">Cryptographic module</a></li>
+                                    <li><a href="#">LDAP server</a></li>
+                                  </ul>
+                                </div>
+															</div>
+
+															<div class="list-group-item">
+																<span class="list-group-title">Use LDAP for authentication</span>
+																<div class="checkbox checkbox-switch switch-primary">
+																	<label><input type="checkbox" name="" checked="" /><span></span></label>
+																</div>
+															</div>
+
+															<div class="list-group-item">
+																<span class="list-group-title">LDAP group name</span>
+																<span class="user-input">
+																	<input type="text" class="form-control" placeholder="Name">
+																</span>
+															</div>
+
+															<div class="list-group-item">
+																<span class="list-group-title">Members can authenticate to</span>
+																<div class="multiselect">
+																	<select id="authto" multiple>
+																	  	<option value="value 1">Client</option>
+																	  	<option value="value 2">Host API</option>
+																	  	<option value="value 3">KMIP</option>
+																	</select>
+																</div>
+															</div>
+
+														</div>
+													</form>
+												</div>
+                  </div>
+              </div>
             </div>
           </div>
         </div>

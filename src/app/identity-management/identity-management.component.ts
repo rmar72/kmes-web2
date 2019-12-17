@@ -19,7 +19,24 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateGroup = !this.showCreateGroup;
   }
 
+  discardCreateGroup = function() {
+    
+  }
+
+  submitCreateGroup = function() {
+
+  }
+
   toggleCreateIdentity = function() {
     this.showCreateIdentity = !this.showCreateIdentity;
   }
+
+  discardCreateIdentity = function() {
+
+  }
+
+  submitCreateIdentity = function() {
+
+  }
+
 }

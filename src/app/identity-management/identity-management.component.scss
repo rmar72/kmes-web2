@@ -6,12 +6,87 @@
     .panel-btns {
         position: absolute;
         right: 0;
-        top: -40px;
+        top: -55px;
         button > i {
             padding-right: 10px;
         }
         .create-btn {
-            margin-left: 15px;
+            margin-left: 5px;
+        }
+    }
+
+    .nav-pills {
+        border: 1px solid #c6d1df;
+        border-radius: 4px;
+        .nav-item {
+            font-size: 13px;
+            color: #888;
+            border-bottom: 1px solid #c6d1df;
+            margin-top: 0px;
+        }
+        .nav-item:last-child {
+            border-bottom: none;
+        }
+        .nav-item.active {
+            font-weight: normal;
+            background-color: #ecf0f5;
+            a {
+                border: none;
+            }
+        }
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+        margin-bottom: -1px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+
+        .list-group-title {
+            color: #97a0b3;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            display: inline-block;
+        }
+        .user-input {
+            input {
+                width: 250px;
+                height: 34px;
+                border-radius: 4px;
+            }
+        }
+        .input-group {
+            width: 250px;
+            max-height: 34px;
+        }
+        .btn-group {
+            button {
+                width: 250px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .dropdown-menu {
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 0px;
+                li {
+                    height: 35px;
+                }
+                li > a {
+                    height: 35px;
+                    line-height: 33px;
+                    border-bottom: 1px solid #ddd;
+                }
+                li:last-child > a{
+                    border-bottom: none;
+                }
+            }
         }
     }
 
