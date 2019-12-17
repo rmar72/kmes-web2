@@ -101,7 +101,7 @@ header {
     width: 280px;
     position: absolute;
     right: 0;
-    transition: transform 0.2s ease-out;
+    transition: transform 0.3s ease-out;
     transform: translateX(100%);
 }
   
@@ -116,16 +116,16 @@ header {
     border: 1px solid #ddd;
     background-color: #f5f5f5;
     position: absolute;
-    left: 230px;
-    transition: transform 0.2s ease-out;
+    transition: transform 0.3s ease-out;
     transform: translateX(-100%);
 }
 
-.dm-wrapper.closed {
+.dm-wrapper.closed.show {
     left: 50px;
 }
 
 .dm-wrapper.show {
     transform: translateX(0);
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    left: 230px;
 }
