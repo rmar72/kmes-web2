@@ -20,7 +20,8 @@ export class IdentityManagementComponent implements OnInit {
   }
 
   discardCreateGroup = function() {
-    
+    //clear create group form
+    this.showCreateGroup = !this.showCreateGroup;
   }
 
   submitCreateGroup = function() {
@@ -32,7 +33,8 @@ export class IdentityManagementComponent implements OnInit {
   }
 
   discardCreateIdentity = function() {
-
+    //clear create identity form 
+    this.showCreateIdentity = !this.showCreateIdentity;
   }
 
   submitCreateIdentity = function() {

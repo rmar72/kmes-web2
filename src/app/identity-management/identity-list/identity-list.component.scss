@@ -1,0 +1,85 @@
+.name-circle {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background: #a43c76;
+    background-color: #a43c76;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: bolder;
+    padding-top: 2px;
+    text-align: center;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.identities-table .identity-group-col .badge {
+    font-weight: normal;
+    font-size: 11px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2), 1px 1px 2px 0 rgba(0, 0, 0, 0.1);
+    margin-right: 5px;
+    .badge-text-inner {
+        background: #97a0b3;
+        color: #fff;
+        font-weight: bolder;
+        width: 13px;
+        height: 13px;
+        border-radius: 50px;
+        display: inline-block;
+        margin-right: 5px;
+    }
+}
+.badge-default {
+    background-color: #eee;
+    color: #888;
+}
+
+.status-col {
+    text-align: center;
+}
+
+.code-success {
+    font-size: 11px !important;
+    border-radius: 3px !important;
+    background-color: #ecf5ec;
+    border: 1px solid #c6dfca;
+    color: #769976;
+    padding: 5px 12px 5px 12px;
+}
+
+.table-date-wrapper {
+    text-transform: uppercase;
+    color: #888;
+    font-size: 11px;
+}
+
+.table-time, .table-year {
+    font-size: 10px;
+    color: #3c8dbc;
+}
+
+.table-year {
+    font-weight: bold;
+}
+
+.identities-table {
+    thead {
+        tr {
+            background-color: #f4f4f4;
+            th {
+                color: #666;    
+                border: 1px solid #eee;
+                font-weight: normal;
+            }
+        }
+    }
+    .table-checkbox {
+        height: 15px;
+        width: 15px;
+        border-radius: 2px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+}

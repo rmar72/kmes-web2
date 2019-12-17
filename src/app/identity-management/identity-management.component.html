@@ -32,7 +32,9 @@
                   <button (click)="discardCreateIdentity()" *ngIf="showCreateIdentity" class="discard-btn btn btn-warning btn-sm"><i class="fa fa-trash mr-5"></i>Discard</button>
                   <button (click)="submitCreateIdentity()" *ngIf="showCreateIdentity" class="create-btn btn btn-primary btn-sm"><i class="fa fa-save mr-5"></i>Create</button>
                 </div>
-              <div *ngIf="!showCreateIdentity">Identity List</div>
+              <div *ngIf="!showCreateIdentity">
+                <app-identity-list></app-identity-list>
+              </div>
               <div *ngIf="showCreateIdentity">
                 <app-identity-create></app-identity-create>
               </div>
