@@ -1,54 +1,40 @@
-<div class="container">
-    <br>
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#identity-groups">Identity Groups</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#identities">Identities</a>
-        </li>
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div id="identity-groups" class="container tab-pane active"><br>
-            <h3>Identities Groups</h3>
-            ​
-            <div id="accordion">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                Collapsible Group Item #1
-                            </button>
-                        </h5>
-                    </div>
-
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-                            probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Identity Management
+        </div>
+        <div class="panel-body identity-manage-panel">
+          <ul class="nav nav-tabs" role="tablist">
+              <li class="active nav-item btn-group" role="presentation">
+                  <a id="idGroupBtn" href="#groups" aria-controls="groups" role="tab" data-toggle="tab" aria-expanded="false" class="">Identity Groups<span class="label blue-label">(0)</span></a>
+              </li>
+              <li class="nav-item btn-group" role="presentation">
+                <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab" aria-expanded="false" class="">Identities<span class="label blue-label">(7)</span></a>
+              </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="groups">
+              <div class="panel-btns">
+                <button (click)="toggleCreateGroup()" *ngIf="!showCreateGroup" class="create-btn btn btn-primary btn-sm"><i class="fa fa-plus mr-5"></i>Create Group</button>
+                <button (click)="discardCreateGroup()" *ngIf="showCreateGroup" class="discard-btn btn btn-warning btn-sm"><i class="fa fa-trash mr-5"></i>Discard</button>
+                <button (click)="submitCreateGroup()" *ngIf="showCreateGroup" class="create-btn btn btn-primary btn-sm"><i class="fa fa-save mr-5"></i>Create</button>
+              </div>
+              <div *ngIf="!showCreateGroup">Identity Group List</div>
+              <div *ngIf="showCreateGroup">Create Identity Group</div>
             </div>
-            ​
-            ​
+            <div class="tab-pane" id="allusers">
+                <div class="panel-btns">
+                  <button (click)="toggleCreateIdentity()" *ngIf="!showCreateIdentity" class="create-btn btn btn-primary btn-sm"><i class="fa fa-plus mr-5"></i>Create Identity</button>
+                  <button (click)="discardCreateIdentity()" *ngIf="showCreateIdentity" class="discard-btn btn btn-warning btn-sm"><i class="fa fa-trash mr-5"></i>Discard</button>
+                  <button (click)="submitCreateIdentity()" *ngIf="showCreateIdentity" class="create-btn btn btn-primary btn-sm"><i class="fa fa-save mr-5"></i>Create</button>
+                </div>
+              <div *ngIf="!showCreateIdentity">Identity List</div>
+              <div *ngIf="showCreateIdentity">Create Identity</div>
+            </div>
+          </div>
         </div>
-        <div id="identities" class="container tab-pane fade"><br>
-            <h3>Identities</h3>
-            <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-        </div>
-        ​
+      </div>
     </div>
 </div>

@@ -19,12 +19,10 @@ export class SideNavComponent implements OnInit {
             $('.sidebar-menu').tree();
         });
         this.activeRoute = this.router.url;
-        console.log(this.activeRoute);
     }
 
     updateRoute = function() {
         this.activeRoute = this.router.url;
-        console.log(this.activeRoute);
     }
 
 }
