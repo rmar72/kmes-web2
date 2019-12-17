@@ -39,4 +39,9 @@ export class IdentityManagementComponent implements OnInit {
 
   }
 
+  resetForms = function() {
+    this.showCreateGroup = false; 
+    this.showCreateIdentity = false;
+  }
+
 }

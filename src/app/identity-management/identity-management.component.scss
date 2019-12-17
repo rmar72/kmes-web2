@@ -64,30 +64,6 @@
             width: 250px;
             max-height: 34px;
         }
-        .btn-group {
-            button {
-                width: 250px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .dropdown-menu {
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                padding: 0px;
-                li {
-                    height: 35px;
-                }
-                li > a {
-                    height: 35px;
-                    line-height: 33px;
-                    border-bottom: 1px solid #ddd;
-                }
-                li:last-child > a{
-                    border-bottom: none;
-                }
-            }
-        }
     }
 
 }
