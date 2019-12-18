@@ -22,12 +22,31 @@
                         <p> Identity 1 login </p>
                         <div class="row">
                             <div class="form-group col-md-9 form-wrap">
-                                <input class="form-control username" type="text" formControlName="username" placeholder="username" />
-                                <input class="form-control password" type="password" formControlName="password" placeholder="password" />
+                                <div>
+                                    <input [ngClass]="{'invalid-field': username.invalid && username.touched}" class="form-control username" type="text" formControlName="username" placeholder="username" />
+                                </div>
+                                <div>
+                                    <input [ngClass]="{'invalid-field': password.invalid && password.touched}" class="form-control password" type="password" formControlName="password" placeholder="password" /> 
+                                </div>
+
+                                <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+                                    <i class="fa fa-exclamation-triangle mr-10"></i>
+                                   <span> Valid username is required</span> 
+                                </div>
+
+                                <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+                                    <i class="fa fa-exclamation-triangle mr-10"></i>
+                                    <span> Valid password is required</span> 
+                                </div>
+
+                                <div *ngIf="invalidPassword" class="invalid-feedback">
+                                    <i class="fa fa-exclamation-triangle mr-10"></i>
+                                    <span> {{ invalidPasswordMessage }}</span> 
+                                </div>
                             </div>
                             
-                            <button id="mobile-btn" class="btn btn-light col-md-2">
-                                <i class="fa fa-arrow-right"></i>
+                            <button [disabled]="loginForm.invalid" id="mobile-btn" class="btn btn-light col-md-2">
+                                <i [ngClass]="{'invalid-arrow': loginForm.invalid == true}" class="fa fa-arrow-right"></i>
                             </button>
                         </div>
                     </div>
