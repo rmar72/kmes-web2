@@ -1,0 +1,112 @@
+<div class="col-md-3">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="active nav-item"><a href="#usertab1" data-toggle="pill">General</a></li>
+    <li class="nav-item"><a href="#usertab2" data-toggle="pill">Personalize</a></li>
+    <li class="nav-item"><a href="#usertab3" data-toggle="pill">Password</a></li>
+    <li class="nav-item"><a href="#usertab4" data-toggle="pill">OAuth</a></li>
+    <li class="nav-item"><a href="#usertab5" data-toggle="pill">One-time password</a></li>
+    <li class="nav-item"><a href="#usertab6" data-toggle="pill">Biometric</a></li>
+  </ul>
+</div>
+<div class="col-md-9 tab-content">
+  <div class="tab-pane fade active in" name="general-tab" id="usertab1">
+    <form>
+      <div class="list-group">
+
+        <div class="list-group-item">
+          <span class="list-group-title">Identity username</span>
+          <span class="user-input">
+            <input type="text" class="form-control" placeholder="Username">
+          </span>
+        </div>
+
+        <div class="list-group-item">
+          <span class="list-group-title">Identity password</span>
+          <span class="user-input">
+            <input type="text" class="form-control" placeholder="Password">
+          </span>
+        </div>
+
+        <div class="list-group-item">
+          <span class="list-group-title">Repeat identity password</span>
+          <span class="user-input">
+            <input type="text" class="form-control" placeholder="Repeat password">
+          </span>
+        </div>
+
+        <div class="list-group-item">
+          <span class="list-group-title">Allow password login</span>
+          <div class="checkbox checkbox-switch switch-primary">
+            <label><input type="checkbox" name="" checked=""><span></span></label>
+          </div>
+        </div>
+
+        <div class="list-group-item">
+          <span class="list-group-title pull-left">Register
+            authenticator</span>
+
+          <div class="qrcode-image-collapse qrcode-image-short collapse fade active in">
+            <a class="btn btn-default btn-sm pull-right btn-wide" data-toggle="collapse" data-target=".qrcode-image-collapse">Register</a>
+          </div>
+
+          <div class="qrcode-image-collapse collapse fade qrcode-upload">
+            <div class="pull-right">
+              <code class="code-default">8675309</code>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </form>
+  </div>
+  <div id="usertab2" class="tab-pane fade">
+    <form #personalizeForm="ngForm">
+      <div class="list-group">
+        <div class="list-group-item">
+          <span class="list-group-title">First name</span>
+          <span class="user-input">
+            <input type="text" class="form-control" placeholder="First name" [(ngModel)]="identities.personalize.firstName" name="identities_personalize_firstName" required>
+          </span>
+        </div>
+
+        <div class="list-group-item">
+          <span class="list-group-title">Last name</span>
+          <span class="user-input">
+            <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="identities.personalize.lastName" name="identities_personalize_firstName" required>
+          </span>
+        </div>
+
+        <div class="list-group-item">
+          <span class="list-group-title">Common name</span>
+          <span class="user-input">
+            <input type="text" class="form-control" placeholder="Nickname" [(ngModel)]="identities.personalize.commonName" name="identities_personalize_commonName" required>
+          </span>
+        </div>
+
+        <div class="list-group-item">
+          <span class="list-group-title">Email</span>
+          <span class="user-input">
+            <input type="text" class="form-control" placeholder="Email" [(ngModel)]="identities.personalize.email" name="identities_personalize_email" required>
+          </span>
+        </div>
+        <div class="list-group-item">
+          <span class="list-group-title">Mobile phone number</span>
+          <span class="user-input">
+            <input type="text" class="form-control" placeholder="Phone" [(ngModel)]="identities.personalize.phone" name="identities_personalize_phone" required>
+          </span>
+        </div>
+
+        <div class="list-group-item">
+          <span class="list-group-title">Mobile phone carrier</span>
+            <div class="dropdown">
+              <select class="form-control dropdown-toggle" id="carrier" [(ngModel)]="identities.personalize.carrier" name="identities_personalize_carrier" required>
+                <option value="">Select</option>
+                <option *ngFor="let carrier of carriers" value={{carrier}}>{{carrier}}</option>
+              </select>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
