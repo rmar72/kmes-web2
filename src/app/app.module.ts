@@ -14,6 +14,7 @@ import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IdentityCreateComponent } from './identity-management/identity-create/identity-create.component';
+import { IdentityDetailComponent } from './identity-management/identity-detail/identity-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { IdentityCreateComponent } from './identity-management/identity-create/i
     IdentityManagementComponent,
     SystemAdminComponent,
     IdentityCreateComponent,
+    IdentityDetailComponent,
   ],
   imports: [
     BrowserModule,

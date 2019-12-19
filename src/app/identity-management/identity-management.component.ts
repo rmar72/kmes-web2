@@ -7,12 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdentityManagementComponent implements OnInit {
 
+  showFullscreen: boolean = false;
+  showDetailView: boolean = false;
   showCreateGroup: boolean = false;
   showCreateIdentity: boolean = false;
-
+  
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleFullscreen(){
+    this.showFullscreen = !this.showFullscreen;
+    this.showDetailView = !this.showDetailView;
   }
 
   toggleCreateGroup = function() {
