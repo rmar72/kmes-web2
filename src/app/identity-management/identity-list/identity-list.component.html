@@ -27,23 +27,23 @@
         </tr>
       </thead>
       <tbody>
-        <tr role="row" class="odd">
+        <tr role="row" class="odd" *ngFor="let identity of identities">
           <td>
             <!-- <input class="table-checkbox" type="checkbox" name=""> -->
           </td>
-          <td><span class="name-circle">MU</span>Main User</td>
+          <td [ngClass]="{'identity-disabled': !identity.valid}"><span class="name-circle">{{getInitials(identity.username)}}</span>{{identity.username}}&nbsp;<i *ngIf="!identity.valid" class="fa fa-exclamation-triangle text-danger icon-left"></i></td>
           <td class="identity-group-col">
-              <span class="badge badge-default"><span class="badge-text-inner">1</span>Admin Group</span>
-              <span class="badge badge-default"><span class="badge-text-inner">2</span>Management</span>
-              <span class="badge badge-default"><span class="badge-text-inner">3</span>Custom Group</span>
+              <span class="badge badge-default"><span class="badge-text-inner">1</span>{{identity.primaryGroup}}</span>
+              <span class="badge badge-default" *ngFor="let group of identity.subGroups; let i = index"><span class="badge-text-inner">{{i + 2}}</span>{{group}}</span>
           </td>
           <td class="status-col">
-              <code class="code-success"><i class="fa fa-check"></i></code>
+              <code *ngIf="identity.valid" class="code-success"><i class="fa fa-check"></i></code>
+              <code *ngIf="!identity.valid" class="code-danger"><i class="fa fa-times"></i></code>
           </td>
           <td class="table-date-container">
               <div class="table-date-wrapper">
-                  <span class="table-month">November</span>&nbsp;<span class="table-day">13</span><br>
-                  <span class="table-time">21:43:32</span>&nbsp;|&nbsp;<span class="table-year">2019</span>
+                  <span class="table-month">{{identity.lastLogin | date :'MMMM'}}</span>&nbsp;<span class="table-day">{{identity.lastLogin | date :'d'}}</span><br>
+                  <span class="table-time">{{identity.lastLogin | date :'hh:mm:ss'}}</span>&nbsp;|&nbsp;<span class="table-year">{{identity.lastLogin | date :'yyyy'}}</span>
               </div>
           </td>
           <td class="identity-action-col">

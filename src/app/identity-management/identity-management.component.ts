@@ -9,10 +9,13 @@ export class IdentityManagementComponent implements OnInit {
 
   showCreateGroup: boolean = false;
   showCreateIdentity: boolean = false;
+  identityCount: number = 0;
 
   constructor() { }
 
   ngOnInit() {
+    //get identity count 
+    this.identityCount = 3;
   }
 
   toggleCreateGroup = function() {
