@@ -101,3 +101,18 @@
         background: #aaa;
     }
 }
+
+.identity-action-col {
+    text-align: center;
+    .fa {
+        color: #97a0b3;
+    }
+}
+
+.identity-list-error {
+    font-size: 11px;
+    color: red;
+    width: 60px;
+    margin: 0 auto;
+    padding-top: 5px;
+}
