@@ -127,13 +127,15 @@
 
         .password {
             border-bottom-left-radius: 4px;
+            margin-bottom: 15px;
         }
     }
 
-    .btn-light {
+    button {
         height: 70px;
         width: 134.5px;
         margin-left: 0;
+        margin-right: 20px;
         padding: 0;
         background-color: #f1f3f5;
         border-bottom-color: #b3b3b3;
@@ -189,77 +191,36 @@
             box-shadow: inset 0 0 2px #000000;
         }
     }
-}
-
-
-
-/* ----------- Mobile Devices ----------- */
-/* Portrait */
-@media only screen 
-    and (min-device-width: 320px) 
-    and (max-device-width: 568px)
-    and (-webkit-min-device-pixel-ratio: 2)
-    and (orientation: portrait) {
-        .form-wrap {
-            input {
-                width: 85%;
-            }
-        }
-        #mobile-btn {
-            height: 40px;
-            width: 85%;
-        }
-}
-
-/* Landscape */
-@media only screen 
-    and (min-device-width: 375px) 
-    and (max-device-width: 850px) 
-    and (-webkit-min-device-pixel-ratio: 2)
-    and (orientation: landscape) { 
-        .login-section{
-            height: 600px;
-        }
-        .form-wrap {
-            input {
-                width: 85%;
-            }
-        }
-        #mobile-btn {
-            height: 40px;
-            width: 85%;
-        }
-}
-
-
-/* Ipad Portrait */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait) { 
-    .form-wrap {
-        input {
-            width: 90%;
-        }
+    .invalid-arrow{
+        color: rgb(136, 136, 136);
     }
-    #mobile-btn {
-        height: 40px;
-        width: 90%;
+
+    .invalid-field{
+       border: 1px solid red;
+    }
+
+    .invalid-feedback {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+
+        span {
+            margin-left: 5px;
+        }
     }
 }
 
-/* Ipad Landscape */
-@media only screen 
-    and (min-device-width : 768px) 
-    and (max-device-width : 1024px) 
-    and (orientation : landscape) { 
-        .form-wrap {
-            input {
-                width: 120%;
-            }
+@media (min-width: 650px ) and (max-width: 3000px ){
+    .form-wrap{
+        display: flex;
+
+        .form-fields{
+            display: flex;
+            flex-direction: column;
+            flex: 70%;
         }
-        #mobile-btn {
-            height: 40px;
-            width: 90%;
+        .btn-field{
+            flex: 30%;
         }
+    }
 }
