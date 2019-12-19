@@ -3,10 +3,13 @@
     <div [ngClass]="showFullscreen ? 'col-md-7 col-sm-7 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" >
       <div class="panel panel-default">
         <div class="panel-heading primary-heading">
-          Identity Management
-          <button (click)="toggleFullscreen()" [ngClass]="showFullscreen? '' : 'btn btn-primary btn-sm close-btn' ">
+          <span>
+            Identity Management
+          </span>
+          
+          <button (click)="toggleFullscreen()" id="close-btn" [ngClass]="showFullscreen? '' : 'btn btn-primary btn-sm close-btn' ">
             <i [ngClass]="showFullscreen ? 'fa fa-expand' : 'fa fa-compress'"></i>
-              <span *ngIf="!showFullscreen" class="btn-close-wording">Close fullscreen</span>
+            <span *ngIf="!showFullscreen" class="btn-close-wording">Close fullscreen</span>
           </button>
         </div>
         <div class="panel-toolbar">
