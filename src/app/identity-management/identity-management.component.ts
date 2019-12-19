@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IdentityCreateComponent } from './identity-create/identity-create.component';
 
 @Component({
   selector: 'app-identity-management',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./identity-management.component.scss']
 })
 export class IdentityManagementComponent implements OnInit {
+  showCreateGroup = false;
+  showCreateIdentity = false;
 
-  showCreateGroup: boolean = false;
-  showCreateIdentity: boolean = false;
+  users: any;
+
   identityCount: number = 0;
 
   constructor() { }

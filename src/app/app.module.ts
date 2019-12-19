@@ -14,7 +14,10 @@ import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IdentityCreateComponent } from './identity-management/identity-create/identity-create.component';
+<<<<<<< HEAD
 import { IdentityListComponent } from './identity-management/identity-list/identity-list.component';
+=======
+>>>>>>> b4cd50ddf145afa6fd5cf3e20988adb4b8f661e0
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { IdentityListComponent } from './identity-management/identity-list/ident
     IdentityManagementComponent,
     SystemAdminComponent,
     IdentityCreateComponent,
+<<<<<<< HEAD
     IdentityListComponent,
+=======
+>>>>>>> b4cd50ddf145afa6fd5cf3e20988adb4b8f661e0
   ],
   imports: [
     BrowserModule,

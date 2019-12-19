@@ -1,4 +1,5 @@
 <section class="content">
+<<<<<<< HEAD
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="panel panel-default">
@@ -44,3 +45,60 @@
       </div>
     </div>
 </div>
+=======
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Identity Management
+                </div>
+                <div class="panel-toolbar">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active nav-item btn-group" role="presentation" (click)="resetForms()">
+                            <a id="idGroupBtn" href="#groups" aria-controls="groups" role="tab" data-toggle="tab"
+                                aria-expanded="false" class="">Identity Groups<span
+                                    class="label blue-label">(0)</span></a>
+                        </li>
+                        <li class="nav-item btn-group" role="presentation" (click)="resetForms()">
+                            <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab"
+                                aria-expanded="false" class="">Identities<span class="label blue-label">(0)</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body identity-manage-panel">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="groups">
+                            <div class="panel-btns">
+                                <button (click)="toggleCreateGroup()" *ngIf="!showCreateGroup"
+                                    class="create-btn btn btn-primary btn-sm"><i class="fa fa-plus mr-5"></i>Create
+                                    Group</button>
+                                <button (click)="discardCreateGroup()" *ngIf="showCreateGroup"
+                                    class="discard-btn btn btn-warning btn-sm"><i
+                                        class="fa fa-trash mr-5"></i>Discard</button>
+                                <button (click)="submitCreateGroup()" *ngIf="showCreateGroup"
+                                    class="create-btn btn btn-primary btn-sm"><i
+                                        class="fa fa-save mr-5"></i>Create</button>
+                            </div>
+                            <div *ngIf="!showCreateGroup">Identity Group List</div>
+                            <div *ngIf="showCreateGroup">Create Identity Groups</div>
+                        </div>
+                        <div class="tab-pane" id="allusers">
+                            <div class="panel-btns">
+                                <button (click)="toggleCreateIdentity()" *ngIf="!showCreateIdentity"
+                                    class="create-btn btn btn-primary btn-sm"><i class="fa fa-plus mr-5"></i>Create
+                                    Identity</button>
+                                <button (click)="discardCreateIdentity(); idCreate.resetForms()" *ngIf="showCreateIdentity"
+                                    class="discard-btn btn btn-warning btn-sm"><i
+                                        class="fa fa-trash mr-5"></i>Discard</button>
+                                <button (click)="idCreate.submitCreateIdentity()" *ngIf="showCreateIdentity"
+                                    class="create-btn btn btn-primary btn-sm"><i
+                                        class="fa fa-save mr-5"></i>Create</button>
+                            </div>
+                            <div *ngIf="!showCreateIdentity">Identity List</div>
+                            <div [hidden]="!showCreateIdentity">
+                                <app-identity-create #idCreate></app-identity-create>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> b4cd50ddf145afa6fd5cf3e20988adb4b8f661e0
