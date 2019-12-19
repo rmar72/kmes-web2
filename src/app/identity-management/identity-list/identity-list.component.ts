@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdentityListComponent implements OnInit {
     identities: any[] = [];
+    deleteError: string = '';
+    errorIndex: number;
     mockResponseData = {
         "status": "success",
         "message": "",
@@ -54,6 +56,14 @@ export class IdentityListComponent implements OnInit {
 
     getInitials(username: string) {
         return username.substring(0,2).toUpperCase();
+    }
+
+    deleteIdentity(identity: any, index: number) {
+        //delete identity 
+        //get identities
+        //show error message if needed
+        this.deleteError = 'Unable to delete this identity.';
+        this.errorIndex = index;
     }
 
 }

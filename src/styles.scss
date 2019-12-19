@@ -29,6 +29,10 @@ body {
     background: #f9f9f9;
 }
 
+.content-wrapper .panel .fa {
+    color: #97a0b3;
+}
+
 //general button styling
 
 .btn-primary {
@@ -68,4 +72,9 @@ body {
             border-bottom: none;
         }
     }
+}
+
+//general dropdown styling 
+.dropdown-menu li {
+    cursor: pointer;
 }

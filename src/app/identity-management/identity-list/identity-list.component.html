@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr role="row" class="odd" *ngFor="let identity of identities">
+        <tr role="row" class="odd" *ngFor="let identity of identities; let i = index">
           <td>
             <!-- <input class="table-checkbox" type="checkbox" name=""> -->
           </td>
@@ -47,17 +47,17 @@
               </div>
           </td>
           <td class="identity-action-col">
-              <!-- <div class="btn-group btn-group-sm">
+              <div class="btn-group btn-group-sm">
                   <a href="#" class="btn btn-default" role="button"><i class="fa fa-eye"></i><span class="hidden"></span></a>
                   <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                       <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                      <li><a href="#"><i class="fa fa-plus icon-right"></i>Add identity to group</a></li>
-                      <li><a href="#"><i class="fa fa-user-alt-slash icon-right"></i>Disable identity</a></li>
-                      <li><a href="#"><i class="fa fa-trash icon-right"></i>Delete identity</a></li>
+                      <!-- <li><a href="#"><i class="fa fa-plus icon-right"></i>Add identity to group</a></li> -->
+                      <li><a (click)="deleteIdentity(identity, i)"><i class="fa fa-trash icon-right"></i>Delete identity</a></li>
                   </ul>
-              </div> -->
+              </div>
+              <div class="identity-list-error" *ngIf="deleteError.length && errorIndex === i">{{deleteError}}</div>
           </td>
         </tr>
       </tbody>
