@@ -131,10 +131,11 @@
         }
     }
 
-    .btn-light {
+    button {
         height: 70px;
         width: 134.5px;
         margin-left: 0;
+        margin-right: 20px;
         padding: 0;
         background-color: #f1f3f5;
         border-bottom-color: #b3b3b3;
@@ -196,7 +197,6 @@
 
     .invalid-field{
        border: 1px solid red;
-
     }
 
     .invalid-feedback {
@@ -210,75 +210,17 @@
     }
 }
 
+@media (min-width: 650px ) and (max-width: 3000px ){
+    .form-wrap{
+        display: flex;
 
-
-/* ----------- Mobile Devices ----------- */
-/* Portrait */
-@media only screen 
-    and (min-device-width: 320px) 
-    and (max-device-width: 568px)
-    and (-webkit-min-device-pixel-ratio: 2)
-    and (orientation: portrait) {
-        .form-wrap {
-            input {
-                width: 85%;
-            }
+        .form-fields{
+            display: flex;
+            flex-direction: column;
+            flex: 70%;
         }
-        #mobile-btn {
-            height: 40px;
-            width: 85%;
-        }
-}
-
-/* Landscape */
-@media only screen 
-    and (min-device-width: 375px) 
-    and (max-device-width: 850px) 
-    and (-webkit-min-device-pixel-ratio: 2)
-    and (orientation: landscape) { 
-        .login-section{
-            height: 600px;
-        }
-        .form-wrap {
-            input {
-                width: 85%;
-            }
-        }
-        #mobile-btn {
-            height: 40px;
-            width: 85%;
-        }
-}
-
-
-/* Ipad Portrait */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait) { 
-    .form-wrap {
-        input {
-            width: 90%;
+        .btn-field{
+            flex: 30%;
         }
     }
-    #mobile-btn {
-        height: 40px;
-        width: 90%;
-    }
-}
-
-/* Ipad Landscape */
-@media only screen 
-    and (min-device-width : 768px) 
-    and (max-device-width : 1024px) 
-    and (orientation : landscape) { 
-        .form-wrap {
-            input {
-                width: 120%;
-            }
-        }
-        #mobile-btn {
-            height: 40px;
-            width: 90%;
-        }
 }
