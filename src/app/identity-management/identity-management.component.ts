@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IdentityCreateComponent } from './identity-create/identity-create.component';
 
 @Component({
   selector: 'app-identity-management',
@@ -7,18 +6,14 @@ import { IdentityCreateComponent } from './identity-create/identity-create.compo
   styleUrls: ['./identity-management.component.scss']
 })
 export class IdentityManagementComponent implements OnInit {
-  showCreateGroup = false;
-  showCreateIdentity = false;
-
-  users: any;
-
+  showCreateGroup: boolean = false;
+  showCreateIdentity: boolean = false;
   identityCount: number = 0;
+  // users: any;
 
   constructor() { }
 
   ngOnInit() {
-    //get identity count 
-    this.identityCount = 3;
   }
 
   toggleCreateGroup = function() {
@@ -50,5 +45,9 @@ export class IdentityManagementComponent implements OnInit {
   resetForms = function() {
     this.showCreateGroup = false; 
     this.showCreateIdentity = false;
+  }
+
+  getIdentityCount($event) {
+    this.identityCount = $event;
   }
 }

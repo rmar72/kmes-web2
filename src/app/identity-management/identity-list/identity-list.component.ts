@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { UsersManagementService } from '../services/users-management.service';
 
 @Component({
     selector: 'app-identity-list',
@@ -7,49 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdentityListComponent implements OnInit {
     identities: any[] = [];
-    mockResponseData = {
-        "status": "success",
-        "message": "",
-        "responseData": {
-          "totalItems": 3,
-          "totalPages": 1,
-          "pageCount": 50,
-          "currentPage": 1,
-          "nextPage": 1,
-          "users": [
-            {
-                "username": "User1",
-                "primaryGroup": "Admin",
-                "subGroups": [
-                    "Child Group1",
-                    "Child Group2"
-                ],
-                "valid": true,
-                "lastLogin": "2019-12-10 23:59:59"
-            },
-            {
-                "username": "User2",
-                "primaryGroup": "Child Group1",
-                "subGroups": [],
-                "valid": true,
-                "lastLogin": "2019-12-10 23:59:59"
-            },
-            {
-                "username": "User Three",
-                "primaryGroup": "Child Group2",
-                "subGroups": [],
-                "valid": false,
-                "lastLogin": "2019-12-10 23:59:59"
-            }
-          ]
-        }
-      }
+    identityCount: number;
 
-    constructor() { }
+    @Output() setIdentityCount = new EventEmitter<number>();
+
+    constructor(private usersManagement: UsersManagementService) { }
 
     ngOnInit() {
         //get identities
-        this.identities = this.mockResponseData.responseData.users;
+        this.getIdentities();
+    }
+
+    getIdentities() {
+        this.usersManagement.read().subscribe(response => {
+            this.setIdentityCount.emit(response.responseData.totalItems);
+            this.identities = response.responseData.users;
+        });
     }
 
     getInitials(username: string) {

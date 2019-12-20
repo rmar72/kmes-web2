@@ -6,13 +6,13 @@ import { NopSerializer } from 'src/app/shared/helpers/serializers';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersManagementService extends ResourceService<CreateUser> {
+export class UsersManagementService extends ResourceService<any> {
 
   constructor(http: HttpClient) {
     super(
       http,
       'users',
-      '1.0.0',
+      '1.1.0',
       'users',
     );
   }
