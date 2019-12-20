@@ -78,3 +78,23 @@
 
 
 }
+
+
+.anchor-collapse {
+    display: flex;
+    justify-content: space-between;
+    color:rgb(136, 136, 136);
+    border: 1px solid rgba(136, 136, 136, 0.5);
+    margin-top: 5px;
+
+    &:hover {
+        color: rgba(0, 0, 0, 0.8);
+        background-color: #f4f4f4;
+        transition: ease-in-out .15s,ease-in-out .15s;
+    }
+
+    &:focus {
+        color: rgba(0, 0, 0, 0.8);
+        transition: ease-in-out .15s,ease-in-out .15s;
+    }
+}

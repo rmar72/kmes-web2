@@ -11,17 +11,16 @@
         padding: 7px 0 0px 15px;
     }
     
-    #close-btn{
+    #close-btn {
         font-size: 12px;
         height: 37px;
-        width: 32px;
 
         &:active {
             outline: 0;
         }
 
         .btn-close-wording {
-            margin-left: 10px;
+            margin-left: -9px;
         }
     }
 }
