@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-identity-management',
@@ -6,16 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./identity-management.component.scss']
 })
 export class IdentityManagementComponent implements OnInit {
-
   showCreateGroup: boolean = false;
   showCreateIdentity: boolean = false;
   identityCount: number = 0;
+  // users: any;
 
   constructor() { }
 
   ngOnInit() {
-    //get identity count 
-    this.identityCount = 3;
   }
 
   toggleCreateGroup = function() {
@@ -49,4 +47,7 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateIdentity = false;
   }
 
+  getIdentityCount($event) {
+    this.identityCount = $event;
+  }
 }
