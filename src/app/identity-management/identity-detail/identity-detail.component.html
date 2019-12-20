@@ -1,6 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading secondary-heading">
-      <i class="fa fa-eye mr-10"></i>Details
+        <span><i class="fas fa-eye mr-10"></i>Details</span>
+        <button>Edit</button>
     </div>
     
     <div class="panel-body">
@@ -8,26 +9,32 @@
         <div class="row">
 
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="thumbnail note mt-0">
-              <div class="users-preview__photo">
-                <div class="avatar-circle avatar-circle-sm">
-                    <span class="initials"><i class="fa fa-users"></i><!-- AG --></span>
+            <div class="user-header">
+                <div class="img-thumbnail">
+                    <span><i class="fa fa-users fa-2x"></i></span>
                 </div>
-              </div>
-              <div class="users-preview__name" title="Admin Group">Admin Group</div>
-              <div class="users-preview__role" title="Normal ">Key Management Identity</div>
-              <div class="users-preview__login" title="Date Created"><span class="users-preview__logindate">Created: Nov 11, 2019</span></div>
+                <div class="users-preview__name" title="Admin Group">Admin Group</div>
+                <div class="users-preview__role" title="Normal ">Key Management Identity</div>
+                <div class="users-preview__login" title="Date Created">
+                    <span>Created: Nov 11, 2019</span>
+                </div>
             </div>
           </div>
 
-          <div class="detail-pane-list-wrapper details-summary-list edit-collapse col-md-12">
-            <hr class="mb-0">
+          <div class="details-summary-list col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <hr class="divider">
             <div class="detail-pane-list">Identities contained<span>3</span></div>
+            <hr class="divider">
             <div class="detail-pane-list">Identities for login<span>2</span></div>
+            <hr class="divider">
             <div class="detail-pane-list">Identity storage<span>Card</span></div>
+            <hr class="divider">
             <div class="detail-pane-list">LDAP verify<span><i class="fa fa-check"></i></span></div>
+            <hr class="divider">
             <div class="detail-pane-list">LDAP name<span>ATX Group</span></div>
+            <hr class="divider">
             <div class="detail-pane-list">Member auth to<span>Client, Host API, KMIP</span></div>
+            <hr class="divider">
           </div>
 
           <div class="edit-collapse">
