@@ -7,7 +7,6 @@
     <div class="panel-body">
       <div class="access-details-group">
         <div class="row">
-
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="user-header">
                 <div class="img-thumbnail">
@@ -37,179 +36,261 @@
             <hr class="divider">
           </div>
 
-          <div class="edit-collapse">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <a href="#user-preview__view-permissions" class="btn btn-default btn-block btn-sm anchor-collapse" data-toggle="collapse">
+                  <span>Enabled permissions</span><i class="fa fa-caret-down"></i>
+              </a>
+                          
+              <div id="user-preview__view-permissions" class=""> 
+                <ul class="list-group">
+                  
+                  <li id="perm-0" class="group-item">
+                    <a data-toggle="collapse" data-target="#permsub-0" aria-controls="permsub-0" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>View logs
+                    </a>
 
-            <div class="col-md-12 col-sm-12 col-xs-12">
-
-                <a href="#user-preview__view-permissions" class="btn btn-default btn-block btn-sm anchor-collapse" data-toggle="collapse">
-                    <span>Enabled permissions</span> <i class="fa fa-caret-down"></i>
-                </a>
-                            
-                <div id="user-preview__view-permissions" class="collapse">
-                              <ul class="list-group list-group-flush">
-
-                                <li class="list-group-item expand-all-wrapper">
-                      <a href="" class="expand-all-btn"><i class="fa fa-plus"></i>Expand All</a>
-                  </li>
-
-                  <li id="perm-0" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-0" aria-controls="permsub-0" aria-expanded="true"><i class="fa fa-caret-right"></i>View logs</a>
-                    <ul id="permsub-0" aria-labelledby="perm-0" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                    <!-- <span class="list-group-item expand-all-wrapper">
+                      <a class="expand-all-btn">
+                        <i class="fa fa-plus"></i>Expand All
+                      </a>
+                    </span> -->
+                  
+                    <ul id="permsub-0" class="nested-group-list" aria-labelledby="perm-0" data-parent="#user-preview__view-permissions" class="collapse">
+                      <li class="nested-group-item">
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
-                  <li id="perm-1" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-1" aria-controls="permsub-1" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage users</a>
+                  <li id="perm-1" class="group-item">
+                    <a data-toggle="collapse" data-target="#permsub-1" aria-controls="permsub-1" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage users
+                    </a>
                     <ul id="permsub-1" aria-labelledby="perm-1" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-2" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-2" aria-controls="permsub-2" aria-expanded="true"><i class="fa fa-caret-right"></i>Update system configuration</a>
+                    <a data-toggle="collapse" data-target="#permsub-2" aria-controls="permsub-2" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Update system configuration
+                    </a>
                     <ul id="permsub-2" aria-labelledby="perm-2" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-4" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-4" aria-controls="permsub-4" aria-expanded="true"><i class="fa fa-caret-right"></i>Database restore</a>
+                    <a data-toggle="collapse" data-target="#permsub-4" aria-controls="permsub-4" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Database restore
+                    </a>
                     <ul id="permsub-4" aria-labelledby="perm-4" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-5" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-5" aria-controls="permsub-5" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage hosts/networks</a>
+                    <a data-toggle="collapse" data-target="#permsub-5" aria-controls="permsub-5" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage hosts/networks
+                    </a>
                     <ul id="permsub-5" aria-labelledby="perm-5" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-7" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-7" aria-controls="permsub-7" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage templates</a>
+                    <a data-toggle="collapse" data-target="#permsub-7" aria-controls="permsub-7" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage templates
+                    </a>
                     <ul id="permsub-7" aria-labelledby="perm-7" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-8" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-8" aria-controls="permsub-8" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage keys</a>
+                    <a data-toggle="collapse" data-target="#permsub-8" aria-controls="permsub-8" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage keys
+                    </a>
                     <ul id="permsub-8" aria-labelledby="perm-8" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]</li>
                     </ul>
                   </li>
 
                   <li id="perm-9" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-9" aria-controls="permsub-9" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage encryption device groups</a>
+                    <a data-toggle="collapse" data-target="#permsub-9" aria-controls="permsub-9" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage encryption device groups
+                    </a>
                     <ul id="permsub-9" aria-labelledby="perm-9" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-10" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-10" aria-controls="permsub-10" aria-expanded="true"><i class="fa fa-caret-right"></i>View peers</a>
+                    <a data-toggle="collapse" data-target="#permsub-10" aria-controls="permsub-10" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>View peers
+                    </a>
                     <ul id="permsub-10" aria-labelledby="perm-10" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-11" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-11" aria-controls="permsub-11" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage and print reports</a>
+                    <a data-toggle="collapse" data-target="#permsub-11" aria-controls="permsub-11" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage and print reports
+                    </a>
                     <ul id="permsub-11" aria-labelledby="perm-11" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-12" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-12" aria-controls="permsub-12" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage signing approvals</a>
+                    <a data-toggle="collapse" data-target="#permsub-12" aria-controls="permsub-12" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage signing approvals
+                    </a>
                     <ul id="permsub-12" aria-labelledby="perm-12" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-13" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-13" aria-controls="permsub-13" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage X.509 v3 extension profiles</a>
+                    <a data-toggle="collapse" data-target="#permsub-13" aria-controls="permsub-13" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage X.509 v3 extension profiles
+                    </a>
                     <ul id="permsub-13" aria-labelledby="perm-13" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-14" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage X.509 DN profiles</a>
+                    <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage X.509 DN profiles
+                    </a>
                     <ul id="permsub-14" aria-labelledby="perm-14" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-14" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage remote LDAP servers</a>
+                    <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage remote LDAP servers
+                    </a>
                     <ul id="permsub-14" aria-labelledby="perm-14" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-15" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-15" aria-controls="permsub-15" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage secret data</a>
+                    <a data-toggle="collapse" data-target="#permsub-15" aria-controls="permsub-15" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage secret data
+                    </a>
                     <ul id="permsub-15" aria-labelledby="perm-15" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-16" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-16" aria-controls="permsub-16" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage KMIP templates</a>
+                    <a data-toggle="collapse" data-target="#permsub-16" aria-controls="permsub-16" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage KMIP templates</a>
                     <ul id="permsub-16" aria-labelledby="perm-16" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-17" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-17" aria-controls="permsub-17" aria-expanded="true"><i class="fa fa-caret-right"></i>Tokenization</a>
+                    <a data-toggle="collapse" data-target="#permsub-17" aria-controls="permsub-17" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Tokenization
+                    </a>
                     <ul id="permsub-17" aria-labelledby="perm-17" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-18" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-18" aria-controls="permsub-18" aria-expanded="true"><i class="fa fa-caret-right"></i>Manage Windows PKI templates</a>
+                    <a data-toggle="collapse" data-target="#permsub-18" aria-controls="permsub-18" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Manage Windows PKI templates
+                    </a>
                     <ul id="permsub-18" aria-labelledby="perm-18" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-19" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-19" aria-controls="permsub-19" aria-expanded="true"><i class="fa fa-caret-right"></i>Perform Windows enrollments</a>
+                    <a data-toggle="collapse" data-target="#permsub-19" aria-controls="permsub-19" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Perform Windows enrollments
+                    </a>
                     <ul id="permsub-19" aria-labelledby="perm-19" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-20" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-20" aria-controls="permsub-20" aria-expanded="true"><i class="fa fa-caret-right"></i>Use the system SFTP server</a>
+                    <a data-toggle="collapse" data-target="#permsub-20" aria-controls="permsub-20" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Use the system SFTP server
+                    </a>
                     <ul id="permsub-20" aria-labelledby="perm-20" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-21" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-21" aria-controls="permsub-21" aria-expanded="true"><i class="fa fa-caret-right"></i>Perform cryptographic operations</a>
+                    <a data-toggle="collapse" data-target="#permsub-21" aria-controls="permsub-21" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>Perform cryptographic operations
+                    </a>
                     <ul id="permsub-21" aria-labelledby="perm-21" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li>
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
 
                   <li id="perm-22" class="list-group-item">
-                    <a data-toggle="collapse" data-target="#permsub-22" aria-controls="permsub-22" aria-expanded="true"><i class="fa fa-caret-right"></i>File encryption</a>
+                    <a data-toggle="collapse" data-target="#permsub-22" aria-controls="permsub-22" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>File encryption
+                    </a>
                     <ul id="permsub-22" aria-labelledby="perm-22" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li><i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                      <li><i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
                     </ul>
                   </li>
-
-                </ul>
-              </div>
+              </ul>
             </div>
-
           </div>
 
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
