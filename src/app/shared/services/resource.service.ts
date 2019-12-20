@@ -42,8 +42,8 @@ export class ResourceService<T extends Resource> {
       .pipe(map(data => this.serializer.fromJson(data) as T));
   }
 
-  public delete(id: number) {
-    return this.http.delete(`${this.url}/${id}`);
+  public delete(username: string) {
+    return this.http.delete(`${this.url}?username=${username}`);
   }
 }
 

@@ -34,10 +34,19 @@ export class IdentityListComponent implements OnInit {
 
     deleteIdentity(identity: any, index: number) {
         //delete identity 
-        //get identities
-        //show error message if needed
-        this.deleteError = 'Unable to delete this identity.';
-        this.errorIndex = index;
+        this.usersManagement.delete(identity.username).subscribe(
+            (response) => {
+                console.log(response);
+                //get identities
+                this.getIdentities();
+            },
+            (error) => {
+                //show error message
+                this.deleteError = error.message;
+                this.errorIndex = index;
+            }
+        );
+        
     }
 
 }
