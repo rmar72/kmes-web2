@@ -51,5 +51,4 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateGroup = false; 
     this.showCreateIdentity = false;
   }
-
 }

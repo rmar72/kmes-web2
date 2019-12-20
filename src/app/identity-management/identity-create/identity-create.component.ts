@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsersManagementService, CreateUser, Carriers } from '../services/users-proxy.service';
+import { UsersManagementService, CreateUser, Carriers } from '../services/users-management.service';
 
 @Component({
   selector: 'app-identity-create',
@@ -9,6 +9,7 @@ import { UsersManagementService, CreateUser, Carriers } from '../services/users-
 })
 export class IdentityCreateComponent implements OnInit {
   @ViewChild('personalizeForm', { static: false }) pForm: NgForm;
+  @Output() submitCreate: EventEmitter<any> = new EventEmitter<any>();
   identities: CreateUser = {
     personalInfo: {
       firstName: '',
@@ -28,6 +29,8 @@ export class IdentityCreateComponent implements OnInit {
     this.usersManagement.create({ ...this.identities })
       .subscribe(response => {
         console.log(response);
+        this.submitCreate.emit();
+        this.resetForms();
       });
   }
   resetForms() {

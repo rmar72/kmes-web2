@@ -1,6 +1,5 @@
 <div class="col-md-3">
   <ul class="nav nav-pills nav-stacked">
-<<<<<<< HEAD
     <li class="active nav-item"><a href="#grouptab1" data-toggle="pill">General</a></li>
     <li class="nav-item"><a href="#grouptab2" data-toggle="pill">Password</a></li>
     <li class="nav-item"><a href="#grouptab3" data-toggle="pill">Permissions</a></li>
@@ -83,6 +82,8 @@
   </div>
 </div>
 =======
+=======
+>>>>>>> 8b39466aef2aaf369fe0ee4d4f8f9d5cb138ca0c
     <li class="active nav-item"><a href="#usertab1" data-toggle="pill">General</a></li>
     <li class="nav-item"><a href="#usertab2" data-toggle="pill">Personalize</a></li>
     <li class="nav-item"><a href="#usertab3" data-toggle="pill">Password</a></li>
@@ -192,7 +193,7 @@
         <div class="list-group-item">
           <span class="list-group-title">Mobile phone carrier</span>
             <div class="dropdown">
-              <select class="form-control dropdown-toggle" id="carrier" [(ngModel)]="identities.personalInfo.mobileCarrier" name="identities_personalInfo_carrier" #carrier="ngModel" required>
+              <select class="form-control dropdown-toggle btn btn-default btn-sm" id="carrier" [(ngModel)]="identities.personalInfo.mobileCarrier" name="identities_personalInfo_carrier" #carrier="ngModel" required>
                 <option value="">Select</option>
                 <option *ngFor="let carrier of carriers" value={{carrier}}>{{carrier}}</option>
                 <div class="txt-rd-light" *ngIf="!carrier.valid">Personal info is required</div>
@@ -203,4 +204,3 @@
     </form>
   </div>
 </div>
->>>>>>> b4cd50ddf145afa6fd5cf3e20988adb4b8f661e0

@@ -1,5 +1,6 @@
 <section class="content">
 <<<<<<< HEAD
+<<<<<<< HEAD
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="panel panel-default">
@@ -45,7 +46,6 @@
       </div>
     </div>
 </div>
-=======
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-default">
@@ -94,11 +94,12 @@
                                     class="create-btn btn btn-primary btn-sm"><i
                                         class="fa fa-save mr-5"></i>Create</button>
                             </div>
-                            <div *ngIf="!showCreateIdentity">Identity List</div>
+                            <div *ngIf="!showCreateIdentity">
+                                <app-identity-list></app-identity-list>
+                              </div>
                             <div [hidden]="!showCreateIdentity">
-                                <app-identity-create #idCreate></app-identity-create>
+                                <app-identity-create #idCreate (submitCreate)="resetForms()"></app-identity-create>
                             </div>
                         </div>
                     </div>
                 </div>
->>>>>>> b4cd50ddf145afa6fd5cf3e20988adb4b8f661e0
