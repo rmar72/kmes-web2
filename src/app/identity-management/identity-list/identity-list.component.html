@@ -31,7 +31,7 @@
           <td>
             <!-- <input class="table-checkbox" type="checkbox" name=""> -->
           </td>
-          <td [ngClass]="{'identity-disabled': !identity.valid}"><span class="name-circle">{{getInitials(identity.username)}}</span>{{identity.username}}&nbsp;<i *ngIf="!identity.valid" class="fa fa-exclamation-triangle text-danger icon-left"></i></td>
+          <td [ngClass]="{'identity-disabled': !identity.valid}"><span class="name-circle">{{identity.username | initials}}</span>{{identity.username}}&nbsp;<i *ngIf="!identity.valid" class="fa fa-exclamation-triangle text-danger icon-left"></i></td>
           <td class="identity-group-col">
               <span class="badge badge-default"><span class="badge-text-inner">1</span>{{identity.primaryGroup}}</span>
               <span class="badge badge-default" *ngFor="let group of identity.subGroups; let i = index"><span class="badge-text-inner">{{i + 2}}</span>{{group}}</span>
