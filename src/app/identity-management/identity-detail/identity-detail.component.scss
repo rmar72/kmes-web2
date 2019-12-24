@@ -19,6 +19,7 @@
     }
 }
 
+// --------------- Idty basic info
 .user-header {
     background-color: #F9FAFC;
     padding: 18px 0 0 15px;
@@ -50,6 +51,7 @@
     margin-bottom: 20px;
 }
 
+// --------------- idty details
 .details-summary-list {
     .divider {
         display: block; 
@@ -60,22 +62,23 @@
         padding: 0;
     }
 
-    .detail-pane-list{
+    .detail-pane-list {
         color:rgb(136, 136, 136);
         font-size: 12px;
         font-weight:400;
-        margin-top: -13px;
-        margin-bottom: -13px;
+        margin-top: -11px;
+        margin-bottom: -11px;
         padding: 0px 2px;
         display: flex;
         justify-content: space-between;
 
-        span{
+        span {
             color:rgb(60, 141, 188);
         }
     }
 }
 
+//  --------------- idty management, permission, psswd, oauth
 
 .anchor-collapse {
     display: flex;
@@ -96,7 +99,7 @@
     }
 }
 
-
+//  permission
 #user-preview__view-permissions {
     
     .list-group {
@@ -104,10 +107,12 @@
         border: 1px solid #ddd;
         list-style: none;
         padding-top: 13px;
+        padding: 13px 0 10px 0;
 
         .group-item {
+            line-height: 1.32857;
             a {
-                color: rgb(136, 136, 136);
+                color: rgba(136, 136, 136, 0.8);
                 cursor: pointer;
                 font-size: 12px;
 
@@ -124,23 +129,24 @@
                 }
             }
         }
-        ul {
-            list-style: none;
-        }
         
-        .nested-group-item{
+        .nested-group-item {
             color: rgb(136, 136, 136);
             cursor: pointer;
             font-size: 12px;
             padding-right: 0px;
+            list-style: none;
 
             i {
-                margin: 0 7px 0 -13px;
+                margin: 0 9px 0 -13px;
             }
         }
     }
     
 }
+//  password
+
+//  oauth
 
 // ::-webkit-scrollbar {
 //     -webkit-appearance: none;
