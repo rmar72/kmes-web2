@@ -1,0 +1,17 @@
+.identity-manage-panel {
+    .tab-pane {
+        position: relative;
+    }
+
+    .panel-btns {
+        position: absolute;
+        right: 0;
+        top: -55px;
+        button > i {
+            padding-right: 10px;
+        }
+        .create-btn {
+            margin-left: 5px;
+        }
+    }
+}

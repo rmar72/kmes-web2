@@ -1,4 +1,80 @@
 body {
     font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+}
+
+// general panel styles 
+.panel.panel-default .panel-heading {
     font-size: 16px;
+    font-weight: 500;
+    color: #768599;
+}
+
+.nav-tabs li a {
+    font-size: 12px;
+    color: #768599;
+    border: 1px solid #ddd; 
+    background-color: #eeeeee; 
+    border-radius: 4px 4px 0px 0px;
+    .blue-label {
+        color: #3c8dbc;
+    }
+}
+
+.panel-toolbar {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    min-height: 49px;
+    background: #f9f9f9;
+}
+
+//general button styling
+
+.btn-primary {
+    background-color: #006dcc;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(to bottom,#0088cc,#0044cc);
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1)rgba(0, 0, 0, 0.25);
+}
+
+.btn-warning {
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #faa732;
+    background-image: linear-gradient(to bottom,#fbb450,#f89406);
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+
+.btn-group {
+    button {
+        width: 250px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .dropdown-menu {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 0px;
+        li {
+            height: 35px;
+        }
+        li > a {
+            height: 35px;
+            line-height: 33px;
+            border-bottom: 1px solid #ddd;
+        }
+        li:last-child > a{
+            border-bottom: none;
+        }
+    }
+}
+
+//general dropdown styling 
+.dropdown-menu li {
+    cursor: pointer;
+}
+
+.txt-rd-light {
+    color: #ad1817;
 }

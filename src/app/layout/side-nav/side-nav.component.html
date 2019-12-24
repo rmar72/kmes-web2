@@ -2,8 +2,8 @@
     <section class="sidebar">
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="menuVanish collapse in active"><a href="#" routerLink="/dashboard"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-            <li class="menuVanish collapse in"><a href="#" routerLink="/identity-management"><i class="fa fa-user-circle"></i><span>Identity Management</span></a></li>
+            <li (click)="updateRoute()" class="menuVanish collapse in"><a href="#" routerLink="/dashboard" [ngClass]="{'active': activeRoute == '/dashboard'}"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
+            <li (click)="updateRoute()" class="menuVanish collapse in"><a href="#" routerLink="/identity-management" [ngClass]="{'active': activeRoute == '/identity-management'}"><i class="fa fa-user-circle"></i><span>Identity Management</span></a></li>
             <li class="treeview">
                 <a class="sysadmin" data-toggle="collapse" data-target=".menuVanish" aria-expanded="true" aria-controls=".menuVanish">
                     <span class="sysadmin-one"><img class="tools-svg-icon" src="assets/img/tools-solid.svg" /><span>System Administration</span></span>
