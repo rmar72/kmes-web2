@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-identity-management',
@@ -11,7 +11,9 @@ export class IdentityManagementComponent implements OnInit {
   showDetailView: boolean = false;
   showCreateGroup: boolean = false;
   showCreateIdentity: boolean = false;
-  
+  identityCount: number = 0;
+  // users: any;
+
   constructor() { }
 
   ngOnInit() {
@@ -27,7 +29,8 @@ export class IdentityManagementComponent implements OnInit {
   }
 
   discardCreateGroup = function() {
-    
+    //clear create group form
+    this.showCreateGroup = !this.showCreateGroup;
   }
 
   submitCreateGroup = function() {
@@ -39,7 +42,8 @@ export class IdentityManagementComponent implements OnInit {
   }
 
   discardCreateIdentity = function() {
-
+    //clear create identity form 
+    this.showCreateIdentity = !this.showCreateIdentity;
   }
 
   submitCreateIdentity = function() {
@@ -51,4 +55,7 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateIdentity = false;
   }
 
+  getIdentityCount($event) {
+    this.identityCount = $event;
+  }
 }
