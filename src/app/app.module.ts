@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IdentityCreateComponent } from './identity-management/identity-create/identity-create.component';
 import { IdentityDetailComponent } from './identity-management/identity-detail/identity-detail.component';
 import { IdentityListComponent } from './identity-management/identity-list/identity-list.component';
+import { ServiceProxyModule } from './shared/services/api/api.module';
+import { InitialsPipe } from './shared/pipes/initials.pipe';
 
 @NgModule({
   declarations: [
@@ -31,13 +33,15 @@ import { IdentityListComponent } from './identity-management/identity-list/ident
     IdentityCreateComponent,
     IdentityDetailComponent,
     IdentityListComponent,
+    InitialsPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceProxyModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,17 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsersManagementService, CreateUser, Carriers } from '../services/users-management.service';
+import {
+  ClientApi,
+  PersonalInfoPhone,
+  UsersPostBody,
+  IPersonalInfo
+} from 'src/app/shared/services/api/service-proxies';
 
 @Component({
   selector: 'app-identity-create',
@@ -10,25 +21,20 @@ import { UsersManagementService, CreateUser, Carriers } from '../services/users-
 export class IdentityCreateComponent implements OnInit {
   @ViewChild('personalizeForm', { static: false }) pForm: NgForm;
   @Output() submitCreate: EventEmitter<any> = new EventEmitter<any>();
-  identities: CreateUser = {
-    personalInfo: {
-      firstName: '',
-      lastName: '',
-      commonName: '',
-      email: '',
-      phone: '',
-      mobileCarrier: ''
-    }
-  };
-  carriers = Carriers;
-  constructor(private usersManagement: UsersManagementService) { }
+  personalInfo = {} as IPersonalInfo;
+  carriers: PersonalInfoPhone;
+  constructor(private api: ClientApi) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   submitCreateIdentity() {
-    this.usersManagement.create({ ...this.identities })
-      .subscribe(response => {
-        console.log(response);
+    this.api
+      .usersPost(
+        new UsersPostBody({
+          action: 'create',
+          requestData: { personalInfo: { ...this.personalInfo } }
+        })
+      )
+      .subscribe(_ => {
         this.submitCreate.emit();
         this.resetForms();
       });
@@ -36,16 +42,4 @@ export class IdentityCreateComponent implements OnInit {
   resetForms() {
     this.pForm.resetForm();
   }
-
-}
-
-export interface IdentityCreateData {
-  personalInfo?: {
-    firstName?: string;
-    lastName?: string;
-    commonName?: string;
-    email?: string;
-    phone?: string;
-    carrier?: string;
-  };
 }

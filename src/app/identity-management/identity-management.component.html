@@ -20,7 +20,7 @@
               </li>
               <li class="nav-item btn-group" role="presentation" (click)="resetForms()">
                   <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab"
-                      aria-expanded="false" class="">Identities<span class="label blue-label">({{identityCount}})</span></a>
+                  aria-expanded="false" class="">Identities<span style="display: inline-block; min-width: 27px;" class="label blue-label">{{(identityCount$ | async) || '(0)'}}</span></a>
               </li>
           </ul>
         </div>
@@ -54,7 +54,7 @@
                         class="fa fa-save mr-5"></i>Create</button>
               </div>
               <div *ngIf="!showCreateIdentity">
-                <app-identity-list (setIdentityCount)="getIdentityCount($event)"></app-identity-list>
+                <app-identity-list [identities]="identities$ | async" (identityDeleted)="onIdentityDeleted($event)"></app-identity-list>
               </div>
               <div [hidden]="!showCreateIdentity">
                   <app-identity-create #idCreate (submitCreate)="resetForms()"></app-identity-create>

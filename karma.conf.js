@@ -27,6 +27,10 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    files: [
+      'node_modules/admin-lte/bower_components/jquery/dist/jquery.min.js',
+      'node_modules/admin-lte/dist/js/adminlte.min.js'
+    ]
   });
 };
