@@ -9,6 +9,8 @@ import { ClientApi } from 'src/app/shared/services/api/service-proxies';
 export class IdentityListComponent implements OnInit {
   @Input() identities: any[];
   @Output() identityDeleted = new EventEmitter<string>();
+  @Output() selectedIdentity = new EventEmitter<any>();
+
   identityCount: number;
   deleteError = '';
   errorIndex: number;
@@ -16,6 +18,10 @@ export class IdentityListComponent implements OnInit {
   constructor(private api: ClientApi) {}
 
   ngOnInit() {
+  }
+
+  selectIdentity(identity: any){
+    this.selectedIdentity.emit(identity);
   }
 
   deleteIdentity(identity: any, index: number) {

@@ -54,7 +54,11 @@
                         class="fa fa-save mr-5"></i>Create</button>
               </div>
               <div *ngIf="!showCreateIdentity">
-                <app-identity-list [identities]="identities$ | async" (identityDeleted)="onIdentityDeleted($event)"></app-identity-list>
+                <app-identity-list 
+                  [identities]="identities$ | async" 
+                  (identityDeleted)="onIdentityDeleted($event)"
+                  (selectedIdentity)="selectIdentity($event)"
+                  ></app-identity-list>
               </div>
               <div [hidden]="!showCreateIdentity">
                   <app-identity-create #idCreate (submitCreate)="resetForms()"></app-identity-create>
@@ -65,7 +69,7 @@
       </div>
     </div>
     <div [hidden]="!showDetailView" class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-      <app-identity-detail></app-identity-detail>
+      <app-identity-detail [displayIdentity]="displayIdentity$ | async"></app-identity-detail>
     </div>
   </div>
 </section>

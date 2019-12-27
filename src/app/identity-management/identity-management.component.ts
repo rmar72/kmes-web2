@@ -16,8 +16,9 @@ export class IdentityManagementComponent implements OnInit {
   usersGet$ = this.userManagement.usersGet();
   identities$ = new Subject<Users[]>();
   identityCount$ = new Subject<string>();
+  displayIdentity$ = new Subject<any>();
 
-  constructor(private userManagement: ClientApi) { }
+  constructor(private userManagement: ClientApi) {}
 
   ngOnInit() {
     this.getUsers();
@@ -28,6 +29,11 @@ export class IdentityManagementComponent implements OnInit {
         this.identities$.next(resp.responseData.users);
         this.identityCount$.next(`(${resp.responseData.totalItems})`);
       });
+  }
+
+  toggleFullscreen(){
+    this.showFullscreen = !this.showFullscreen;
+    this.showDetailView = !this.showDetailView;
   }
 
   toggleCreateGroup(): void {
@@ -63,5 +69,15 @@ export class IdentityManagementComponent implements OnInit {
   onIdentityDeleted(message: string) {
     console.log(message);
     this.getUsers();
+  }
+
+  selectIdentity(identity: any): void{
+    
+    this.displayIdentity$.next(identity);
+
+    if(!this.showDetailView){
+      this.toggleFullscreen()
+    }
+
   }
 }
