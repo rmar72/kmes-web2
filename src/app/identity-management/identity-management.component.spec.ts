@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IdentityManagementComponent } from './identity-management.component';
 import { InitialsPipe } from '../shared/pipes/initials.pipe';
-import { ClientApi } from '../shared/services/api/service-proxies';
+import { UsersServiceProxy } from '../shared/api/service-proxies';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -15,6 +15,7 @@ import { IdentityCreateComponent } from './identity-create/identity-create.compo
 import { HeaderComponent } from '../layout/header/header.component';
 import { SideNavComponent } from '../layout/side-nav/side-nav.component';
 import { FooterComponent } from '../layout/footer/footer.component';
+import { IdentityDetailComponent } from './identity-detail/identity-detail.component';
 
 describe('IdentityManagementComponent', () => {
   let component: IdentityManagementComponent;
@@ -39,9 +40,10 @@ describe('IdentityManagementComponent', () => {
         HeaderComponent,
         SideNavComponent,
         FooterComponent,
-        InitialsPipe
+        InitialsPipe,
+        IdentityDetailComponent,
       ],
-      providers: [ClientApi]
+      providers: [UsersServiceProxy]
     }).compileComponents();
   }));
 

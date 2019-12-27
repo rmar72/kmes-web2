@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ClientApi } from 'src/app/shared/services/api/service-proxies';
+import { UsersServiceProxy } from 'src/app/shared/api/service-proxies';
 
 @Component({
   selector: 'app-identity-list',
@@ -14,8 +14,7 @@ export class IdentityListComponent implements OnInit {
   identityCount: number;
   deleteError = '';
   errorIndex: number;
-
-  constructor(private api: ClientApi) {}
+  constructor(private usersService: UsersServiceProxy) {}
 
   ngOnInit() {
   }
@@ -25,7 +24,7 @@ export class IdentityListComponent implements OnInit {
   }
 
   deleteIdentity(identity: any, index: number) {
-    this.api.usersDelete(identity.username).subscribe(
+    this.usersService.usersDelete(identity.username).subscribe(
       (response) => {
         this.identityDeleted.emit(response.message);
       },

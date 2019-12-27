@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { ClientApi } from './shared/services/api/service-proxies';
+import { ConfigServiceProxy } from './shared/api/service-proxies';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
@@ -14,7 +14,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      providers: [ClientApi]
+      providers: [ConfigServiceProxy]
     }).compileComponents();
   }));
 
