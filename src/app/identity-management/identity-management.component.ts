@@ -13,6 +13,8 @@ import { Subject } from 'rxjs';
 export class IdentityManagementComponent implements OnInit {
   showFullscreen = false;
   showDetailView = false;
+  showIdtyGroupDetail = false;
+  showIdtyDetail = false;
   showCreateGroup = false;
   showCreateIdentity = false;
   identityCount = 0;
@@ -20,6 +22,7 @@ export class IdentityManagementComponent implements OnInit {
   identities$ = new Subject<Users[]>();
   identityCount$ = new Subject<string>();
   displayIdentity$ = new Subject<any>();
+  displayIdentityGroup$ = new Subject<any>();
 
   constructor(private usersService: UsersServiceProxy) {}
 
@@ -78,10 +81,33 @@ export class IdentityManagementComponent implements OnInit {
   }
 
   selectIdentity(identity: any): void {
-    this.displayIdentity$.next(identity);
-
-    if (!this.showDetailView) {
+    if(this.showDetailView === false){
       this.toggleFullscreen();
     }
+
+    if(this.showDetailView){
+      this.displayIdentity$.next(identity);
+
+      if(this.showIdtyDetail == false){
+        this.showIdtyGroupDetail = false;
+        this.showIdtyDetail = true;
+      }
+    }
   }
+
+  selectIdentityGroup(identityGroup: any): void {
+    if(this.showDetailView === false){
+      this.toggleFullscreen();
+    }
+
+    if(this.showDetailView){
+      this.displayIdentityGroup$.next(identityGroup);
+
+      if(this.showIdtyGroupDetail == false){
+        this.showIdtyDetail = false;
+        this.showIdtyGroupDetail = true;
+      }
+    }
+  }
+
 }

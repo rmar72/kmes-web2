@@ -14,6 +14,7 @@ import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IdentityCreateComponent } from './identity-management/identity-create/identity-create.component';
+import { IdentityGroupDetailComponent } from './identity-management/identity-group-detail/identity-group-detail.component';
 import { IdentityDetailComponent } from './identity-management/identity-detail/identity-detail.component';
 import { IdentityListComponent } from './identity-management/identity-list/identity-list.component';
 import { ServiceProxyModule } from './shared/api/api.module';
@@ -33,6 +34,7 @@ import { environment } from 'src/environments/environment';
     IdentityManagementComponent,
     SystemAdminComponent,
     IdentityCreateComponent,
+    IdentityGroupDetailComponent,
     IdentityDetailComponent,
     IdentityListComponent,
     InitialsPipe,

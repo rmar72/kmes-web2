@@ -10,6 +10,7 @@ export class IdentityListComponent implements OnInit {
   @Input() identities: any[];
   @Output() identityDeleted = new EventEmitter<string>();
   @Output() selectedIdentity = new EventEmitter<any>();
+  @Output() selectedIdentityGroup = new EventEmitter<any>();
 
   identityCount: number;
   deleteError = '';
@@ -21,6 +22,10 @@ export class IdentityListComponent implements OnInit {
 
   selectIdentity(identity: any){
     this.selectedIdentity.emit(identity);
+  }
+
+  selectIdentityGroup(identity: any){
+    this.selectedIdentityGroup.emit(identity);
   }
 
   deleteIdentity(identity: any, index: number) {

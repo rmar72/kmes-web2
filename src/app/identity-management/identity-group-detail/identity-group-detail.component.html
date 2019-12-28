@@ -1,10 +1,10 @@
 <div class="panel panel-default">
     <div class="panel-heading secondary-heading">
-        <span><i class="fas fa-eye mr-10"></i>Details</span>
+        <span><i class="fas fa-eye mr-10"></i>Identity Group Details</span>
         <button>Edit</button>
     </div> <!-- end of panel heading -->
     
-    <div class="panel-body" *ngIf="displayIdentity">
+    <div class="panel-body" *ngIf="displayIdentityGroup">
       <div class="access-details-group">
         <div class="row">
           <!-- 1 idty basic info -->
@@ -13,10 +13,10 @@
                 <div class="img-thumbnail">
                     <span><i class="fa fa-users fa-2x"></i></span>
                 </div>
-                <div class="users-preview__name" title="Admin Group">username {{ displayIdentity.username }}</div>
-                <div class="users-preview__role" title="Normal "> primaryGroup {{ displayIdentity.primaryGroup }}</div>
+                <div class="users-preview__name" title="Admin Group">username {{ displayIdentityGroup.username }}</div>
+                <div class="users-preview__role" title="Normal "> primaryGroup {{ displayIdentityGroup.primaryGroup }}</div>
                 <div class="users-preview__login" title="Date Created">
-                    <span>Last Login: {{ displayIdentity.lastLogin }}</span>
+                    <span>Last Login: {{ displayIdentityGroup.lastLogin }}</span>
                 </div>
             </div>
           </div>

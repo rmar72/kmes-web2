@@ -30,6 +30,7 @@
         <tr role="row" class="odd" *ngFor="let identity of identities; let i = index">
           <td>
             <!-- <input class="table-checkbox" type="checkbox" name=""> -->
+            <a (click)="selectIdentityGroup(identity)" class="btn btn-default" role="button"><i class="fa fa-eye"></i><span class="hidden"></span></a>
           </td>
           <td [ngClass]="{'identity-disabled': !identity.valid}"><span class="name-circle">{{identity.username | initials}}</span>{{identity.username}}&nbsp;<i *ngIf="!identity.valid" class="fa fa-exclamation-triangle text-danger icon-left"></i></td>
           <td class="identity-group-col">
