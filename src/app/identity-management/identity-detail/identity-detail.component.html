@@ -11,30 +11,34 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="user-header">
                 <div class="img-thumbnail">
-                    <span><i class="fa fa-users fa-2x"></i></span>
+                    <span class="name-circle">{{displayIdentity.username | initials}}</span>
                 </div>
-                <div class="users-preview__name" title="Admin Group">username {{ displayIdentity.username }}</div>
-                <div class="users-preview__role" title="Normal "> primaryGroup {{ displayIdentity.primaryGroup }}</div>
+                
+                <div class="users-preview__name" title="Admin Group">{{ displayIdentity.username }}</div>
+                <div class="users-preview__role" title="Normal ">Primary Group: {{ displayIdentity.primaryGroup }}</div>
                 <div class="users-preview__login" title="Date Created">
-                    <span>Last Login: {{ displayIdentity.lastLogin }}</span>
+                    <span>Created: {{ displayIdentity.lastLogin | date: 'mediumDate' }}</span>
                 </div>
+                <hr class="hr-less">
+                <p class="assigned-groups-title">ASSIGNED TO GROUP(S):</p>
+                <ul class="assigned-groups-list">
+                  <li><i class="fa fa-caret-right icon-right"></i>&nbsp;Admin Group</li>
+                  <li><i class="fa fa-caret-right icon-right"></i>&nbsp;Management</li>
+                  <li><i class="fa fa-caret-right icon-right"></i>&nbsp;Custom Group</li>
+                </ul>
             </div>
           </div>
 
           <!-- 2 idty details  -->
           <div class="details-summary-list col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <hr class="divider">
-            <div class="detail-pane-list">Identities contained<span>3</span></div>
+            <div class="detail-pane-list">Status<span><i class="fa fa-check"></i></span></div>
             <hr class="divider">
-            <div class="detail-pane-list">Identities for login<span>2</span></div>
+            <div class="detail-pane-list">Smart Card<span><i class="fa fa-check"></i></span></div>
             <hr class="divider">
-            <div class="detail-pane-list">Identity storage<span>Card</span></div>
+            <div class="detail-pane-list">One-time Password<span><i class="fa fa-check"></i></span></div>
             <hr class="divider">
-            <div class="detail-pane-list">LDAP verify<span><i class="fa fa-check"></i></span></div>
-            <hr class="divider">
-            <div class="detail-pane-list">LDAP name<span>ATX Group</span></div>
-            <hr class="divider">
-            <div class="detail-pane-list">Member auth to<span>Client, Host API, KMIP</span></div>
+            <div class="detail-pane-list">Last Login<span>{{ displayIdentity.lastLogin | date: 'mediumDate' }}</span></div>
             <hr class="divider">
           </div>
 
@@ -48,7 +52,6 @@
                           
               <div id="user-preview__view-permissions" class="collapse"> 
                 <ul class="list-group">
-                  
                   <li id="perm-0" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-0" aria-controls="permsub-0" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>View logs
