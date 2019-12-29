@@ -80,34 +80,38 @@ export class IdentityManagementComponent implements OnInit {
     this.deleteUser(username);
   }
 
-  selectIdentity(identity: any): void {
+  detailViewSwitch(subject, selectedEntity, dictateView, removeView){
+
     if(this.showDetailView === false){
       this.toggleFullscreen();
     }
 
     if(this.showDetailView){
-      this.displayIdentity$.next(identity);
+      subject.next(selectedEntity);
 
-      if(this.showIdtyDetail == false){
-        this.showIdtyGroupDetail = false;
-        this.showIdtyDetail = true;
+      if(this[dictateView] == false){
+        this[dictateView] = true;
+        this[removeView] = false;
       }
     }
   }
 
+  selectIdentity(identity: any): void {
+    this.detailViewSwitch(
+      this.displayIdentity$,
+      identity,
+      'showIdtyDetail',
+      'showIdtyGroupDetail'
+    );
+  }
+
   selectIdentityGroup(identityGroup: any): void {
-    if(this.showDetailView === false){
-      this.toggleFullscreen();
-    }
-
-    if(this.showDetailView){
-      this.displayIdentityGroup$.next(identityGroup);
-
-      if(this.showIdtyGroupDetail == false){
-        this.showIdtyDetail = false;
-        this.showIdtyGroupDetail = true;
-      }
-    }
+    this.detailViewSwitch(
+        this.displayIdentityGroup$, 
+        identityGroup,
+        'showIdtyGroupDetail',
+        'showIdtyDetail'
+    );
   }
 
 }
