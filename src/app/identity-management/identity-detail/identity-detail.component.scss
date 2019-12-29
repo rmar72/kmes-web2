@@ -234,6 +234,24 @@
 }
 
 //  oauth
+#oauth-preview__view-permissions {
+    
+    .list-group-item {
+        background-color:#F9F9F9;
+        color: #888;
+        font-size: 12px;
+        margin-top: -1px;
+        border-top-left-radius:0;
+        border-top-right-radius: 0;
+        padding-left: 10px;
+
+        i {
+            color:#97a0b3;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+}
 
 // ::-webkit-scrollbar {
 //     -webkit-appearance: none;
