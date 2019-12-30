@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { InitialsPipe } from 'src/app/shared/pipes/initials.pipe';
 import { IdentityDetailComponent } from './identity-detail.component';
 
 describe('IdentityDetailComponent', () => {
@@ -8,7 +8,7 @@ describe('IdentityDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IdentityDetailComponent ]
+      declarations: [ IdentityDetailComponent, InitialsPipe ]
     })
     .compileComponents();
   }));
