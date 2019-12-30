@@ -1,4 +1,10 @@
+
+
+
+
 import { Component, OnInit } from '@angular/core';
+import $ from 'jquery/dist/jquery';
+declare var $: any;
 
 @Component({
   selector: 'app-main',

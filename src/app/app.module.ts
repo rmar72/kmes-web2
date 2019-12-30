@@ -13,6 +13,14 @@ import { IdentityManagementComponent } from './identity-management/identity-mana
 import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IdentityCreateComponent } from './identity-management/identity-create/identity-create.component';
+import { IdentityGroupDetailComponent } from './identity-management/identity-group-detail/identity-group-detail.component';
+import { IdentityDetailComponent } from './identity-management/identity-detail/identity-detail.component';
+import { IdentityListComponent } from './identity-management/identity-list/identity-list.component';
+import { ServiceProxyModule } from './shared/api/api.module';
+import { InitialsPipe } from './shared/pipes/initials.pipe';
+import { API_BASE_URL } from './shared/api/service-proxies';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -25,14 +33,21 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     IdentityManagementComponent,
     SystemAdminComponent,
+    IdentityCreateComponent,
+    IdentityGroupDetailComponent,
+    IdentityDetailComponent,
+    IdentityListComponent,
+    InitialsPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceProxyModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [{provide: API_BASE_URL, useValue: environment.apiUrl}]
 })
 export class AppModule { }

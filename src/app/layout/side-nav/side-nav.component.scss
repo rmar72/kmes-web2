@@ -15,7 +15,7 @@
         }
     }
     a.active {
-        background-color: #eaeaea;
+        background-color: #eaeaea !important;
     }
     li span, li i {
         color: #666;
@@ -41,6 +41,7 @@
     }
     .sysadmin-two {
         display: none;
+        min-width: 190px;
     }
 }
 
@@ -102,6 +103,11 @@ a .treeview-menu-spacer {
             }
         }
     }
+}
+
+ul.items.treeview-menu {
+    border: 1px solid #ddd;
+    min-width: 190px;
 }
 
 .tools-svg-icon{

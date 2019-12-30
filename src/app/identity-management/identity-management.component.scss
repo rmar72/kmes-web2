@@ -1,0 +1,45 @@
+.panel-heading {
+    background-color: rgb(249, 249, 249);
+}
+.primary-heading {
+    display: flex;
+    justify-content: space-between;
+    height: 38px;
+    padding: 0px;
+
+    span {
+        padding: 7px 0 0px 15px;
+    }
+    
+    #close-btn {
+        font-size: 12px;
+        height: 37px;
+
+        &:active {
+            outline: 0;
+        }
+
+        .btn-close-wording {
+            margin-left: -9px;
+        }
+    }
+}
+
+
+.identity-manage-panel {
+    .tab-pane {
+        position: relative;
+    }
+
+    .panel-btns {
+        position: absolute;
+        right: 0;
+        top: -55px;
+        button > i {
+            padding-right: 10px;
+        }
+        .create-btn {
+            margin-left: 5px;
+        }
+    }
+}

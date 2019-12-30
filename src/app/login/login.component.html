@@ -20,18 +20,20 @@
 
                     <div class="card-body">
                         <p> Identity 1 login </p>
-                        <div class="row">
-                            <div class="form-group col-md-9 form-wrap">
+                     
+                        <div class="form-group form-wrap">
+                            <div class="form-fields">
                                 <div>
                                     <input [ngClass]="{'invalid-field': username.invalid && username.touched}" class="form-control username" type="text" formControlName="username" placeholder="username" />
                                 </div>
                                 <div>
                                     <input [ngClass]="{'invalid-field': password.invalid && password.touched}" class="form-control password" type="password" formControlName="password" placeholder="password" /> 
                                 </div>
+                            
 
                                 <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
                                     <i class="fa fa-exclamation-triangle mr-10"></i>
-                                   <span> Valid username is required</span> 
+                                    <span> Valid username is required</span> 
                                 </div>
 
                                 <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
@@ -43,11 +45,13 @@
                                     <i class="fa fa-exclamation-triangle mr-10"></i>
                                     <span> {{ invalidPasswordMessage }}</span> 
                                 </div>
+
                             </div>
-                            
-                            <button [disabled]="loginForm.invalid" id="mobile-btn" class="btn btn-light col-md-2">
-                                <i [ngClass]="{'invalid-arrow': loginForm.invalid == true}" class="fa fa-arrow-right"></i>
-                            </button>
+                            <div class="btn-field">
+                                <button [disabled]="loginForm.invalid" id="mobile-btn" class="btn btn-light">
+                                    <i [ngClass]="{'invalid-arrow': loginForm.invalid == true}" class="fa fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>            

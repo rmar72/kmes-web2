@@ -11,10 +11,10 @@
     <nav class="navbar navbar-static-top" role="navigation">
         <ul class="nav navbar-nav nav-left">
             <!-- Sidebar toggle button-->
-            <li class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <li (click)="toggleSidebar()" [ngClass]="{'closed': !showOpenSidebar}" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </li>
-            <li class="product-name-dropdown">
+            <li (click)="toggleHardwareInfo()" class="product-name-dropdown">
 
                 <a href="#" class="dropdown-toggle new-device-name" data-toggle="dropdown">
                     <ul class="list-unstyled list-inline">
@@ -27,73 +27,13 @@
                     </ul>
                     <li class="device-caret"><i class="fa fa-caret-down"></i></li>
                 </a>
-    
-                <div class="dm-wrapper">
-                    <ul class="dropdown-menu">
-                        <li id="device-info" class="dropdown-list-item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <span class="dropdown-list-label">Hardware Serial</span>
-                                    <h5 class="well well-sm txt-grey">123456789</h5>
-                                </div>
-                                <div class="col-md-4">
-                                    <span class="dropdown-list-label">Firmware</span>
-                                    <h5 class="well well-sm txt-grey">6.5.1.4ck</h5>
-                                </div>
-                                <div class="col-md-4">
-                                    <span class="dropdown-list-label">Application Version</span>
-                                    <h5 class="well well-sm txt-grey">3.0.3-8DDD</h5>
-                                </div>
-                            </div>
-                        </li>
-                    
-                        <li id="system-status">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-xs-3">
-                                        <a href="#" class="box-btn" data-trigger="hover" data-toggle="popover" title="CPU Usage" data-placement="top" data-content="1.71%">
-                                            <div class="list-item-panel panel panel-default panel-button">
-                                                <div class="panel-button-head"><i class="fa fa-microchip fa-2x"></i></div>
-                                                <p class="panel-button-text text-success">1.71%</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a href="#" class="box-btn" data-trigger="hover" data-toggle="popover" title="Hard Drives" data-placement="top" data-content="Working">
-                                            <div class="list-item-panel panel panel-default panel-button">
-                                                <div class="panel-button-head"><i class="fa fa-hdd fa-2x"></i></div>
-                                                <p class="panel-button-text text-success"><i class="fa fa-check"></i></p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a href="#" class="box-btn" data-trigger="hover" data-toggle="popover" title="CPU Temp" data-placement="top" data-content="34.00ºC">
-                                            <div class="list-item-panel panel panel-default panel-button">
-                                                <div class="panel-button-head"><i class="fa fa-thermometer-empty fa-2x"></i></div>
-                                                <p class="panel-button-text text-success">34.00ºC</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a href="#" class="box-btn" data-trigger="hover" data-toggle="popover" title="Battery" data-placement="top" data-content="3.67V">
-                                            <div class="list-item-panel panel panel-default panel-button">
-                                                <div class="panel-button-head"><i class="fa fa-battery fa-2x"></i></div>
-                                                <p class="panel-button-text text-success">3.67V</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
             </ul>
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
-                    <a href="#" id="user-menu-toggle" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" id="user-menu-toggle" class="dropdown-toggle" data-toggle="dropdown" (click)="showDropdown = !showDropdown">
                         <div class="header-user-icon"></div>
                         <ul class="list-unstyled account-list">
                             <li class="account-list-2">Admin Group</li>
@@ -101,7 +41,7 @@
                         </ul>
                         <h4 class="user-menu-caret"><small><i class="fa fa-caret-down txt-grey"></i></small></h4>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="user-account-menu" [ngClass]="{'show': showDropdown}">
                         
                     </ul>
                 </li>
@@ -109,3 +49,62 @@
         </div>
     </nav>
 </header>
+<div class="dm-wrapper" [ngClass]="{'show': showHardwareInfo, 'closed': !showOpenSidebar}">
+    <ul>
+        <!-- <li id="device-info" class="dropdown-list-item">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="dropdown-list-label">Hardware Serial</span>
+                    <h5 class="well well-sm txt-grey">123456789</h5>
+                </div>
+                <div class="col-md-4">
+                    <span class="dropdown-list-label">Firmware</span>
+                    <h5 class="well well-sm txt-grey">6.5.1.4ck</h5>
+                </div>
+                <div class="col-md-4">
+                    <span class="dropdown-list-label">Application Version</span>
+                    <h5 class="well well-sm txt-grey">3.0.3-8DDD</h5>
+                </div>
+            </div>
+        </li>
+    
+        <li id="system-status">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-xs-3">
+                        <a href="#" class="box-btn" data-trigger="hover" data-toggle="popover" title="CPU Usage" data-placement="top" data-content="1.71%">
+                            <div class="list-item-panel panel panel-default panel-button">
+                                <div class="panel-button-head"><i class="fa fa-microchip fa-2x"></i></div>
+                                <p class="panel-button-text text-success">1.71%</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-3">
+                        <a href="#" class="box-btn" data-trigger="hover" data-toggle="popover" title="Hard Drives" data-placement="top" data-content="Working">
+                            <div class="list-item-panel panel panel-default panel-button">
+                                <div class="panel-button-head"><i class="fa fa-hdd fa-2x"></i></div>
+                                <p class="panel-button-text text-success"><i class="fa fa-check"></i></p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-3">
+                        <a href="#" class="box-btn" data-trigger="hover" data-toggle="popover" title="CPU Temp" data-placement="top" data-content="34.00ºC">
+                            <div class="list-item-panel panel panel-default panel-button">
+                                <div class="panel-button-head"><i class="fa fa-thermometer-empty fa-2x"></i></div>
+                                <p class="panel-button-text text-success">34.00ºC</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-3">
+                        <a href="#" class="box-btn" data-trigger="hover" data-toggle="popover" title="Battery" data-placement="top" data-content="3.67V">
+                            <div class="list-item-panel panel panel-default panel-button">
+                                <div class="panel-button-head"><i class="fa fa-battery fa-2x"></i></div>
+                                <p class="panel-button-text text-success">3.67V</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li> -->
+    </ul>
+</div>
