@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { ServiceProxyModule } from './shared/api/api.module';
 import { InitialsPipe } from './shared/pipes/initials.pipe';
 import { API_BASE_URL } from './shared/api/service-proxies';
 import { environment } from 'src/environments/environment';
+import { AppToastsComponent } from './app-toasts/app-toasts.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { environment } from 'src/environments/environment';
     IdentityDetailComponent,
     IdentityListComponent,
     InitialsPipe,
+    AppToastsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ServiceProxyModule
+    ServiceProxyModule,
+    NgbModule,
   ],
   bootstrap: [AppComponent],
   providers: [{provide: API_BASE_URL, useValue: environment.apiUrl}]
