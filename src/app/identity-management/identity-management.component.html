@@ -23,11 +23,14 @@
                   aria-expanded="false" class="">Identities<span style="display: inline-block; min-width: 27px;" class="label blue-label">{{(identityCount$ | async) || '(0)'}}</span></a>
               </li>
           </ul>
+          
         </div>
         <div class="panel-body identity-manage-panel">
           <div class="tab-content">
             <div class="tab-pane active" id="groups">
+              
               <div class="panel-btns">
+                <input (keyup)="searchTerm($event.target.value)" type="text" class="idty-search" placeholder="Search" />
                 <button (click)="toggleCreateGroup()" *ngIf="!showCreateGroup"
                     class="create-btn btn btn-primary btn-sm"><i class="fa fa-plus mr-5"></i>Create
                     Group</button>
@@ -43,6 +46,7 @@
             </div>
             <div class="tab-pane" id="allusers">
               <div class="panel-btns">
+                <input type="text" class="idty-search" placeholder="Search" />
                 <button (click)="toggleCreateIdentity()" *ngIf="!showCreateIdentity"
                     class="create-btn btn btn-primary btn-sm"><i class="fa fa-plus mr-5"></i>Create
                     Identity</button>

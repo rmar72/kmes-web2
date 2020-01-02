@@ -3,6 +3,7 @@ import {
   Users,
   UsersServiceProxy
 } from '../shared/api/service-proxies';
+import { IdentityMngtService } from '../shared/services/identity-mngt.service';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -23,11 +24,37 @@ export class IdentityManagementComponent implements OnInit {
   identityCount$ = new Subject<string>();
   displayIdentity$ = new Subject<any>();
   displayIdentityGroup$ = new Subject<any>();
+  results: Users;
+  searchTerm$ = new Subject<string>();
 
-  constructor(private usersService: UsersServiceProxy) {}
+  constructor(
+    private usersService: UsersServiceProxy,
+    private identityMngtService: IdentityMngtService
+    ) {
+      this.identityMngtService.search(this.searchTerm$)
+        .subscribe(results => {
+          console.log(results);
+          // console.log(this.getUsers());
+          // this.results = results;
+          // this.identities$.next(results)
+        });
+    }
 
   ngOnInit() {
     this.getUsers();
+  }
+
+  // searchTerm$.next($event.target.value)
+  searchTerm(term){
+    // console.log(term)
+    this.searchTerm$.next(term);
+    this.identityMngtService.search(this.searchTerm$)
+        .subscribe(results => {
+          console.log(results);
+          // console.log(this.getUsers());
+          // this.results = results;
+          // this.identities$.next(results)
+        });
   }
 
   getUsers(): void {
