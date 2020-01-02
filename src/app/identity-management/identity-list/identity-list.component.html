@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-hover table-bordered no-footer identities-table">
+      <thead class="">
+        <tr role="row">
+          <th class="identities-dropdown-col">
+            <div class="identities-dropdown btn-group">
+              <!-- <a class="btn btn-default btn-xs checkbox-btn-wrapper">
+                <input class="table-checkbox" type="checkbox" name="">
+              </a>
+              <a type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-left" role="menu">
+                <li><a href="#"><i class="fa fa-plus icon-right"></i>Add identities to group</a></li>
+                <li><a href="#"><i class="fa fa-user-alt-slash icon-right"></i>Disable identities</a></li>
+                <li><a href="#"><i class="fa fa-trash icon-right"></i>Delete identities</a></li>
+              </ul> -->
+            </div>
+          </th>
+          <th>Username</th>
+          <th>Group</th>
+          <th class="status-col">Status</th>
+          <th class="login-col">Last login</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr role="row" class="odd" *ngFor="let identity of identities; let i = index">
+          <td>
+            <!-- <input class="table-checkbox" type="checkbox" name=""> -->
+          </td>
+          <td [ngClass]="{'identity-disabled': !identity.valid}"><span class="name-circle">{{identity.username | initials}}</span>{{identity.username}}&nbsp;<i *ngIf="!identity.valid" class="fa fa-exclamation-triangle text-danger icon-left"></i></td>
+          <td class="identity-group-col">
+              <span class="badge badge-default"><span class="badge-text-inner">1</span>{{identity.primaryGroup}}</span>
+              <span class="badge badge-default" *ngFor="let group of identity.subGroups; let i = index"><span class="badge-text-inner">{{i + 2}}</span>{{group}}</span>
+          </td>
+          <td class="status-col">
+              <code *ngIf="identity.valid" class="code-success"><i class="fa fa-check"></i></code>
+              <code *ngIf="!identity.valid" class="code-danger"><i class="fa fa-times"></i></code>
+          </td>
+          <td class="table-date-container">
+              <div class="table-date-wrapper">
+                  <span class="table-month">{{identity.lastLogin | date :'MMMM'}}</span>&nbsp;<span class="table-day">{{identity.lastLogin | date :'d'}}</span><br>
+                  <span class="table-time">{{identity.lastLogin | date :'hh:mm:ss'}}</span>&nbsp;|&nbsp;<span class="table-year">{{identity.lastLogin | date :'yyyy'}}</span>
+              </div>
+          </td>
+          <td class="identity-action-col">
+              <div class="btn-group btn-group-sm">
+                  <a (click)="selectIdentity(identity)" class="btn btn-default" role="button"><i class="fa fa-eye"></i><span class="hidden"></span></a>
+                  <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                      <!-- <li><a href="#"><i class="fa fa-plus icon-right"></i>Add identity to group</a></li> -->
+                      <li><a (click)="deleteIdentity(identity, i)"><i class="fa fa-trash icon-right"></i>Delete identity</a></li>
+                  </ul>
+              </div>
+              <div class="identity-list-error" *ngIf="deleteError.length && errorIndex === i">{{deleteError}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

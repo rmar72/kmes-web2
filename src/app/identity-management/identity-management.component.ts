@@ -1,5 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { IdentityCreateComponent } from './identity-create/identity-create.component';
+import { Component, OnInit } from '@angular/core';
+import {
+  Users,
+  UsersServiceProxy
+} from '../shared/api/service-proxies';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-identity-management',
@@ -7,34 +11,77 @@ import { IdentityCreateComponent } from './identity-create/identity-create.compo
   styleUrls: ['./identity-management.component.scss']
 })
 export class IdentityManagementComponent implements OnInit {
-  showCreateGroup: boolean = false;
-  showCreateIdentity: boolean = false;
-  
+  showFullscreen = false;
+  showDetailView = false;
+  showCreateGroup = false;
+  showCreateIdentity = false;
+  identityCount = 0;
+  usersGet$ = this.usersService.usersGet();
+  identities$ = new Subject<Users[]>();
+  identityCount$ = new Subject<string>();
+  displayIdentity$ = new Subject<any>();
 
-  users: any;
-
-  constructor() { }
+  constructor(private usersService: UsersServiceProxy) {}
 
   ngOnInit() {
+    this.getUsers();
   }
 
-  toggleCreateGroup() {
+  getUsers(): void {
+    this.usersService.usersGet().subscribe(resp => {
+      this.identities$.next(resp.responseData.users);
+      this.identityCount$.next(`(${resp.responseData.totalItems})`);
+    });
+  }
+
+  toggleFullscreen() {
+    this.showFullscreen = !this.showFullscreen;
+    this.showDetailView = !this.showDetailView;
+  }
+
+  deleteUser(username: string) {
+    this.usersService.usersDelete(username).subscribe(resp => {
+      console.log(resp);
+      this.getUsers();
+    });
+  }
+
+  toggleCreateGroup(): void {
     this.showCreateGroup = !this.showCreateGroup;
   }
-  discardCreateGroup() {
-  }
-  submitCreateGroup() {
-  }
-  toggleCreateIdentity() {
-    this.showCreateIdentity = !this.showCreateIdentity;
-  }
-  discardCreateIdentity() {
-    this.showCreateIdentity = false;
+
+  // clear create group form
+  discardCreateGroup(): void {
+    this.showCreateGroup = !this.showCreateGroup;
   }
 
-  resetForms() {
+  submitCreateGroup(): void {}
+
+  toggleCreateIdentity(): void {
+    this.showCreateIdentity = !this.showCreateIdentity;
+  }
+
+  // clear create identity form
+  discardCreateIdentity(): void {
+    this.showCreateIdentity = !this.showCreateIdentity;
+  }
+
+  submitCreateIdentity(): void {}
+
+  resetForms(): void {
     this.showCreateGroup = false;
     this.showCreateIdentity = false;
   }
 
+  onIdentityDeleted(username: string) {
+    this.deleteUser(username);
+  }
+
+  selectIdentity(identity: any): void {
+    this.displayIdentity$.next(identity);
+
+    if (!this.showDetailView) {
+      this.toggleFullscreen();
+    }
+  }
 }

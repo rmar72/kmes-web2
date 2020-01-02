@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './shared/services/auth.service';
 import { Router } from '@angular/router';
 import { LogoutService } from 'src/logout';
 
@@ -13,7 +12,6 @@ export class AppComponent implements OnInit {
 
   userSignedIn: boolean;
   constructor(
-    private authService: AuthService,
     private router: Router,
     private logoutService: LogoutService
   ) { }

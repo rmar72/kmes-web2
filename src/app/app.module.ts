@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,13 @@ import { SystemAdminComponent } from './system-admin/system-admin.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IdentityCreateComponent } from './identity-management/identity-create/identity-create.component';
+import { IdentityDetailComponent } from './identity-management/identity-detail/identity-detail.component';
+import { IdentityListComponent } from './identity-management/identity-list/identity-list.component';
+import { ServiceProxyModule } from './shared/api/api.module';
+import { InitialsPipe } from './shared/pipes/initials.pipe';
+import { API_BASE_URL } from './shared/api/service-proxies';
+import { environment } from 'src/environments/environment';
+import { AppToastsComponent } from './app-toasts/app-toasts.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +35,21 @@ import { IdentityCreateComponent } from './identity-management/identity-create/i
     IdentityManagementComponent,
     SystemAdminComponent,
     IdentityCreateComponent,
+    IdentityDetailComponent,
+    IdentityListComponent,
+    InitialsPipe,
+    AppToastsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceProxyModule,
+    NgbModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [{provide: API_BASE_URL, useValue: environment.apiUrl}]
 })
 export class AppModule { }

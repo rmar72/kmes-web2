@@ -1,9 +1,9 @@
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font-size: 13px;
 }
 
-// general panel styles 
+// general panel styles
 .panel.panel-default .panel-heading {
     font-size: 16px;
     font-weight: 500;
@@ -13,8 +13,8 @@ body {
 .nav-tabs li a {
     font-size: 12px;
     color: #768599;
-    border: 1px solid #ddd; 
-    background-color: #eeeeee; 
+    border: 1px solid #ddd;
+    background-color: #eeeeee;
     border-radius: 4px 4px 0px 0px;
     .blue-label {
         color: #3c8dbc;
@@ -68,4 +68,12 @@ body {
             border-bottom: none;
         }
     }
+}
+
+//general dropdown styling
+.dropdown-menu li {
+    cursor: pointer;
+}
+.txt-rd-light {
+    color: #ad1817;
 }
