@@ -80,7 +80,7 @@ export class IdentityManagementComponent implements OnInit {
     this.deleteUser(username);
   }
 
-  detailViewSwitch(subject, selectedEntity, dictateView, removeView){
+  detailViewSwitch(subject, selectedEntity, dictateView, removeView) {
 
     if(this.showDetailView === false){
       this.toggleFullscreen();
@@ -96,10 +96,79 @@ export class IdentityManagementComponent implements OnInit {
     }
   }
 
+  getUserDetails(username) {
+    // api call will replace mock objects below
+
+    const mockIdty = {
+      username:	"Main User",
+      primaryGroup:	"Admin",
+      subGroups:	["Cool Group1", "Cool Group2"],
+      valid:	false,
+      lastLogin:	"2020-01-03 06:36:00",
+      createdAt: "2020-01-02 01:01:01",
+      personalInfo:	{
+        firstName:	"John",
+        lastName:	"Doe",
+        commonName:	"foo",
+        givenName:	"foo",
+        surname:	"Jonny",
+        mobileCarrier:	"Verizon",
+        phone:	"303-303-3030",
+        email: "foo@email.com"
+      }
+    }
+    const mockIdtyGroup = {
+      name: "Admin",
+      parentGroup: "n/a",
+      permissions: {
+        logs: [
+          "Modify",
+          "Export"
+        ],
+        users: [
+          "Add",
+          "Delete",
+          "Modify"
+        ],
+        keys: []
+      },
+      passPolicy: {
+        length: {min:8, max: 99},
+        alphabetical:{min:2, max: 50},
+        uppercase: {min:1, max: 10},
+        lowercase: {min:1, max: 10},
+        numeric: {min:1, max: 25},
+        symbols: {min:1, max: 25}
+      },
+      loginsRequired: 2,
+      userLocation: "Database",
+      ldapVerify: false,
+      ldapGroup: "string",
+      oauthSettings: {
+        enabled:	true,
+        tokenLifetime:	700,
+        clientId:	"23t5dfw4rxwa",
+        macKeyName:	"87tgf5e4ec34"
+      },
+      otpSettings: {
+        required: false,
+        portList: ["Client", "Web"],
+        timeout: 800
+      }
+    }
+
+    const identityDetail = {
+      mockIdty,
+      mockIdtyGroup
+    }
+
+    return identityDetail;
+  }
+
   selectIdentity(identity: any): void {
     this.detailViewSwitch(
       this.displayIdentity$,
-      identity,
+      this.getUserDetails(identity),
       'showIdtyDetail',
       'showIdtyGroupDetail'
     );
