@@ -11,20 +11,22 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="user-header">
                 <div class="img-thumbnail">
-                    <span class="name-circle">{{displayIdentity.username | initials}}</span>
+                    <span class="name-circle">{{displayIdentity.mockIdty.username | initials}}</span>
                 </div>
                 
-                <div class="users-preview__name" title="Admin Group">{{ displayIdentity.username }}</div>
-                <div class="users-preview__role" title="Normal ">Primary Group: {{ displayIdentity.primaryGroup }}</div>
+                <div class="users-preview__name" title="Admin Group">{{ displayIdentity.mockIdty.username }}</div>
+                <div class="users-preview__role" title="Normal ">Primary Group: {{ displayIdentity.mockIdty.primaryGroup }}</div>
                 <div class="users-preview__login" title="Date Created">
-                    <span>Created: {{ displayIdentity.lastLogin | date: 'mediumDate' }}</span>
+                    <span>Created: {{ displayIdentity.mockIdty.createdAt | date: 'mediumDate' }}</span>
                 </div>
                 <hr class="hr-less">
                 <p class="assigned-groups-title">ASSIGNED TO GROUP(S):</p>
                 <ul class="assigned-groups-list">
-                  <li><i class="fa fa-caret-right icon-right"></i>&nbsp;Admin Group</li>
-                  <li><i class="fa fa-caret-right icon-right"></i>&nbsp;Management</li>
-                  <li><i class="fa fa-caret-right icon-right"></i>&nbsp;Custom Group</li>
+                  <li><i class="fa fa-caret-right icon-right"></i>&nbsp;{{ displayIdentity.mockIdty.primaryGroup }}</li>
+                  <li *ngFor="let subGroup of displayIdentity.mockIdty.subGroups">
+                    <i class="fa fa-caret-right icon-right subgroup-item"></i>&nbsp;
+                    {{ subGroup }}
+                  </li>
                 </ul>
             </div>
           </div>
@@ -32,13 +34,21 @@
           <!-- 2 idty details  -->
           <div class="details-summary-list col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <hr class="divider">
-            <div class="detail-pane-list">Status<span><i class="fa fa-check"></i></span></div>
+            <div class="detail-pane-list">
+              Status
+              <span *ngIf="displayIdentity.mockIdty.valid"> <i class="fa fa-check"></i> </span>
+              <code *ngIf="!displayIdentity.mockIdty.valid" class="code-danger"> <i class="fa fa-times"></i></code>
+            </div>
             <hr class="divider">
-            <div class="detail-pane-list">Smart Card<span><i class="fa fa-check"></i></span></div>
+            <!-- <div class="detail-pane-list">Smart Card<span><i class="fa fa-check"></i></span></div>
+            <hr class="divider"> -->
+            <div class="detail-pane-list">
+              One-time Password
+              <span *ngIf="displayIdentity.mockIdtyGroup.otpSettings.required"> <i class="fa fa-check"></i> </span>
+              <code *ngIf="!displayIdentity.mockIdtyGroup.otpSettings.required" class="code-danger"> <i class="fa fa-times"></i></code>
+            </div>
             <hr class="divider">
-            <div class="detail-pane-list">One-time Password<span><i class="fa fa-check"></i></span></div>
-            <hr class="divider">
-            <div class="detail-pane-list">Last Login<span>{{ displayIdentity.lastLogin | date: 'mediumDate' }}</span></div>
+            <div class="detail-pane-list">Last Login<span>{{ displayIdentity.mockIdty.lastLogin | date: 'mediumDate' }}</span></div>
             <hr class="divider">
           </div>
 
@@ -50,22 +60,22 @@
                   <span>Enabled permissions</span><i class="fa fa-caret-down"></i>
               </a>
                           
-              <div id="user-preview__view-permissions2" class="collapse"> 
+              <div id="user-preview__view-permissions2" class="collapse">
+                <span id="expand-wrapper">
+                  <a class="expand-all-btn" data-toggle="collapse" 
+                    data-target="#permsub-0, #permsub-1, #permsub-2, #permsub-3, #permsub-4, #permsub-5, #permsub-6, #permsub-7, #permsub-8, #permsub-9, #permsub-10, permsub-11, #permsub-12, #permsub-13, #permsub-14, #permsub-15, #permsub-16, #permsub-17, #permsub-18, #permsub-19, #permsub-20, #permsub-21, #permsub-22">
+                    <i class="fa fa-plus"></i>&nbsp;&nbsp;Expand All
+                  </a>
+                </span>
                 <ul class="list-group">
                   <li id="perm-0" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-0" aria-controls="permsub-0" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>View logs
                     </a>
 
-                    <!-- <span class="list-group-item expand-all-wrapper">
-                      <a class="expand-all-btn">
-                        <i class="fa fa-plus"></i>Expand All
-                      </a>
-                    </span> -->
-                  
                     <ul id="permsub-0" class="collapse nested-group-list" aria-labelledby="perm-0" data-parent="#user-preview__view-permissions">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      <li class="nested-group-item" *ngFor="let log of displayIdentity.mockIdtyGroup.permissions.logs">
+                        <i class="fa fa-caret-right"></i> {{ log }}
                       </li>
                     </ul>
                   </li>
@@ -313,38 +323,38 @@
 
                   <li class="list-group-item">
                     <span class="list-group-title">Length</span>
-                    <code class="code-xs pull-right">Max: ∞</code>
-                    <code class="code-xs pull-right mr-5">Min: 0</code>
+                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.length.max }}</code>
+                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.length.min }}</code>
                   </li>
 
                   <li class="list-group-item">
                     <span class="list-group-title">Letters</span>
-                    <code class="code-xs pull-right">Max: ∞</code>
-                    <code class="code-xs pull-right mr-5">Min: 0</code>
+                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.alphabetical.max }}</code>
+                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.alphabetical.min }}</code>
                   </li>
 
                   <li class="list-group-item">
                     <span class="list-group-title">Uppercase letters</span>
-                    <code class="code-xs pull-right">Max: ∞</code>
-                    <code class="code-xs pull-right mr-5">Min: 0</code>
+                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.uppercase.max }}</code>
+                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.uppercase.min }}</code>
                   </li>
 
                   <li class="list-group-item">
                     <span class="list-group-title">Lowercase letters</span>
-                    <code class="code-xs pull-right">Max: ∞</code>
-                    <code class="code-xs pull-right mr-5">Min: 0</code>
+                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.lowercase.max }}</code>
+                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.lowercase.min }}</code>
                   </li>
 
                   <li class="list-group-item">
                     <span class="list-group-title">Numbers</span>
-                    <code class="code-xs pull-right">Max: ∞</code>
-                    <code class="code-xs pull-right mr-5">Min: 0</code>
+                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.numeric.max }}</code>
+                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.numeric.min }}</code>
                   </li>
 
                   <li class="list-group-item">
                     <span class="list-group-title">Special characters</span>
-                    <code class="code-xs pull-right">Max: ∞</code>
-                    <code class="code-xs pull-right mr-5">Min: 0</code>
+                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.symbols.max }}</code>
+                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.symbols.min }}</code>
                   </li>
                 </ul>
             </div>
@@ -357,9 +367,15 @@
               <a href="#oauth-preview__view-permissions2" class="btn btn-default btn-block btn-sm anchor-collapse" data-toggle="collapse">Oauth<i class="fa fa-caret-down"></i></a>
 
               <div id="oauth-preview__view-permissions2" class="collapse">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><i class="fa fa-exclamation-triangle"></i>Not enabled</li>
-                </ul>
+                <div *ngIf="!displayIdentity.mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
+                  <p class="list-group-item"><i class="fa fa-exclamation-triangle"></i>Not enabled</p>
+                </div>
+                <div *ngIf="displayIdentity.mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
+                  <p class="list-group-item">Enabled: {{ displayIdentity.mockIdtyGroup.oauthSettings.enabled }}</p>
+                  <p class="list-group-item">Token Lifetime: {{ displayIdentity.mockIdtyGroup.oauthSettings.tokenLifetime }}</p>
+                  <p class="list-group-item">Client Id: {{ displayIdentity.mockIdtyGroup.oauthSettings.clientId }}</p>
+                  <p class="list-group-item">Mac Key Name: {{ displayIdentity.mockIdtyGroup.oauthSettings.macKeyName }}</p>
+                </div>
               </div>
             </div>
           </div>

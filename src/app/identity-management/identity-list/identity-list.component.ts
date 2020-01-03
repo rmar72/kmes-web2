@@ -20,11 +20,11 @@ export class IdentityListComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectIdentity(identity: any){
+  selectIdentity(identity: any) {
     this.selectedIdentity.emit(identity);
   }
 
-  selectIdentityGroup(identity: any){
+  selectIdentityGroup(identity: any) {
     this.selectedIdentityGroup.emit(identity);
   }
 
