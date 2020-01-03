@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Users, ClientApi } from '../shared/services/api/service-proxies';
-import { Subject } from 'rxjs';
+import {
+  Users,
+  UsersServiceProxy
+} from '../shared/api/service-proxies';
+import { Subject, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-identity-management',
@@ -13,21 +16,34 @@ export class IdentityManagementComponent implements OnInit {
   showCreateGroup = false;
   showCreateIdentity = false;
   identityCount = 0;
-  usersGet$ = this.userManagement.usersGet();
-  identities$ = new Subject<Users[]>();
+  usersGet$ = this.usersService.usersGet();
+  identities$ = new ReplaySubject<Users[]>();
   identityCount$ = new Subject<string>();
+  displayIdentity$ = new Subject<any>();
 
-  constructor(private userManagement: ClientApi) { }
+  constructor(private usersService: UsersServiceProxy) {}
 
   ngOnInit() {
     this.getUsers();
   }
 
   getUsers(): void {
-      this.userManagement.usersGet().subscribe(resp => {
-        this.identities$.next(resp.responseData.users);
-        this.identityCount$.next(`(${resp.responseData.totalItems})`);
-      });
+    this.usersService.usersGet().subscribe(resp => {
+      this.identities$.next(resp.responseData.users);
+      this.identityCount$.next(`(${resp.responseData.totalItems})`);
+    });
+  }
+
+  toggleFullscreen() {
+    this.showFullscreen = !this.showFullscreen;
+    this.showDetailView = !this.showDetailView;
+  }
+
+  deleteUser(username: string) {
+    this.usersService.usersDelete(username).subscribe(resp => {
+      console.log(resp);
+      this.getUsers();
+    });
   }
 
   toggleCreateGroup(): void {
@@ -39,9 +55,7 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateGroup = !this.showCreateGroup;
   }
 
-  submitCreateGroup(): void {
-
-  }
+  submitCreateGroup(): void {}
 
   toggleCreateIdentity(): void {
     this.showCreateIdentity = !this.showCreateIdentity;
@@ -52,16 +66,22 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateIdentity = !this.showCreateIdentity;
   }
 
-  submitCreateIdentity(): void {
-  }
+  submitCreateIdentity(): void {}
 
   resetForms(): void {
     this.showCreateGroup = false;
     this.showCreateIdentity = false;
   }
 
-  onIdentityDeleted(message: string) {
-    console.log(message);
-    this.getUsers();
+  onIdentityDeleted(username: string) {
+    this.deleteUser(username);
+  }
+
+  selectIdentity(identity: any): void {
+    this.displayIdentity$.next(identity);
+
+    if (!this.showDetailView) {
+      this.toggleFullscreen();
+    }
   }
 }

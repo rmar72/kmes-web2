@@ -4,7 +4,7 @@
         <button>Edit</button>
     </div>
     
-    <div class="panel-body">
+    <div class="panel-body" *ngIf="displayIdentity">
       <div class="access-details-group">
         <div class="row">
           <!-- 1 idty basic info -->
@@ -13,10 +13,10 @@
                 <div class="img-thumbnail">
                     <span><i class="fa fa-users fa-2x"></i></span>
                 </div>
-                <div class="users-preview__name" title="Admin Group">Admin Group</div>
-                <div class="users-preview__role" title="Normal ">Key Management Identity</div>
+                <div class="users-preview__name" title="Admin Group">username {{ displayIdentity.username }}</div>
+                <div class="users-preview__role" title="Normal "> primaryGroup {{ displayIdentity.primaryGroup }}</div>
                 <div class="users-preview__login" title="Date Created">
-                    <span>Created: Nov 11, 2019</span>
+                    <span>Last Login: {{ displayIdentity.lastLogin }}</span>
                 </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
                   <span>Enabled permissions</span><i class="fa fa-caret-down"></i>
               </a>
                           
-              <div id="user-preview__view-permissions"> 
+              <div id="user-preview__view-permissions" class="collapse"> 
                 <ul class="list-group">
                   
                   <li id="perm-0" class="group-item">
