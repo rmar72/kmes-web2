@@ -29,7 +29,6 @@ export class IdentityCreateComponent implements OnInit {
   }
 
   submitCreateIdentity() {
-    console.log(this.carrier);
     if (this.pForm.valid) {
       this.createUser();
     } else {

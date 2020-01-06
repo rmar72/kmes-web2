@@ -1,8 +1,6 @@
 app-toasts.ngb-toasts {
     position: fixed;
-    left: 50%;
-    margin: .5em;
     z-index: 1200;
-    transform: translateX(-50%);
-    width: fit-content;
+    margin: 52px 0px 0px 0px;
+    min-width: 300px;
 }
