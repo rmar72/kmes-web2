@@ -3,16 +3,20 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { ConfigServiceProxy } from './shared/api/service-proxies';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AppToastsComponent } from './app-toasts/app-toasts.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        NgbModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        AppToastsComponent
       ],
       providers: [ConfigServiceProxy]
     }).compileComponents();

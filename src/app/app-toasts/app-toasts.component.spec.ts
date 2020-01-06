@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppToastsComponent } from './app-toasts.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('AppToastsComponent', () => {
   let component: AppToastsComponent;
@@ -8,9 +9,10 @@ describe('AppToastsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppToastsComponent ]
+      declarations: [AppToastsComponent],
+      imports: [NgbModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

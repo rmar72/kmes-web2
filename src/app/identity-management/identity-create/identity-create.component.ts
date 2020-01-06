@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { UsersServiceProxy, IPersonalInfo, PersonalInfoPhone, UsersPostBody } from 'src/app/shared/api/service-proxies';
 import { AppToastService } from 'src/app/shared/services/app-toast.service';
 
@@ -16,6 +16,7 @@ import { AppToastService } from 'src/app/shared/services/app-toast.service';
 })
 export class IdentityCreateComponent implements OnInit {
   @ViewChild('personalizeForm', { static: false }) pForm: NgForm;
+  @ViewChild('carrier', { static: true }) carrier: NgModel;
   @Output() submitCreate: EventEmitter<any> = new EventEmitter<any>();
   personalInfo = {} as IPersonalInfo;
   carriers: string[];
@@ -28,12 +29,12 @@ export class IdentityCreateComponent implements OnInit {
   }
 
   submitCreateIdentity() {
+    console.log(this.carrier);
     if (this.pForm.valid) {
       this.createUser();
-      this.toast.show('Create Identity Successful', { classname: 'alert alert-success' });
     } else {
       this.markAllAsTouched(this.pForm);
-      this.toast.show('Invalid form', { classname: 'alert alert-warning' });
+      this.toast.warning('Invalid form');
     }
   }
 
@@ -43,6 +44,7 @@ export class IdentityCreateComponent implements OnInit {
       requestData: { personalInfo: { ...this.personalInfo } }
     })).subscribe(_ => {
       this.submitCreate.emit();
+      this.toast.success('Identity was created');
       this.resetForms();
     });
   }

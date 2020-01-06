@@ -3,7 +3,7 @@ import {
   Users,
   UsersServiceProxy
 } from '../shared/api/service-proxies';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-identity-management',
@@ -17,7 +17,7 @@ export class IdentityManagementComponent implements OnInit {
   showCreateIdentity = false;
   identityCount = 0;
   usersGet$ = this.usersService.usersGet();
-  identities$ = new Subject<Users[]>();
+  identities$ = new ReplaySubject<Users[]>();
   identityCount$ = new Subject<string>();
   displayIdentity$ = new Subject<any>();
 
