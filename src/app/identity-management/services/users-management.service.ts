@@ -16,6 +16,11 @@ export class UsersManagementService extends ResourceService<any> {
       'users',
     );
   }
+
+  public getUsersPaged(page, pageCount) {
+    // return this.http.get(`${this.url}?page=${page}&pageCount=${pageCount}`)
+    // .pipe(map((data: any) => this.serializer.fromJson(data) as T));
+  }
 }
 
 export interface CreateUser extends Resource {

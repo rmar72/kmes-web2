@@ -116,3 +116,14 @@
     margin: 0 auto;
     padding-top: 5px;
 }
+
+.pagination-wrapper {
+    margin-bottom: 15px;
+    .btn-sm {
+        height: 30px;
+    }
+
+    .btn-group .dropdown-menu {
+        box-shadow: 25px 50px -12px rgba(0, 0, 0, 0.5)
+    }
+}
