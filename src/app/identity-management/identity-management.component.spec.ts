@@ -16,6 +16,7 @@ import { HeaderComponent } from '../layout/header/header.component';
 import { SideNavComponent } from '../layout/side-nav/side-nav.component';
 import { FooterComponent } from '../layout/footer/footer.component';
 import { IdentityDetailComponent } from './identity-detail/identity-detail.component';
+import { IdentityGroupDetailComponent } from './identity-group-detail/identity-group-detail.component';
 
 describe('IdentityManagementComponent', () => {
   let component: IdentityManagementComponent;
@@ -42,6 +43,7 @@ describe('IdentityManagementComponent', () => {
         FooterComponent,
         InitialsPipe,
         IdentityDetailComponent,
+        IdentityGroupDetailComponent,
       ],
       providers: [UsersServiceProxy]
     }).compileComponents();

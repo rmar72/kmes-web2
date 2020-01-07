@@ -1,6 +1,6 @@
 <section class="content">
   <div class="row">
-    <div [ngClass]="showFullscreen ? 'col-lg-8 col-md-7 col-sm-12 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" >
+    <div [ngClass]="showFullscreen ? 'col-lg-8 col-md-8 col-sm-12 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" >
       <div class="panel panel-default">
         <div class="panel-heading primary-heading">
           <span>
@@ -8,7 +8,7 @@
           </span>
           
           <button (click)="toggleFullscreen()" id="close-btn" [ngClass]="showFullscreen? '' : 'btn btn-primary btn-sm close-btn' ">
-            <i [ngClass]="showFullscreen ? 'fa fa-expand' : 'fa fa-compress'"></i>
+            <i [ngClass]="showFullscreen ? 'fas fa-expand' : 'fas fa-compress'"></i>
             <span *ngIf="!showFullscreen" class="btn-close-wording">Close fullscreen</span>
           </button>
         </div>
@@ -58,18 +58,20 @@
                   [identities]="identities$ | async" 
                   (identityDeleted)="onIdentityDeleted($event)"
                   (selectedIdentity)="selectIdentity($event)"
+                  (selectedIdentityGroup)="selectIdentityGroup($event)"
                   ></app-identity-list>
               </div>
               <div [hidden]="!showCreateIdentity">
-                  <app-identity-create #idCreate (submitCreate)="resetForms()"></app-identity-create>
+                <app-identity-create #idCreate (submitCreate)="resetForms()"></app-identity-create>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div [hidden]="!showDetailView" class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-      <app-identity-detail [displayIdentity]="displayIdentity$ | async"></app-identity-detail>
+    <div [hidden]="!showDetailView" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <app-identity-detail [hidden]="!showIdtyDetail" [displayIdentity]="displayIdentity$ | async"></app-identity-detail>
+      <app-identity-group-detail [hidden]="!showIdtyGroupDetail"  [displayIdentityGroup]="displayIdentityGroup$ | async"></app-identity-group-detail>
     </div>
   </div>
 </section>

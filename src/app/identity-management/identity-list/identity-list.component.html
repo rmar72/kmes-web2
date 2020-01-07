@@ -29,12 +29,15 @@
       <tbody>
         <tr role="row" class="odd" *ngFor="let identity of identities; let i = index">
           <td>
-            <!-- <input class="table-checkbox" type="checkbox" name=""> -->
+            <input class="table-checkbox" type="checkbox" name="">
           </td>
           <td [ngClass]="{'identity-disabled': !identity.valid}"><span class="name-circle">{{identity.username | initials}}</span>{{identity.username}}&nbsp;<i *ngIf="!identity.valid" class="fa fa-exclamation-triangle text-danger icon-left"></i></td>
           <td class="identity-group-col">
               <span class="badge badge-default"><span class="badge-text-inner">1</span>{{identity.primaryGroup}}</span>
-              <span class="badge badge-default" *ngFor="let group of identity.subGroups; let i = index"><span class="badge-text-inner">{{i + 2}}</span>{{group}}</span>
+              <br />
+              <span class="badge badge-default" *ngFor="let group of identity.subGroups; let i = index">
+                <span class="badge-text-inner">{{i + 2}}</span>{{group}}
+              </span>
           </td>
           <td class="status-col">
               <code *ngIf="identity.valid" class="code-success"><i class="fa fa-check"></i></code>
