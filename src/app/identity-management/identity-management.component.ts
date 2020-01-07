@@ -151,7 +151,7 @@ export class IdentityManagementComponent implements OnInit {
         macKeyName:	"87tgf5e4ec34"
       },
       otpSettings: {
-        required: false,
+        required: true,
         portList: ["Client", "Web"],
         timeout: 800
       }

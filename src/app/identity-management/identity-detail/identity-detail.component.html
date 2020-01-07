@@ -37,7 +37,7 @@
             <div class="detail-pane-list">
               Status
               <span *ngIf="displayIdentity.mockIdty.valid"> <i class="fa fa-check"></i> </span>
-              <code *ngIf="!displayIdentity.mockIdty.valid" class="code-danger"> <i class="fa fa-times"></i></code>
+              <span *ngIf="!displayIdentity.mockIdty.valid"> <i class="fa fa-times txt-rd-light"></i></span>
             </div>
             <hr class="divider">
             <!-- <div class="detail-pane-list">Smart Card<span><i class="fa fa-check"></i></span></div>
@@ -45,7 +45,7 @@
             <div class="detail-pane-list">
               One-time Password
               <span *ngIf="displayIdentity.mockIdtyGroup.otpSettings.required"> <i class="fa fa-check"></i> </span>
-              <code *ngIf="!displayIdentity.mockIdtyGroup.otpSettings.required" class="code-danger"> <i class="fa fa-times"></i></code>
+              <span *ngIf="!displayIdentity.mockIdtyGroup.otpSettings.required"> <i class="fa fa-times txt-rd-light"></i></span>
             </div>
             <hr class="divider">
             <div class="detail-pane-list">Last Login<span>{{ displayIdentity.mockIdty.lastLogin | date: 'mediumDate' }}</span></div>
