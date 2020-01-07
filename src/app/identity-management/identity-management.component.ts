@@ -80,7 +80,7 @@ export class IdentityManagementComponent implements OnInit {
     this.deleteUser(username);
   }
 
-  detailViewSwitch(subject, selectedEntity, dictateView, removeView) {
+  detailViewSwitch(subject, selectedEntity, dictateView, showCurrentView) {
 
     if(this.showDetailView === false){
       this.toggleFullscreen();
@@ -89,9 +89,9 @@ export class IdentityManagementComponent implements OnInit {
     if(this.showDetailView){
       subject.next(selectedEntity);
 
-      if(this[dictateView] == false){
+      if(this[dictateView] === false){
         this[dictateView] = true;
-        this[removeView] = false;
+        this[showCurrentView] = false;
       }
     }
   }
