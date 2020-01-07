@@ -21,6 +21,12 @@ export class AppToastService {
     this.toasts.push({ textOrTpl: success, ...options });
   }
 
+  error(text: string, options: any = {}) {
+    options = { ...options, classname: 'alert alert-error'};
+    const success = `Error! ${text}   `;
+    this.toasts.push({ textOrTpl: success, ...options });
+  }
+
   remove(toast: any) {
     this.toasts = this.toasts.filter(t => t !== toast);
   }
