@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ɵEMPTY_ARRAY, ElementRef } from '@angular/core';
 import { UsersServiceProxy } from 'src/app/shared/api/service-proxies';
 import { from, of, forkJoin } from "rxjs";
 import { catchError, map, take } from 'rxjs/operators';
@@ -19,6 +19,11 @@ export class IdentityListComponent implements OnInit {
   errorIndex: number;
   checkedBoxes = {};
   deleteIdtys = [];
+
+  constructor(
+    private usersService: UsersServiceProxy,
+    private checkbox: ElementRef
+    ) {}
 
   ngOnInit() {
   }
@@ -43,8 +48,24 @@ export class IdentityListComponent implements OnInit {
     );
   }
 
-  checkedBoxes = {}
-  deleteIdtys = []
+  onSelectAllBoxes(e){
+    console.log("e", e.target.checked)
+    // e.target.checked
+    let checkboxes = this.checkbox.nativeElement.querySelectorAll('.checkoutbox');
+    checkboxes.forEach(element => {
+      element.checked = !element.checked;
+    });
+
+    from(this.identities).pipe(
+      map(idty => idty.username)
+      // take(2), whatever is available on the page
+    )
+    .subscribe(value => {
+      this.deleteIdtys.push(value);
+
+    });
+
+  }
 
   addCheckBox(e, idty){
     this.checkedBoxes[idty.username] = e.target.checked;

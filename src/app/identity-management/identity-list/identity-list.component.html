@@ -6,7 +6,7 @@
           <th class="identities-dropdown-col">
             <div class="identities-dropdown btn-group">
               <!----> <a class="btn btn-default btn-xs checkbox-btn-wrapper">
-                <input class="table-checkbox" type="checkbox" name="">
+                <input (click)="onSelectAllBoxes($event)" class="table-checkbox" type="checkbox" name="">
               </a>
               <a type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
@@ -29,7 +29,7 @@
       <tbody>
         <tr role="row" class="odd" *ngFor="let identity of identities; let i = index">
           <td>
-            <input (click)="addCheckBox($event, identity)" class="table-checkbox" type="checkbox" name="">
+            <input (click)="addCheckBox($event, identity)" class="table-checkbox checkoutbox" type="checkbox" name="">
           </td>
           <td [ngClass]="{'identity-disabled': !identity.valid}"><span class="name-circle">{{identity.username | initials}}</span>{{identity.username}}&nbsp;<i *ngIf="!identity.valid" class="fa fa-exclamation-triangle text-danger icon-left"></i></td>
           <td class="identity-group-col">
