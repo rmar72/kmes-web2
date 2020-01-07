@@ -1,52 +1,41 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UsersManagementService } from '../services/users-management.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { UsersServiceProxy } from 'src/app/shared/api/service-proxies';
+import { AppToastService } from 'src/app/shared/services/app-toast.service';
 
 @Component({
-    selector: 'app-identity-list',
-    templateUrl: './identity-list.component.html',
-    styleUrls: ['./identity-list.component.scss']
+  selector: 'app-identity-list',
+  templateUrl: './identity-list.component.html',
+  styleUrls: ['./identity-list.component.scss']
 })
 export class IdentityListComponent implements OnInit {
-    identities: any[] = [];
-    identityCount: number;
-    deleteError: string = '';
-    errorIndex: number;
+  @Input() identities: any[];
+  @Output() identityDeleted = new EventEmitter<string>();
+  @Output() selectedIdentity = new EventEmitter<any>();
+  @Output() selectedIdentityGroup = new EventEmitter<any>();
 
-    @Output() setIdentityCount = new EventEmitter<number>();
+  identityCount: number;
+  constructor(private usersService: UsersServiceProxy, private toast: AppToastService) {}
 
-    constructor(private usersManagement: UsersManagementService) { }
+  ngOnInit() {
+  }
 
-    ngOnInit() {
-        //get identities
-        this.getIdentities();
-    }
+  selectIdentity(identity: any) {
+    this.selectedIdentity.emit(identity);
+  }
 
-    getIdentities() {
-        this.usersManagement.read().subscribe(response => {
-            this.setIdentityCount.emit(response.responseData.totalItems);
-            this.identities = response.responseData.users;
-        });
-    }
+  selectIdentityGroup(identity: any) {
+    this.selectedIdentityGroup.emit(identity);
+  }
 
-    getInitials(username: string) {
-        return username.substring(0,2).toUpperCase();
-    }
-
-    deleteIdentity(identity: any, index: number) {
-        //delete identity 
-        this.usersManagement.delete(identity.username).subscribe(
-            (response) => {
-                console.log(response);
-                //get identities
-                this.getIdentities();
-            },
-            (error) => {
-                //show error message
-                this.deleteError = error.message;
-                this.errorIndex = index;
-            }
-        );
-        
-    }
-
+  deleteIdentity(identity: any, index: number) {
+    this.usersService.usersDelete(identity.username).subscribe(
+      (response) => {
+        this.identityDeleted.emit(response.message);
+        this.toast.success('Identity was deleted');
+      },
+      (error) => {
+        this.toast.error('Unable to delete identity');
+      }
+    );
+  }
 }

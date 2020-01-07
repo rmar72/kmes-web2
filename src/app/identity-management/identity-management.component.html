@@ -1,9 +1,16 @@
 <section class="content">
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div [ngClass]="showFullscreen ? 'col-lg-8 col-md-8 col-sm-12 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" >
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading primary-heading">
+          <span>
             Identity Management
+          </span>
+          
+          <button (click)="toggleFullscreen()" id="close-btn" [ngClass]="showFullscreen? '' : 'btn btn-primary btn-sm close-btn' ">
+            <i [ngClass]="showFullscreen ? 'fas fa-expand' : 'fas fa-compress'"></i>
+            <span *ngIf="!showFullscreen" class="btn-close-wording">Close fullscreen</span>
+          </button>
         </div>
         <div class="panel-toolbar">
           <ul class="nav nav-tabs" role="tablist">
@@ -13,7 +20,7 @@
               </li>
               <li class="nav-item btn-group" role="presentation" (click)="resetForms()">
                   <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab"
-                      aria-expanded="false" class="">Identities<span class="label blue-label">({{identityCount}})</span></a>
+                  aria-expanded="false" class="">Identities<span style="display: inline-block; min-width: 27px;" class="label blue-label">{{(identityCount$ | async) || '(0)'}}</span></a>
               </li>
           </ul>
         </div>
@@ -47,15 +54,24 @@
                         class="fa fa-save mr-5"></i>Create</button>
               </div>
               <div *ngIf="!showCreateIdentity">
-                <app-identity-list (setIdentityCount)="getIdentityCount($event)"></app-identity-list>
+                <app-identity-list 
+                  [identities]="identities$ | async" 
+                  (identityDeleted)="onIdentityDeleted($event)"
+                  (selectedIdentity)="selectIdentity($event)"
+                  (selectedIdentityGroup)="selectIdentityGroup($event)"
+                  ></app-identity-list>
               </div>
               <div [hidden]="!showCreateIdentity">
-                  <app-identity-create #idCreate (submitCreate)="resetForms()"></app-identity-create>
+                <app-identity-create #idCreate (submitCreate)="resetForms()"></app-identity-create>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div [hidden]="!showDetailView" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <app-identity-detail [hidden]="!showIdtyDetail" [displayIdentity]="displayIdentity$ | async"></app-identity-detail>
+      <app-identity-group-detail [hidden]="!showIdtyGroupDetail"  [displayIdentityGroup]="displayIdentityGroup$ | async"></app-identity-group-detail>
     </div>
   </div>
 </section>
