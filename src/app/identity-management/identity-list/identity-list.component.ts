@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersServiceProxy } from 'src/app/shared/api/service-proxies';
+import { from, of, forkJoin } from "rxjs";
+import { catchError, map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-identity-list',
@@ -15,7 +17,8 @@ export class IdentityListComponent implements OnInit {
   identityCount: number;
   deleteError = '';
   errorIndex: number;
-  constructor(private usersService: UsersServiceProxy) {}
+  checkedBoxes = {};
+  deleteIdtys = [];
 
   ngOnInit() {
   }
@@ -53,39 +56,44 @@ export class IdentityListComponent implements OnInit {
       this.deleteIdtys = this.deleteIdtys.filter(idtyName => idtyName !== idty.username);
     }
   }
-  
 
   deleteIdentities(){
+    console.log("this.deleteIdtys", this.deleteIdtys)
     if(this.deleteIdtys.length > 0){
       let deleteConfirm = confirm(`You are about to delete ${this.deleteIdtys.length} Identities. This action cannot be undone. Would you like to continue?`);
 
       if(deleteConfirm){
           
-        const deleteList = this.deleteIdtys
-          .map(idty => this.usersService.usersDelete(idty).pipe(
+        const deleteList = this.deleteIdtys.map(idty => 
+          this.usersService.usersDelete(idty).pipe(
             catchError(err => of(`handled err ${err}`))
           ));
         
-        forkJoin(...deleteList).subscribe(
-          val => {
-            // temp solution for demo purposes, with emitter to idty mngt comp. api call will replinish list 
+        forkJoin(...deleteList).subscribe(val => {
+            // temp solution for demo purposes
             if(this.identities.length == 1){
-              this.identityDeleted.emit(this.identities[0].username);
+              this.identityDeleted.emit(val);
             }
-
+            // later on, this wont be used since idty mgt will replinish the list
             this.identities = this.identities.filter(idty =>
-              this.deleteIdtys.indexOf(idty.username) < 0
-            );
+              this.deleteIdtys.indexOf(idty.username) < 0 );
+            
+            if(this.identities.length == 0){
+              this.identityDeleted.emit(val);
+            }
             this.deleteIdtys = [];
+
+            // --- when api starts working this should suffice ---
+            // this.identityDeleted.emit(val);
+            // this.deleteIdtys = [];
           },
           err => console.log(err)
         );
       }
     }
     else {
-      alert("No identities have been selected.")
+      alert("No identities have been selected.");
     }
   }
   
-
 }

@@ -42,13 +42,6 @@ export class IdentityManagementComponent implements OnInit {
     this.showDetailView = !this.showDetailView;
   }
 
-  deleteUser(username: string) {
-    this.usersService.usersDelete(username).subscribe(resp => {
-      console.log(resp);
-      this.getUsers();
-    });
-  }
-
   toggleCreateGroup(): void {
     this.showCreateGroup = !this.showCreateGroup;
   }
@@ -76,8 +69,8 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateIdentity = false;
   }
 
-  onIdentityDeleted(username: string) {
-    this.deleteUser(username);
+  onIdentityDeleted(res: string) {
+    this.getUsers();
   }
 
   detailViewSwitch(subject, selectedEntity, dictateView, removeView) {
