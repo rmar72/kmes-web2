@@ -157,6 +157,10 @@ export class IdentityManagementComponent implements OnInit {
       }
     }
 
+    for(let key in mockIdtyGroup.permissions){
+      mockIdtyGroup.permissions[key].unshift("View");
+    }
+    
     const identityDetail = {
       mockIdty,
       mockIdtyGroup
