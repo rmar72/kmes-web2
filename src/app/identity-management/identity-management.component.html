@@ -6,7 +6,7 @@
           <span>
             Identity Management
           </span>
-          
+
           <button (click)="toggleFullscreen()" id="close-btn" [ngClass]="showFullscreen? '' : 'btn btn-primary btn-sm close-btn' ">
             <i [ngClass]="showFullscreen ? 'fas fa-expand' : 'fas fa-compress'"></i>
             <span *ngIf="!showFullscreen" class="btn-close-wording">Close fullscreen</span>
@@ -54,8 +54,8 @@
                         class="fa fa-save mr-5"></i>Create</button>
               </div>
               <div *ngIf="!showCreateIdentity">
-                <app-identity-list 
-                  [identities]="identities$ | async" 
+                <app-identity-list
+                  [identities]="identities$ | async"
                   (identityDeleted)="onIdentityDeleted($event)"
                   (selectedIdentity)="selectIdentity($event)"
                   (selectedIdentityGroup)="selectIdentityGroup($event)"

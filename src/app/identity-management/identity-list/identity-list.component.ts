@@ -17,8 +17,7 @@ export class IdentityListComponent implements OnInit {
   errorIndex: number;
   constructor(private usersService: UsersServiceProxy) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   selectIdentity(identity: any) {
     this.selectedIdentity.emit(identity);
@@ -30,10 +29,10 @@ export class IdentityListComponent implements OnInit {
 
   deleteIdentity(identity: any, index: number) {
     this.usersService.usersDelete(identity.username).subscribe(
-      (response) => {
+      response => {
         this.identityDeleted.emit(response.message);
       },
-      (error) => {
+      error => {
         this.deleteError = 'Unable to delete this identity';
         this.errorIndex = index;
       }
