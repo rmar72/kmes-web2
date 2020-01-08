@@ -20,7 +20,7 @@
               </li>
               <li class="nav-item btn-group" role="presentation" (click)="resetForms()">
                   <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab"
-                  aria-expanded="false" class="">Identities<span style="display: inline-block; min-width: 27px;" class="label blue-label">{{(identityCount$ | async) || '(0)'}}</span></a>
+                  aria-expanded="false" class="">Identities<span style="display: inline-block; min-width: 27px;" class="label blue-label">({{(identityCount$ | async) || '0'}})</span></a>
               </li>
           </ul>
         </div>
@@ -59,6 +59,13 @@
                   (identityDeleted)="onIdentityDeleted($event)"
                   (selectedIdentity)="selectIdentity($event)"
                   (selectedIdentityGroup)="selectIdentityGroup($event)"
+                  [currentPage]="currentPage"
+                  [pageCount]="pageCount"
+                  [identityCount]="identityCount$ | async"
+                  (updatePageCount)="updatePageCount($event)"
+                  (updateCurrentPage)="updateCurrentPage($event)"
+                  [totalPages]="totalPages"
+                  [pageArray]="pageArray"
                   ></app-identity-list>
               </div>
               <div [hidden]="!showCreateIdentity">

@@ -17,12 +17,15 @@ export class IdentityManagementComponent implements OnInit {
   showIdtyDetail = false;
   showCreateGroup = false;
   showCreateIdentity = false;
-  identityCount = 0;
-  usersGet$ = this.usersService.usersGet();
+  // usersGet$ = this.usersService.usersGet();
   identities$ = new ReplaySubject<Users[]>();
   identityCount$ = new Subject<string>();
   displayIdentity$ = new Subject<any>();
   displayIdentityGroup$ = new Subject<any>();
+  currentPage: number = 1;
+  pageCount: number = 20;
+  totalPages: number;
+  pageArray: any[];
 
   constructor(private usersService: UsersServiceProxy) {}
 
@@ -31,9 +34,12 @@ export class IdentityManagementComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.usersService.usersGet().subscribe(resp => {
+    this.usersService.usersGet(undefined, undefined, this.currentPage, this.pageCount).subscribe(resp => {
+      this.totalPages = 8;
+      // this.totalPages = resp.responseData.totalPages;
       this.identities$.next(resp.responseData.users);
-      this.identityCount$.next(`(${resp.responseData.totalItems})`);
+      this.identityCount$.next(`${resp.responseData.totalItems}`);
+      this.createPaginationArray();
     });
   }
 
@@ -185,6 +191,42 @@ export class IdentityManagementComponent implements OnInit {
         'showIdtyGroupDetail',
         'showIdtyDetail'
     );
+  }
+
+  updatePageCount(count: number) {
+    this.pageCount = count; 
+    this.getUsers();
+  }
+
+  updateCurrentPage(page: number) {
+    this.currentPage = page; 
+    this.getUsers();
+  }
+
+  createPaginationArray() {
+    let range = 7;
+    this.pageArray = [];
+    if(this.totalPages <= 7) {
+        for(let i = 0; i < this.totalPages; i++) {
+          this.pageArray.push(i + 1);
+        }
+    } else {
+      if(this.currentPage <=3) {
+        for(let i = 0; i < range - 2; i++) {
+          this.pageArray.push(i + 1);
+        }
+        this.pageArray.push('...');
+        this.pageArray.push(this.totalPages);
+      } else if(this.currentPage > 3 && this.currentPage < this.totalPages - 2) {
+        this.pageArray = [1, '...', this.currentPage - 1, this.currentPage, this.currentPage + 1, '...', this.totalPages]
+      } else if(this.currentPage >= this.totalPages - 2) {
+        this.pageArray = [1, '...'];
+        for(let i = range - 3; i > 0; i--) {
+          this.pageArray.push(this.totalPages - i);
+        }
+        this.pageArray.push(this.totalPages);
+      }
+    }
   }
 
 }
