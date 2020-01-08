@@ -18,7 +18,7 @@ export class IdentityListComponent implements OnInit {
   identityCount: number;
   deleteError = '';
   errorIndex: number;
-  checkedBoxes = {};
+  identityIsChecked = {};
   deleteIdtys = [];
 
   constructor(
@@ -27,8 +27,7 @@ export class IdentityListComponent implements OnInit {
     private toast: AppToastService
     ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   selectIdentity(identity: any) {
     this.selectedIdentity.emit(identity);
@@ -50,38 +49,88 @@ export class IdentityListComponent implements OnInit {
     );
   }
 
+  masterCheckbox: boolean = false;
   onSelectAllBoxes(e){
-    console.log("e", e.target.checked)
-    // e.target.checked
-    let checkboxes = this.checkbox.nativeElement.querySelectorAll('.checkoutbox');
-    checkboxes.forEach(element => {
-      element.checked = !element.checked;
-    });
+    let checkboxes = this.checkbox.nativeElement.querySelectorAll('.idty-checkbox');
+    this.masterCheckbox = !this.masterCheckbox;
 
-    from(this.identities).pipe(
-      map(idty => idty.username)
-      // take(2), whatever is available on the page
-    )
-    .subscribe(value => {
-      this.deleteIdtys.push(value);
+    if(!this.masterCheckbox && this.deleteIdtys.length >= 1){
+      checkboxes.forEach(element => {
+        if(element.checked)
+          element.checked = !element.checked;
+      });
+      this.deleteIdtys = [];
+    }
+    if(this.masterCheckbox === true){
+      checkboxes.forEach(element => {
+        if(element.checked == false)
+          element.checked = !element.checked;
+      });
 
-    });
+      from(this.identities).pipe(
+        map(idty => idty.username)
+        // take(2), whatever is available on the page
+      )
+      .subscribe(value => {
+        this.deleteIdtys.push(value);
+      });
+    }
+    else {
+      checkboxes.forEach(element => {
+        element.checked = false;
+        this.deleteIdtys = [];
+      });
+    }
 
   }
 
-  addCheckBox(e, idty){
-    this.checkedBoxes[idty.username] = e.target.checked;
+  onSelectAllBoxes2(){
+    alert(1)
+  }
 
-    if(this.checkedBoxes[idty.username]){
+  onBoxCheck2(e, checkedIdty){
+    this.identityIsChecked[checkedIdty.username] = e.target.checked;
+
+    if(this.identityIsChecked[checkedIdty.username]){
+      this.deleteIdtys.push(checkedIdty.username);
+      console.log("this.deleteIdtys", this.deleteIdtys)
+    }
+    else {
+      this.deleteIdtys = this.deleteIdtys.filter(queuedIdtyName => queuedIdtyName !== checkedIdty.username);
+      console.log("this.deleteIdtys", this.deleteIdtys)
+    }
+    
+    this.masterCheckbox = this.deleteIdtys.length == this.identities.length ? true : false;
+  }
+
+  onBoxCheck(e, idty){
+    console.log(0)
+    this.identityIsChecked[idty.username] = e.target.checked;
+    if(this.deleteIdtys.length !== this.identities.length){
+      this.masterCheckbox = false;
+    }
+    if(this.masterCheckbox){ // if its checked, and we are executing this fn then obv we've deselected so its no longer all of em
+      console.log(1) 
+      this.masterCheckbox = !this.masterCheckbox;
+    }
+
+    if(this.identityIsChecked[idty.username]){
+      console.log(2)
       this.deleteIdtys.push(idty.username);
     }
     else {
+      console.log(3)
       this.deleteIdtys = this.deleteIdtys.filter(idtyName => idtyName !== idty.username);
+    }
+
+    if(this.deleteIdtys.length == this.identities.length){ // if all boxes selected toggle master checkbox
+      console.log(4)
+      this.masterCheckbox = !this.masterCheckbox;
     }
   }
 
   deleteIdentities(){
-    console.log("this.deleteIdtys", this.deleteIdtys)
+    // console.log("this.deleteIdtys", this.deleteIdtys)
     if(this.deleteIdtys.length > 0){
       let deleteConfirm = confirm(`You are about to delete ${this.deleteIdtys.length} Identities. This action cannot be undone. Would you like to continue?`);
 
@@ -94,23 +143,30 @@ export class IdentityListComponent implements OnInit {
         
         forkJoin(...deleteList).subscribe(val => {
             // temp solution for demo purposes
+            // later on, this wont be used since idty mgt will replinish the list
             if(this.identities.length == 1){
               this.identityDeleted.emit(val);
             }
-            // later on, this wont be used since idty mgt will replinish the list
             this.identities = this.identities.filter(idty =>
               this.deleteIdtys.indexOf(idty.username) < 0 );
-            
+
+            this.toast.success("Deleted");
             if(this.identities.length == 0){
               this.identityDeleted.emit(val);
             }
             this.deleteIdtys = [];
+            this.masterCheckbox = false;
 
             // --- when api starts working this should suffice ---
             // this.identityDeleted.emit(val);
             // this.deleteIdtys = [];
+            // this.masterCheckbox = false;
+            // this.toast.success("Deleted");
           },
-          err => console.log(err)
+          err => {
+            console.log(err)
+            this.toast.error("Unable to delete")
+          }
         );
       }
     }
