@@ -37,7 +37,7 @@
             <div class="detail-pane-list">
               Status
               <span *ngIf="displayIdentity.mockIdty.valid"> <i class="fa fa-check"></i> </span>
-              <code *ngIf="!displayIdentity.mockIdty.valid" class="code-danger"> <i class="fa fa-times"></i></code>
+              <span *ngIf="!displayIdentity.mockIdty.valid"> <i class="fa fa-times txt-rd-light"></i></span>
             </div>
             <hr class="divider">
             <!-- <div class="detail-pane-list">Smart Card<span><i class="fa fa-check"></i></span></div>
@@ -45,7 +45,7 @@
             <div class="detail-pane-list">
               One-time Password
               <span *ngIf="displayIdentity.mockIdtyGroup.otpSettings.required"> <i class="fa fa-check"></i> </span>
-              <code *ngIf="!displayIdentity.mockIdtyGroup.otpSettings.required" class="code-danger"> <i class="fa fa-times"></i></code>
+              <span *ngIf="!displayIdentity.mockIdtyGroup.otpSettings.required"> <i class="fa fa-times txt-rd-light"></i></span>
             </div>
             <hr class="divider">
             <div class="detail-pane-list">Last Login<span>{{ displayIdentity.mockIdty.lastLogin | date: 'mediumDate' }}</span></div>
@@ -63,12 +63,12 @@
               <div id="user-preview__view-permissions2" class="collapse">
                 <span id="expand-wrapper">
                   <a class="expand-all-btn" data-toggle="collapse" 
-                    data-target="#permsub-0, #permsub-1, #permsub-2, #permsub-3, #permsub-4, #permsub-5, #permsub-6, #permsub-7, #permsub-8, #permsub-9, #permsub-10, permsub-11, #permsub-12, #permsub-13, #permsub-14, #permsub-15, #permsub-16, #permsub-17, #permsub-18, #permsub-19, #permsub-20, #permsub-21, #permsub-22">
+                    data-target="#permsub-0, #permsub-1, #permsub-2, #permsub-3, #permsub-4, #permsub-5, #permsub-6, #permsub-7, #permsub-8, #permsub-9, #permsub-10, #permsub-11, #permsub-12, #permsub-13, #permsub-14, #permsub-15, #permsub-16, #permsub-17, #permsub-18, #permsub-19, #permsub-20, #permsub-21, #permsub-22">
                     <i class="fa fa-plus"></i>&nbsp;&nbsp;Expand All
                   </a>
                 </span>
                 <ul class="list-group">
-                  <li id="perm-0" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.logs" id="perm-0" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-0" aria-controls="permsub-0" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>View logs
                     </a>
@@ -80,18 +80,18 @@
                     </ul>
                   </li>
 
-                  <li id="perm-1" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.users" id="perm-1" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-1" aria-controls="permsub-1" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage users
                     </a>
                     <ul id="permsub-1" aria-labelledby="perm-1" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      <li class="nested-group-item" *ngFor="let userPermission of displayIdentity.mockIdtyGroup.permissions.users">
+                        <i class="fa fa-caret-right"></i>{{ userPermission }}
                       </li>
                     </ul>
                   </li>
 
-                  <li id="perm-2" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.sysConfig" id="perm-2" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-2" aria-controls="permsub-2" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Update system configuration
                     </a>
@@ -102,7 +102,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-4" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.dbRestore" id="perm-4" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-4" aria-controls="permsub-4" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Database restore
                     </a>
@@ -113,7 +113,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-5" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.hostNetworks" id="perm-5" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-5" aria-controls="permsub-5" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage hosts/networks
                     </a>
@@ -124,30 +124,41 @@
                     </ul>
                   </li>
 
-                  <li id="perm-7" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-7" aria-controls="permsub-7" aria-expanded="true">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.templates" id="perm-6" class="group-item">
+                    <a data-toggle="collapse" data-target="#permsub-6" aria-controls="permsub-6" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage templates
                     </a>
-                    <ul id="permsub-7" aria-labelledby="perm-7" data-parent="#user-preview__view-permissions" class="collapse">
+                    <ul id="permsub-6" aria-labelledby="perm-6" data-parent="#user-preview__view-permissions" class="collapse">
                       <li class="nested-group-item">
                         <i class="fa fa-caret-right"></i>[replace with actual values]
                       </li>
                     </ul>
                   </li>
 
-                  <li id="perm-8" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-8" aria-controls="permsub-8" aria-expanded="true">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.keys" id="perm-7" class="group-item">
+                    <a data-toggle="collapse" data-target="#permsub-7" aria-controls="permsub-7" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage keys
                     </a>
-                    <ul id="permsub-8" aria-labelledby="perm-8" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]</li>
+                    <ul id="permsub-7" aria-labelledby="perm-7" data-parent="#user-preview__view-permissions" class="collapse">
+                      <li class="nested-group-item" *ngFor="let key of displayIdentity.mockIdtyGroup.permissions.keys">
+                        <i class="fa fa-caret-right"></i>{{ key }}</li>
                     </ul>
                   </li>
 
-                  <li id="perm-9" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-9" aria-controls="permsub-9" aria-expanded="true">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.encryptDeviceGroups" id="perm-8" class="group-item">
+                    <a data-toggle="collapse" data-target="#permsub-8" aria-controls="permsub-8" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage encryption device groups
+                    </a>
+                    <ul id="permsub-8" aria-labelledby="perm-8" data-parent="#user-preview__view-permissions" class="collapse">
+                      <li class="nested-group-item">
+                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.peers" id="perm-9" class="group-item">
+                    <a data-toggle="collapse" data-target="#permsub-9" aria-controls="permsub-9" aria-expanded="true">
+                      <i class="fa fa-caret-right"></i>View peers
                     </a>
                     <ul id="permsub-9" aria-labelledby="perm-9" data-parent="#user-preview__view-permissions" class="collapse">
                       <li class="nested-group-item">
@@ -156,9 +167,9 @@
                     </ul>
                   </li>
 
-                  <li id="perm-10" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.printReports" id="perm-10" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-10" aria-controls="permsub-10" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>View peers
+                      <i class="fa fa-caret-right"></i>Manage and print reports
                     </a>
                     <ul id="permsub-10" aria-labelledby="perm-10" data-parent="#user-preview__view-permissions" class="collapse">
                       <li class="nested-group-item">
@@ -167,9 +178,9 @@
                     </ul>
                   </li>
 
-                  <li id="perm-11" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.approvals" id="perm-11" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-11" aria-controls="permsub-11" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage and print reports
+                      <i class="fa fa-caret-right"></i>Manage signing approvals
                     </a>
                     <ul id="permsub-11" aria-labelledby="perm-11" data-parent="#user-preview__view-permissions" class="collapse">
                       <li class="nested-group-item">
@@ -178,9 +189,9 @@
                     </ul>
                   </li>
 
-                  <li id="perm-12" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.profiles" id="perm-12" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-12" aria-controls="permsub-12" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage signing approvals
+                      <i class="fa fa-caret-right"></i>Manage X.509 v3 extension profiles
                     </a>
                     <ul id="permsub-12" aria-labelledby="perm-12" data-parent="#user-preview__view-permissions" class="collapse">
                       <li class="nested-group-item">
@@ -189,9 +200,9 @@
                     </ul>
                   </li>
 
-                  <li id="perm-13" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.dnProfiles" id="perm-13" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-13" aria-controls="permsub-13" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage X.509 v3 extension profiles
+                      <i class="fa fa-caret-right"></i>Manage X.509 DN profiles
                     </a>
                     <ul id="permsub-13" aria-labelledby="perm-13" data-parent="#user-preview__view-permissions" class="collapse">
                       <li class="nested-group-item">
@@ -200,18 +211,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-14" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage X.509 DN profiles
-                    </a>
-                    <ul id="permsub-14" aria-labelledby="perm-14" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li id="perm-14" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.ldapServers" id="perm-14" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage remote LDAP servers
                     </a>
@@ -222,7 +222,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-15" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.secretData" id="perm-15" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-15" aria-controls="permsub-15" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage secret data
                     </a>
@@ -233,7 +233,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-16" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.kmipTemplates" id="perm-16" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-16" aria-controls="permsub-16" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage KMIP templates</a>
                     <ul id="permsub-16" aria-labelledby="perm-16" data-parent="#user-preview__view-permissions" class="collapse">
@@ -243,7 +243,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-17" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.tokenization" id="perm-17" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-17" aria-controls="permsub-17" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Tokenization
                     </a>
@@ -254,7 +254,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-18" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.pkiTemplates" id="perm-18" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-18" aria-controls="permsub-18" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Manage Windows PKI templates
                     </a>
@@ -265,7 +265,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-19" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.enrollments" id="perm-19" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-19" aria-controls="permsub-19" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Perform Windows enrollments
                     </a>
@@ -276,7 +276,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-20" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.sftpServer" id="perm-20" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-20" aria-controls="permsub-20" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Use the system SFTP server
                     </a>
@@ -287,7 +287,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-21" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.cryptoOps" id="perm-21" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-21" aria-controls="permsub-21" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>Perform cryptographic operations
                     </a>
@@ -298,7 +298,7 @@
                     </ul>
                   </li>
 
-                  <li id="perm-22" class="group-item">
+                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.fileEncryption" id="perm-22" class="group-item">
                     <a data-toggle="collapse" data-target="#permsub-22" aria-controls="permsub-22" aria-expanded="true">
                       <i class="fa fa-caret-right"></i>File encryption
                     </a>

@@ -1,6 +1,6 @@
 <section class="content">
   <div class="row">
-    <div [ngClass]="showFullscreen ? 'col-lg-8 col-md-7 col-sm-12 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" >
+    <div [ngClass]="showFullscreen ? 'col-lg-8 col-md-8 col-sm-12 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" >
       <div class="panel panel-default">
         <div class="panel-heading primary-heading">
           <span>
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-    <div [hidden]="!showDetailView" class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
+    <div [hidden]="!showDetailView" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
       <app-identity-detail [hidden]="!showIdtyDetail" [displayIdentity]="displayIdentity$ | async"></app-identity-detail>
       <app-identity-group-detail [hidden]="!showIdtyGroupDetail"  [displayIdentityGroup]="displayIdentityGroup$ | async"></app-identity-group-detail>
     </div>

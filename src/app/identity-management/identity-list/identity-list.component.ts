@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ɵEMPTY_ARRAY, ElementR
 import { UsersServiceProxy } from 'src/app/shared/api/service-proxies';
 import { from, of, forkJoin } from "rxjs";
 import { catchError, map, take } from 'rxjs/operators';
+import { AppToastService } from 'src/app/shared/services/app-toast.service';
 
 @Component({
   selector: 'app-identity-list',
@@ -22,7 +23,8 @@ export class IdentityListComponent implements OnInit {
 
   constructor(
     private usersService: UsersServiceProxy,
-    private checkbox: ElementRef
+    private checkbox: ElementRef,
+    private toast: AppToastService
     ) {}
 
   ngOnInit() {
@@ -40,10 +42,10 @@ export class IdentityListComponent implements OnInit {
     this.usersService.usersDelete(identity.username).subscribe(
       (response) => {
         this.identityDeleted.emit(response.message);
+        this.toast.success('Identity was deleted');
       },
       (error) => {
-        this.deleteError = 'Unable to delete this identity';
-        this.errorIndex = index;
+        this.toast.error('Unable to delete identity');
       }
     );
   }

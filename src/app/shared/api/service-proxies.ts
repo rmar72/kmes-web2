@@ -22038,7 +22038,7 @@ export enum Permissions3Setting {
 }
 
 export enum PersonalInfoPhone {
-  Alltell = 'Alltell',
+  Alltel = 'Alltel',
   ATT = 'ATT',
   Boost = 'Boost',
   Comcast = 'Comcast',
