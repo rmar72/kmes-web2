@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersServiceProxy } from 'src/app/shared/api/service-proxies';
+import { AppToastService } from 'src/app/shared/services/app-toast.service';
 
 @Component({
   selector: 'app-identity-list',
@@ -13,9 +14,7 @@ export class IdentityListComponent implements OnInit {
   @Output() selectedIdentityGroup = new EventEmitter<any>();
 
   identityCount: number;
-  deleteError = '';
-  errorIndex: number;
-  constructor(private usersService: UsersServiceProxy) {}
+  constructor(private usersService: UsersServiceProxy, private toast: AppToastService) {}
 
   ngOnInit() {
   }
@@ -32,10 +31,10 @@ export class IdentityListComponent implements OnInit {
     this.usersService.usersDelete(identity.username).subscribe(
       (response) => {
         this.identityDeleted.emit(response.message);
+        this.toast.success('Identity was deleted');
       },
       (error) => {
-        this.deleteError = 'Unable to delete this identity';
-        this.errorIndex = index;
+        this.toast.error('Unable to delete identity');
       }
     );
   }

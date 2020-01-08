@@ -3,7 +3,7 @@ import {
   Users,
   UsersServiceProxy
 } from '../shared/api/service-proxies';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-identity-management',
@@ -19,7 +19,7 @@ export class IdentityManagementComponent implements OnInit {
   showCreateIdentity = false;
   identityCount = 0;
   usersGet$ = this.usersService.usersGet();
-  identities$ = new Subject<Users[]>();
+  identities$ = new ReplaySubject<Users[]>();
   identityCount$ = new Subject<string>();
   displayIdentity$ = new Subject<any>();
   displayIdentityGroup$ = new Subject<any>();
@@ -80,7 +80,7 @@ export class IdentityManagementComponent implements OnInit {
     this.deleteUser(username);
   }
 
-  detailViewSwitch(subject, selectedEntity, dictateView, removeView) {
+  detailViewSwitch(subject, selectedEntity, dictateView, showCurrentView) {
 
     if(this.showDetailView === false){
       this.toggleFullscreen();
@@ -89,9 +89,9 @@ export class IdentityManagementComponent implements OnInit {
     if(this.showDetailView){
       subject.next(selectedEntity);
 
-      if(this[dictateView] == false){
+      if(this[dictateView] === false){
         this[dictateView] = true;
-        this[removeView] = false;
+        this[showCurrentView] = false;
       }
     }
   }
@@ -151,12 +151,16 @@ export class IdentityManagementComponent implements OnInit {
         macKeyName:	"87tgf5e4ec34"
       },
       otpSettings: {
-        required: false,
+        required: true,
         portList: ["Client", "Web"],
         timeout: 800
       }
     }
 
+    for(let key in mockIdtyGroup.permissions){
+      mockIdtyGroup.permissions[key].unshift("View");
+    }
+    
     const identityDetail = {
       mockIdty,
       mockIdtyGroup

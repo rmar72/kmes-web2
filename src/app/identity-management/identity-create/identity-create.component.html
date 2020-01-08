@@ -112,8 +112,8 @@
               <select class="form-control dropdown-toggle btn btn-default btn-sm" id="carrier" [(ngModel)]="personalInfo.mobileCarrier" name="personalInfo_carrier" #carrier="ngModel" required>
                 <option value="">Select</option>
                 <option *ngFor="let carrier of carriers" value={{carrier}}>{{carrier}}</option>
-                <div class="txt-rd-light" *ngIf="!carrier.valid">Personal info is required</div>
               </select>
+              <div class="txt-rd-light" *ngIf="carrier.invalid && carrier.touched">Personal info is required</div>
             </div>
         </div>
       </div>
