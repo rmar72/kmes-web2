@@ -52,7 +52,7 @@ export class IdentityListComponent implements OnInit {
   }
 
   emitUpdateCurrentPage(page: number) {
-      if(page != this.currentPage) {
+      if(page != this.currentPage && page >= 1 && page <= this.totalPages) {
         this.updateCurrentPage.emit(page);
       }
   }
