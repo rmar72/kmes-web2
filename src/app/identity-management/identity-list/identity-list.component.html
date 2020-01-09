@@ -7,7 +7,7 @@
             <div class="identities-dropdown btn-group">
               <a class="btn btn-default btn-xs checkbox-btn-wrapper">
                 <input 
-                  (click)="onSelectAllBoxes2($event)"
+                  (click)="deleteSelectAll()"
                   [checked]="masterCheckbox"
                   class="table-checkbox master-checkbox" type="checkbox" name="master-box" />
               </a>
@@ -32,7 +32,9 @@
       <tbody>
         <tr role="row" class="odd" *ngFor="let identity of identities; let i = index">
           <td>
-            <input (click)="onBoxCheck2($event, identity)" class="table-checkbox idty-checkbox" type="checkbox" name="identity-checkbox" />
+            <input 
+              (click)="onBoxCheck($event, identity)"
+              class="table-checkbox idty-checkbox" type="checkbox" name="identity-checkbox" />
           </td>
           <td [ngClass]="{'identity-disabled': !identity.valid}">
             <span class="name-circle">{{identity.username | initials}}</span>{{identity.username}}&nbsp;
