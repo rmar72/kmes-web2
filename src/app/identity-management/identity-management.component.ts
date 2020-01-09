@@ -35,8 +35,8 @@ export class IdentityManagementComponent implements OnInit {
 
   getUsers(): void {
     this.usersService.usersGet(undefined, undefined, this.currentPage, this.pageCount).subscribe(resp => {
-      this.totalPages = 8;
-      // this.totalPages = resp.responseData.totalPages;
+      // this.totalPages = 8;
+      this.totalPages = resp.responseData.totalPages;
       this.identities$.next(resp.responseData.users);
       this.identityCount$.next(`${resp.responseData.totalItems}`);
       this.createPaginationArray();
