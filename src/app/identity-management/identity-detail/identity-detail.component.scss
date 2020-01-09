@@ -4,13 +4,15 @@
   justify-content: space-between;
   height: 38px;
   padding: 0px;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
 
     span {
         padding: 7px 0 0px 15px;
     }
-    i {
+    i {    
         opacity: 0.7;
-        margin-right: 7px;
     }
 
   button {
@@ -272,10 +274,12 @@
   display: block;
   z-index: 9999;
   position: fixed;
-  top: 60px;
-  right: 10px;
+  top: 6.9rem;
+  right: 1.666%;
   width: 70%;
-  bottom: 0px;
+  max-height: 80%;
+  overflow: auto;
+  overscroll-behavior: contain;
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
   -moz-transition: -moz-transform 0.5s ease-in-out;
   -o-transition: -o-transform 0.5s ease-in-out;
@@ -284,6 +288,10 @@
 
 .mr-5 {
   margin-right: 5px;
+}
+
+.mr-10 {
+  margin-right: 10px;
 }
 
 .primary-heading {
@@ -304,4 +312,22 @@
 
 .btn-group button.header-btn{
   width: inherit;
+}
+
+.heading-tools {
+  &.btn-group {
+    button {
+      border-radius: 0px;
+      border-top-right-radius: 0px;
+      border-top-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    button:last-child {
+      border-top-right-radius: 4px;
+    }
+    .dropdown-toggle {
+      border-top-right-radius: 4px;
+    }
+  }
 }

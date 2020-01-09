@@ -1,13 +1,13 @@
 <div class="panel panel-default" *ngIf="displayIdentity" [ngClass]="showUserEdit ? 'panel-fullscreen-partial' : ''">
-    <div class="panel-heading secondary-heading">
-        <span><i class="fas fa-eye mr-10"></i>Details</span>
-    <div class="btn-group">
-      <button *ngIf="!showUserEdit" class="header-btn" (click)="editUser()">Edit</button>
-      <button *ngIf="showUserEdit"  class="header-btn" (click)="cancelEdit()"><i class="fa fa-times"></i></button>
-      <button *ngIf="showUserEdit" class="header-btn btn-primary" (click)="saveEdits()"><i
+  <div class="panel-heading secondary-heading">
+    <span><i class="fas fa-eye mr-10"></i>Details</span>
+    <div class="heading-tools btn-group" role="group">
+      <button *ngIf="!showUserEdit" class="btn header-btn" (click)="editUser()">Edit</button>
+      <button *ngIf="showUserEdit" class="btn header-btn" (click)="cancelEdit()"><i class="fa fa-times"></i></button>
+      <button *ngIf="showUserEdit" class="btn header-btn btn-primary" (click)="saveEdits()"><i
           class="fa fa-save mr-5"></i>Save</button>
     </div>
-    </div> <!-- end of panel heading -->
+  </div> <!-- end of panel heading -->
   <div class="panel-body" *ngIf="displayIdentity">
     <div class="access-details-group">
       <div class="row">
@@ -15,299 +15,323 @@
         <div class="col-xs-12">
           <div class="user-header">
             <div class="img-thumbnail">
-                    <span class="name-circle">{{displayIdentity.mockIdty.username | initials}}</span>
-                </div>
-                <div class="users-preview__name" title="Admin Group">{{ displayIdentity.mockIdty.username }}</div>
-                <div class="users-preview__role" title="Normal ">Primary Group: {{ displayIdentity.mockIdty.primaryGroup }}</div>
-                <div class="users-preview__login" title="Date Created">
-                    <span>Created: {{ displayIdentity.mockIdty.createdAt | date: 'mediumDate' }}</span>
-                </div>
-                <hr class="hr-less">
-                <p class="assigned-groups-title">ASSIGNED TO GROUP(S):</p>
-                <ul class="assigned-groups-list">
-                  <li><i class="fa fa-caret-right icon-right"></i>&nbsp;{{ displayIdentity.mockIdty.primaryGroup }}</li>
-                  <li *ngFor="let subGroup of displayIdentity.mockIdty.subGroups">
-                    <i class="fa fa-caret-right icon-right subgroup-item"></i>&nbsp;
-                    {{ subGroup }}
-                  </li>
-                </ul>
+              <span class="name-circle">{{displayIdentity.username | initials}}</span>
+            </div>
+            <div class="users-preview__name" title="Admin Group">{{ displayIdentity.username }}</div>
+            <div class="users-preview__role" title="Normal ">Primary Group: {{ displayIdentity.primaryGroup }}</div>
+            <div class="users-preview__login" title="Date Created">
+              <span>Created: {{ createdAt | date: 'mediumDate' }}</span>
+            </div>
+            <hr class="hr-less">
+            <p class="assigned-groups-title">ASSIGNED TO GROUP(S):</p>
+            <ul class="assigned-groups-list">
+              <li><i class="fa fa-caret-right icon-right"></i>&nbsp;{{ displayIdentity.primaryGroup }}</li>
+              <li *ngFor="let subGroup of displayIdentity.subGroups">
+                <i class="fa fa-caret-right icon-right subgroup-item"></i>&nbsp;
+                {{ subGroup }}
+              </li>
+            </ul>
           </div>
         </div>
 
-          <!-- 2 idty details  -->
-          <div class="details-summary-list col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <hr class="divider">
-            <div class="detail-pane-list">
-              Status
-              <span *ngIf="displayIdentity.mockIdty.valid"> <i class="fa fa-check"></i> </span>
-              <code *ngIf="!displayIdentity.mockIdty.valid" class="code-danger"> <i class="fa fa-times"></i></code>
-            </div>
-            <hr class="divider">
-            <!-- <div class="detail-pane-list">Smart Card<span><i class="fa fa-check"></i></span></div>
-            <hr class="divider"> -->
-            <div class="detail-pane-list">
-              One-time Password
-              <span *ngIf="displayIdentity.mockIdtyGroup.otpSettings.required"> <i class="fa fa-check"></i> </span>
-              <code *ngIf="!displayIdentity.mockIdtyGroup.otpSettings.required" class="code-danger"> <i class="fa fa-times"></i></code>
-            </div>
-            <hr class="divider">
-            <div class="detail-pane-list">Last Login<span>{{ displayIdentity.mockIdty.lastLogin | date: 'mediumDate' }}</span></div>
-            <hr class="divider">
+        <!-- 2 idty details  -->
+        <div class="details-summary-list col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <hr class="divider">
+          <div class="detail-pane-list">
+            Status
+            <span *ngIf="displayIdentity.valid"> <i class="fa fa-check"></i> </span>
+            <code *ngIf="!displayIdentity.valid" class="code-danger"> <i class="fa fa-times"></i></code>
           </div>
+          <hr class="divider">
+          <!-- <div class="detail-pane-list">Smart Card<span><i class="fa fa-check"></i></span></div>
+            <hr class="divider"> -->
+          <div class="detail-pane-list">
+            One-time Password
+            <span *ngIf="mockIdtyGroup.otpSettings.required"> <i class="fa fa-check"></i> </span>
+            <code *ngIf="!mockIdtyGroup.otpSettings.required" class="code-danger"> <i class="fa fa-times"></i></code>
+          </div>
+          <hr class="divider">
+          <div class="detail-pane-list">Last Login<span>{{ displayIdentity.lastLogin | date: 'mediumDate' }}</span>
+          </div>
+          <hr class="divider">
+        </div>
 
-          <!-- 3 idty management, permission, psswd, oauth -->
-          <!--  permission -->
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            
-              <a href="#user-preview__view-permissions2" class="btn btn-default btn-block btn-sm anchor-collapse" data-toggle="collapse">
-                  <span>Enabled permissions</span><i class="fa fa-caret-down"></i>
+        <!-- 3 idty management, permission, psswd, oauth -->
+        <!--  permission -->
+        <div [hidden]="showUserEdit" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+          <a href="#user-preview__view-permissions2" class="btn btn-default btn-block btn-sm anchor-collapse"
+            data-toggle="collapse">
+            <span>Enabled permissions</span><i class="fa fa-caret-down"></i>
+          </a>
+
+          <div id="user-preview__view-permissions2" class="collapse">
+            <span id="expand-wrapper">
+              <a class="expand-all-btn" data-toggle="collapse"
+                data-target="#permsub-0, #permsub-1, #permsub-2, #permsub-3, #permsub-4, #permsub-5, #permsub-6, #permsub-7, #permsub-8, #permsub-9, #permsub-10, #permsub-11, #permsub-12, #permsub-13, #permsub-14, #permsub-15, #permsub-16, #permsub-17, #permsub-18, #permsub-19, #permsub-20, #permsub-21, #permsub-22">
+                <i class="fa fa-plus"></i>&nbsp;&nbsp;Expand All
               </a>
-                          
-              <div id="user-preview__view-permissions2" class="collapse">
-                <span id="expand-wrapper">
-                  <a class="expand-all-btn" data-toggle="collapse" 
-                    data-target="#permsub-0, #permsub-1, #permsub-2, #permsub-3, #permsub-4, #permsub-5, #permsub-6, #permsub-7, #permsub-8, #permsub-9, #permsub-10, #permsub-11, #permsub-12, #permsub-13, #permsub-14, #permsub-15, #permsub-16, #permsub-17, #permsub-18, #permsub-19, #permsub-20, #permsub-21, #permsub-22">
-                    <i class="fa fa-plus"></i>&nbsp;&nbsp;Expand All
-                  </a>
-                </span>
-                <ul class="list-group">
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.logs" id="perm-0" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-0" aria-controls="permsub-0" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>View logs
-                    </a>
+            </span>
+            <ul class="list-group">
+              <li *ngIf="mockIdtyGroup.permissions.logs" id="perm-0" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-0" aria-controls="permsub-0" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>View logs
+                </a>
 
-                    <ul id="permsub-0" class="collapse nested-group-list" aria-labelledby="perm-0" data-parent="#user-preview__view-permissions">
-                      <li class="nested-group-item" *ngFor="let log of displayIdentity.mockIdtyGroup.permissions.logs">
-                        <i class="fa fa-caret-right"></i> {{ log }}
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.users" id="perm-1" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-1" aria-controls="permsub-1" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage users
-                    </a>
-                    <ul id="permsub-1" aria-labelledby="perm-1" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item" *ngFor="let userPermission of displayIdentity.mockIdtyGroup.permissions.users">
-                        <i class="fa fa-caret-right"></i>{{ userPermission }}
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.sysConfig" id="perm-2" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-2" aria-controls="permsub-2" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Update system configuration
-                    </a>
-                    <ul id="permsub-2" class="collapse" aria-labelledby="perm-2" data-parent="#user-preview__view-permissions" >
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.dbRestore" id="perm-4" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-4" aria-controls="permsub-4" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Database restore
-                    </a>
-                    <ul id="permsub-4" aria-labelledby="perm-4" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.hostNetworks" id="perm-5" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-5" aria-controls="permsub-5" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage hosts/networks
-                    </a>
-                    <ul id="permsub-5" aria-labelledby="perm-5" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.templates" id="perm-6" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-6" aria-controls="permsub-6" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage templates
-                    </a>
-                    <ul id="permsub-6" aria-labelledby="perm-6" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.keys" id="perm-7" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-7" aria-controls="permsub-7" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage keys
-                    </a>
-                    <ul id="permsub-7" aria-labelledby="perm-7" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item" *ngFor="let key of displayIdentity.mockIdtyGroup.permissions.keys">
-                        <i class="fa fa-caret-right"></i>{{ key }}</li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.encryptDeviceGroups" id="perm-8" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-8" aria-controls="permsub-8" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage encryption device groups
-                    </a>
-                    <ul id="permsub-8" aria-labelledby="perm-8" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.peers" id="perm-9" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-9" aria-controls="permsub-9" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>View peers
-                    </a>
-                    <ul id="permsub-9" aria-labelledby="perm-9" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.printReports" id="perm-10" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-10" aria-controls="permsub-10" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage and print reports
-                    </a>
-                    <ul id="permsub-10" aria-labelledby="perm-10" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.approvals" id="perm-11" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-11" aria-controls="permsub-11" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage signing approvals
-                    </a>
-                    <ul id="permsub-11" aria-labelledby="perm-11" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.profiles" id="perm-12" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-12" aria-controls="permsub-12" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage X.509 v3 extension profiles
-                    </a>
-                    <ul id="permsub-12" aria-labelledby="perm-12" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+                <ul id="permsub-0" class="collapse nested-group-list" aria-labelledby="perm-0"
+                  data-parent="#user-preview__view-permissions">
+                  <li class="nested-group-item" *ngFor="let log of mockIdtyGroup.permissions.logs">
+                    <i class="fa fa-caret-right"></i> {{ log }}
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.dnProfiles" id="perm-13" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-13" aria-controls="permsub-13" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage X.509 DN profiles
-                    </a>
-                    <ul id="permsub-13" aria-labelledby="perm-13" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.users" id="perm-1" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-1" aria-controls="permsub-1" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage users
+                </a>
+                <ul id="permsub-1" aria-labelledby="perm-1" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item" *ngFor="let userPermission of mockIdtyGroup.permissions.users">
+                    <i class="fa fa-caret-right"></i>{{ userPermission }}
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.ldapServers" id="perm-14" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage remote LDAP servers
-                    </a>
-                    <ul id="permsub-14" aria-labelledby="perm-14" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.sysConfig" id="perm-2" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-2" aria-controls="permsub-2" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Update system configuration
+                </a>
+                <ul id="permsub-2" class="collapse" aria-labelledby="perm-2"
+                  data-parent="#user-preview__view-permissions">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.secretData" id="perm-15" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-15" aria-controls="permsub-15" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage secret data
-                    </a>
-                    <ul id="permsub-15" aria-labelledby="perm-15" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.dbRestore" id="perm-4" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-4" aria-controls="permsub-4" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Database restore
+                </a>
+                <ul id="permsub-4" aria-labelledby="perm-4" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.kmipTemplates" id="perm-16" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-16" aria-controls="permsub-16" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage KMIP templates</a>
-                    <ul id="permsub-16" aria-labelledby="perm-16" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.hostNetworks" id="perm-5" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-5" aria-controls="permsub-5" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage hosts/networks
+                </a>
+                <ul id="permsub-5" aria-labelledby="perm-5" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.tokenization" id="perm-17" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-17" aria-controls="permsub-17" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Tokenization
-                    </a>
-                    <ul id="permsub-17" aria-labelledby="perm-17" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.templates" id="perm-6" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-6" aria-controls="permsub-6" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage templates
+                </a>
+                <ul id="permsub-6" aria-labelledby="perm-6" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.pkiTemplates" id="perm-18" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-18" aria-controls="permsub-18" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Manage Windows PKI templates
-                    </a>
-                    <ul id="permsub-18" aria-labelledby="perm-18" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.keys" id="perm-7" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-7" aria-controls="permsub-7" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage keys
+                </a>
+                <ul id="permsub-7" aria-labelledby="perm-7" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item" *ngFor="let key of mockIdtyGroup.permissions.keys">
+                    <i class="fa fa-caret-right"></i>{{ key }}</li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.encryptDeviceGroups" id="perm-8" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-8" aria-controls="permsub-8" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage encryption device groups
+                </a>
+                <ul id="permsub-8" aria-labelledby="perm-8" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.enrollments" id="perm-19" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-19" aria-controls="permsub-19" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Perform Windows enrollments
-                    </a>
-                    <ul id="permsub-19" aria-labelledby="perm-19" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.peers" id="perm-9" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-9" aria-controls="permsub-9" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>View peers
+                </a>
+                <ul id="permsub-9" aria-labelledby="perm-9" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.sftpServer" id="perm-20" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-20" aria-controls="permsub-20" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Use the system SFTP server
-                    </a>
-                    <ul id="permsub-20" aria-labelledby="perm-20" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.printReports" id="perm-10" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-10" aria-controls="permsub-10" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage and print reports
+                </a>
+                <ul id="permsub-10" aria-labelledby="perm-10" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.cryptoOps" id="perm-21" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-21" aria-controls="permsub-21" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>Perform cryptographic operations
-                    </a>
-                    <ul id="permsub-21" aria-labelledby="perm-21" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.approvals" id="perm-11" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-11" aria-controls="permsub-11" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage signing approvals
+                </a>
+                <ul id="permsub-11" aria-labelledby="perm-11" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
 
-                  <li *ngIf="displayIdentity.mockIdtyGroup.permissions.fileEncryption" id="perm-22" class="group-item">
-                    <a data-toggle="collapse" data-target="#permsub-22" aria-controls="permsub-22" aria-expanded="true">
-                      <i class="fa fa-caret-right"></i>File encryption
-                    </a>
-                    <ul id="permsub-22" aria-labelledby="perm-22" data-parent="#user-preview__view-permissions" class="collapse">
-                      <li class="nested-group-item">
-                        <i class="fa fa-caret-right"></i>[replace with actual values]
+              <li *ngIf="mockIdtyGroup.permissions.profiles" id="perm-12" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-12" aria-controls="permsub-12" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage X.509 v3 extension profiles
+                </a>
+                <ul id="permsub-12" aria-labelledby="perm-12" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.dnProfiles" id="perm-13" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-13" aria-controls="permsub-13" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage X.509 DN profiles
+                </a>
+                <ul id="permsub-13" aria-labelledby="perm-13" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.ldapServers" id="perm-14" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage remote LDAP servers
+                </a>
+                <ul id="permsub-14" aria-labelledby="perm-14" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.secretData" id="perm-15" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-15" aria-controls="permsub-15" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage secret data
+                </a>
+                <ul id="permsub-15" aria-labelledby="perm-15" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.kmipTemplates" id="perm-16" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-16" aria-controls="permsub-16" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage KMIP templates</a>
+                <ul id="permsub-16" aria-labelledby="perm-16" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.tokenization" id="perm-17" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-17" aria-controls="permsub-17" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Tokenization
+                </a>
+                <ul id="permsub-17" aria-labelledby="perm-17" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.pkiTemplates" id="perm-18" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-18" aria-controls="permsub-18" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Manage Windows PKI templates
+                </a>
+                <ul id="permsub-18" aria-labelledby="perm-18" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.enrollments" id="perm-19" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-19" aria-controls="permsub-19" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Perform Windows enrollments
+                </a>
+                <ul id="permsub-19" aria-labelledby="perm-19" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.sftpServer" id="perm-20" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-20" aria-controls="permsub-20" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Use the system SFTP server
+                </a>
+                <ul id="permsub-20" aria-labelledby="perm-20" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.cryptoOps" id="perm-21" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-21" aria-controls="permsub-21" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>Perform cryptographic operations
+                </a>
+                <ul id="permsub-21" aria-labelledby="perm-21" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
+                  </li>
+                </ul>
+              </li>
+
+              <li *ngIf="mockIdtyGroup.permissions.fileEncryption" id="perm-22" class="group-item">
+                <a data-toggle="collapse" data-target="#permsub-22" aria-controls="permsub-22" aria-expanded="true">
+                  <i class="fa fa-caret-right"></i>File encryption
+                </a>
+                <ul id="permsub-22" aria-labelledby="perm-22" data-parent="#user-preview__view-permissions"
+                  class="collapse">
+                  <li class="nested-group-item">
+                    <i class="fa fa-caret-right"></i>[replace with actual values]
                   </li>
                 </ul>
               </li>
@@ -318,73 +342,76 @@
         <!--  password -->
         <div [hidden]="showUserEdit" class="col-xs-12">
 
-            <a href="#password-preview-wrapper2" class="btn btn-default btn-block btn-sm anchor-collapse" data-toggle="collapse">Password policy<i class="fa fa-caret-down"></i></a>
+          <a href="#password-preview-wrapper2" class="btn btn-default btn-block btn-sm anchor-collapse"
+            data-toggle="collapse">Password policy<i class="fa fa-caret-down"></i></a>
 
-            <div id="password-preview-wrapper2" class="password-policy-preview-wrapper collapse">
+          <div id="password-preview-wrapper2" class="password-policy-preview-wrapper collapse">
 
             <ul id="password-preview__view-permissions" class="list-group list-group-tight">
 
-                  <li class="list-group-item">
-                    <span class="list-group-title">Length</span>
-                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.length.max }}</code>
-                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.length.min }}</code>
-                  </li>
+              <li class="list-group-item">
+                <span class="list-group-title">Length</span>
+                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.length.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.length.min }}</code>
+              </li>
 
-                  <li class="list-group-item">
-                    <span class="list-group-title">Letters</span>
-                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.alphabetical.max }}</code>
-                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.alphabetical.min }}</code>
-                  </li>
+              <li class="list-group-item">
+                <span class="list-group-title">Letters</span>
+                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.alphabetical.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.alphabetical.min }}</code>
+              </li>
 
-                  <li class="list-group-item">
-                    <span class="list-group-title">Uppercase letters</span>
-                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.uppercase.max }}</code>
-                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.uppercase.min }}</code>
-                  </li>
+              <li class="list-group-item">
+                <span class="list-group-title">Uppercase letters</span>
+                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.uppercase.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.uppercase.min }}</code>
+              </li>
 
-                  <li class="list-group-item">
-                    <span class="list-group-title">Lowercase letters</span>
-                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.lowercase.max }}</code>
-                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.lowercase.min }}</code>
-                  </li>
+              <li class="list-group-item">
+                <span class="list-group-title">Lowercase letters</span>
+                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.lowercase.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.lowercase.min }}</code>
+              </li>
 
-                  <li class="list-group-item">
-                    <span class="list-group-title">Numbers</span>
-                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.numeric.max }}</code>
-                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.numeric.min }}</code>
-                  </li>
+              <li class="list-group-item">
+                <span class="list-group-title">Numbers</span>
+                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.numeric.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.numeric.min }}</code>
+              </li>
 
-                  <li class="list-group-item">
-                    <span class="list-group-title">Special characters</span>
-                    <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.symbols.max }}</code>
-                    <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.symbols.min }}</code>
-                  </li>
-                </ul>
+              <li class="list-group-item">
+                <span class="list-group-title">Special characters</span>
+                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.symbols.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.symbols.min }}</code>
+              </li>
+            </ul>
           </div>
         </div>
 
-          <!-- oauth -->
+        <!-- oauth -->
         <div [hidden]="showUserEdit" class="col-xs-12">
           <div class="oauth-policy-preview-wrapper">
-              <a href="#oauth-preview__view-permissions2" class="btn btn-default btn-block btn-sm anchor-collapse" data-toggle="collapse">Oauth<i class="fa fa-caret-down"></i></a>
+            <a href="#oauth-preview__view-permissions2" class="btn btn-default btn-block btn-sm anchor-collapse"
+              data-toggle="collapse">Oauth<i class="fa fa-caret-down"></i></a>
 
-              <div id="oauth-preview__view-permissions2" class="collapse">
-                <div *ngIf="!displayIdentity.mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
-                  <p class="list-group-item"><i class="fa fa-exclamation-triangle"></i>Not enabled</p>
-                </div>
-                <div *ngIf="displayIdentity.mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
-                  <p class="list-group-item">Enabled: {{ displayIdentity.mockIdtyGroup.oauthSettings.enabled }}</p>
-                  <p class="list-group-item">Token Lifetime: {{ displayIdentity.mockIdtyGroup.oauthSettings.tokenLifetime }}</p>
-                  <p class="list-group-item">Client Id: {{ displayIdentity.mockIdtyGroup.oauthSettings.clientId }}</p>
-                  <p class="list-group-item">Mac Key Name: {{ displayIdentity.mockIdtyGroup.oauthSettings.macKeyName }}</p>
-                </div>
+            <div id="oauth-preview__view-permissions2" class="collapse">
+              <div *ngIf="!mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
+                <p class="list-group-item"><i class="fa fa-exclamation-triangle"></i>Not enabled</p>
+              </div>
+              <div *ngIf="mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
+                <p class="list-group-item">Enabled: {{ mockIdtyGroup.oauthSettings.enabled }}</p>
+                <p class="list-group-item">Token Lifetime: {{ mockIdtyGroup.oauthSettings.tokenLifetime }}</p>
+                <p class="list-group-item">Client Id: {{ mockIdtyGroup.oauthSettings.clientId }}</p>
+                <p class="list-group-item">Mac Key Name: {{ mockIdtyGroup.oauthSettings.macKeyName }}</p>
               </div>
             </div>
           </div>
+        </div>
 
+        <!-- identity edit -->
         <div [hidden]="!showUserEdit" class="col-xs-12">
           <div class="oauth-policy-preview-wrapper">
-            <app-identity-edit (submitEdit)="showUserEdit = false"></app-identity-edit>
+            <app-identity-edit (submitEdit)="showUserEdit = false" [identity]="displayIdentity"></app-identity-edit>
           </div>
         </div>
 

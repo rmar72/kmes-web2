@@ -3,42 +3,73 @@ import {
   OnInit,
   ViewChild,
   Output,
-  EventEmitter
+  EventEmitter,
+  Input,
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import {
   UsersServiceProxy,
   IPersonalInfo,
-  PersonalInfoPhone,
+  PERSONAL_INFO_PHONE,
   UpdateUser,
+  Users,
+  UsersPostBodyRequestData,
+  IGetUserDetails,
+  ResponseBase,
+  UsersGetResponse,
+  GetUserDetails,
 } from 'src/app/shared/api/service-proxies';
 import { AppToastService } from 'src/app/shared/services/app-toast.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-identity-edit',
   templateUrl: './identity-edit.component.html',
   styleUrls: ['./identity-edit.component.scss']
 })
-export class IdentityEditComponent implements OnInit {
+export class IdentityEditComponent implements OnInit, OnChanges {
   @ViewChild('personalizeForm', { static: false }) pForm: NgForm;
   @ViewChild('carrier', { static: true }) carrier: NgModel;
   @Output() submitEdit: EventEmitter<any> = new EventEmitter<any>();
-  personalInfo = {} as IPersonalInfo;
-  username = '';
-  carriers: string[];
+  @Input() identity: Users;
+  carriers = PERSONAL_INFO_PHONE;
+  userDetails: IGetUserDetails = {
+
+    username: 'User1',
+    primaryGroup: 'Admin',
+    subGroups: ['Child Group 1', 'Child Group 2'],
+    valid: true,
+    lastLogin: '2019-12-10 23:59:59',
+    personalInfo: {
+      firstName: 'User',
+      lastName: 'One',
+      commonName: 'User One',
+      givenName: 'User',
+      surname: 'One',
+      mobileCarrier: 'ATT',
+      phone: '(555) 867-5389',
+      email: 'engineering@futurex.com'
+    }
+  }
   constructor(
     private usersService: UsersServiceProxy,
     private toast: AppToastService
-  ) {}
+  ) { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.identity) {
+      const identity = changes.identity.currentValue as Users;
+      // mock enpoint does not return well-formed data
+      // this.usersService.usersGet(identity.username).subscribe(res => { this.userDetails = res.responseData as GetUserDetails; });
+    }
+  }
 
   ngOnInit() {
-    this.carriers = Object.keys(PersonalInfoPhone).map(key => {
-      return PersonalInfoPhone[key];
-    });
   }
 
   submitEditIdentity() {
-    console.log(this.carrier);
     if (this.pForm.valid) {
       this.updateUser();
       this.toast.success('Identity was updated');
@@ -49,7 +80,7 @@ export class IdentityEditComponent implements OnInit {
   }
 
   updateUser(): void {
-    const requestData = {personalInfo: this.personalInfo, username: this.username};
+    const requestData = { personalInfo: this.userDetails.personalInfo, username: this.userDetails.username };
     this.usersService
       .usersPut(
         new UpdateUser({

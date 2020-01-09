@@ -6,7 +6,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
-import { UsersServiceProxy, IPersonalInfo, PersonalInfoPhone, UsersPostBody } from 'src/app/shared/api/service-proxies';
+import { UsersServiceProxy, IPersonalInfo, PERSONAL_INFO_PHONE, UsersPostBody } from 'src/app/shared/api/service-proxies';
 import { AppToastService } from 'src/app/shared/services/app-toast.service';
 
 @Component({
@@ -18,14 +18,11 @@ export class IdentityCreateComponent implements OnInit {
   @ViewChild('personalizeForm', { static: false }) pForm: NgForm;
   @ViewChild('carrier', { static: true }) carrier: NgModel;
   @Output() submitCreate: EventEmitter<any> = new EventEmitter<any>();
-  personalInfo = {} as IPersonalInfo;
+  personalInfo = PERSONAL_INFO_PHONE;
   carriers: string[];
   constructor(private usersService: UsersServiceProxy, private toast: AppToastService) { }
 
   ngOnInit() {
-    this.carriers = Object.keys(PersonalInfoPhone).map(key => {
-      return PersonalInfoPhone[key];
-    });
   }
 
   submitCreateIdentity() {
@@ -42,7 +39,7 @@ export class IdentityCreateComponent implements OnInit {
   createUser(): void {
     this.usersService.usersPost(new UsersPostBody({
       action: 'create',
-      requestData: { personalInfo: { ...this.personalInfo } }
+      requestData: { personalInfo: { ...this.personalInfo } as IPersonalInfo }
     })).subscribe(_ => {
       this.submitCreate.emit();
       this.resetForms();

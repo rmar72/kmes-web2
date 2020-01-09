@@ -62,11 +62,11 @@
   </div>
   <div id="userEditTab2" class="tab-pane fade">
     <form #personalizeForm="ngForm" novalidate>
-      <div class="list-group">
+      <div class="list-group" [ngModelGroup]="userDetails">
         <div class="list-group-item">
           <span class="list-group-title">First name</span>
           <span class="user-input">
-            <input type="text" class="form-control" placeholder="First name" [(ngModel)]="personalInfo.firstName" name="personalInfo_firstName" #firstName="ngModel" required>
+            <input type="text" class="form-control" placeholder="First name" [(ngModel)]="userDetails.personalInfo.firstName" name="personalInfo_firstName" #firstName="ngModel" required>
             <div class="txt-rd-light" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
               <div *ngIf="firstName.errors.required">
                 First name is required
@@ -78,7 +78,7 @@
         <div class="list-group-item">
           <span class="list-group-title">Last name</span>
           <span class="user-input">
-            <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="personalInfo.lastName" name="personalInfo_lastName" #lastName="ngModel" required>
+            <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="userDetails.personalInfo.lastName" name="personalInfo_lastName" #lastName="ngModel" required>
             <div class="txt-rd-light" *ngIf="lastName.invalid && lastName.touched">Last name is required</div>
           </span>
         </div>
@@ -86,7 +86,7 @@
         <div class="list-group-item">
           <span class="list-group-title">Common name</span>
           <span class="user-input">
-            <input type="text" class="form-control" placeholder="Nickname" [(ngModel)]="personalInfo.commonName" name="personalInfo_commonName" #commonName="ngModel" required>
+            <input type="text" class="form-control" placeholder="Nickname" [(ngModel)]="userDetails.personalInfo.commonName" name="personalInfo_commonName" #commonName="ngModel" required>
             <div class="txt-rd-light" *ngIf="commonName.invalid && commonName.touched">Common name is required</div>
           </span>
         </div>
@@ -94,7 +94,7 @@
         <div class="list-group-item">
           <span class="list-group-title">Username</span>
           <span class="user-input">
-            <input type="text" class="form-control" placeholder="Username" ngModel name="personalInfo_username" required #username="ngModel">
+            <input type="text" class="form-control" placeholder="Username" [(ngModel)]="userDetails.username" name="personalInfo_username" required #username="ngModel">
             <div class="txt-rd-light" *ngIf="username.invalid && username.touched">Username is required</div>
           </span>
         </div>
@@ -102,14 +102,14 @@
         <div class="list-group-item">
           <span class="list-group-title">Email</span>
           <span class="user-input">
-            <input type="text" class="form-control" placeholder="Email" [(ngModel)]="personalInfo.email" name="personalInfo_email" #email="ngModel" required>
+            <input type="text" class="form-control" placeholder="Email" [(ngModel)]="userDetails.personalInfo.email" name="personalInfo_email" #email="ngModel" required>
             <div class="txt-rd-light" *ngIf="email.invalid && email.touched">Email is required</div>
           </span>
         </div>
         <div class="list-group-item">
           <span class="list-group-title">Mobile phone number</span>
           <span class="user-input">
-            <input type="text" class="form-control" placeholder="Phone" [(ngModel)]="personalInfo.phone" name="personalInfo_phone" #phone="ngModel" required>
+            <input type="text" class="form-control" placeholder="Phone" [(ngModel)]="userDetails.personalInfo.phone" name="personalInfo_phone" #phone="ngModel" required>
             <div class="txt-rd-light" *ngIf="phone.invalid && phone.touched">Phone number is required</div>
           </span>
         </div>
@@ -117,7 +117,7 @@
         <div class="list-group-item">
           <span class="list-group-title">Mobile phone carrier</span>
             <div class="dropdown">
-              <select class="form-control dropdown-toggle btn btn-default btn-sm" id="carrier" [(ngModel)]="personalInfo.mobileCarrier" name="personalInfo_carrier" #carrier="ngModel" required>
+              <select class="form-control dropdown-toggle btn btn-default btn-sm" id="carrier" [(ngModel)]="userDetails.personalInfo.mobileCarrier" name="personalInfo_carrier" #carrier="ngModel" required>
                 <option value="">Select</option>
                 <option *ngFor="let carrier of carriers" value={{carrier}}>{{carrier}}</option>
               </select>
