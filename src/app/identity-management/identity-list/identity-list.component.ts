@@ -109,7 +109,7 @@ export class IdentityListComponent implements OnInit {
             this.identities = this.identities.filter(idty =>
               this.deleteIdtys.indexOf(idty.username) < 0 );
 
-            this.toast.success("Deleted");
+            this.toast.success("Deleted selected identities");
             if(this.identities.length == 0){
               this.identityDeleted.emit(val);
             }
@@ -124,7 +124,7 @@ export class IdentityListComponent implements OnInit {
           },
           err => {
             console.log(err)
-            this.toast.error("Unable to delete")
+            this.toast.error("Unable to delete selected identities")
           }
         );
       }
