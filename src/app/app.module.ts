@@ -23,6 +23,7 @@ import { InitialsPipe } from './shared/pipes/initials.pipe';
 import { API_BASE_URL } from './shared/api/service-proxies';
 import { environment } from 'src/environments/environment';
 import { AppToastsComponent } from './app-toasts/app-toasts.component';
+import { IdentityGroupListComponent } from './identity-management/identity-group-list/identity-group-list.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AppToastsComponent } from './app-toasts/app-toasts.component';
     IdentityListComponent,
     InitialsPipe,
     AppToastsComponent,
+    IdentityGroupListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,57 @@
+<div class="row">
+    <!-- <div class="col-sm-12">
+        <div class="pagination-wrapper">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm btn-dead">
+                <span *ngIf="identityCount <= pageCount">{{identityCount}}</span> 
+                <span *ngIf="identityCount > pageCount">{{pageCount}}</span> 
+                &nbsp;of {{identityCount}} Shown</button>
+                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-left" role="menu">
+                <li>
+                    <a (click)="emitUpdatePageCount(20)" [ngClass]="{'dropdown-active': pageCount == 20}">20 per page</a>
+                </li>
+                <li>
+                    <a (click)="emitUpdatePageCount(50)" [ngClass]="{'dropdown-active': pageCount == 50}">50 per page</a>
+                </li>
+                <li>
+                    <a (click)="emitUpdatePageCount(100)" [ngClass]="{'dropdown-active': pageCount == 100}">100 per page</a>
+                </li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <nav aria-label="...">
+                    <ul class="pagination pagination-sm">
+                        <li (click)="emitUpdateCurrentPage(currentPage - 1)" [ngClass]="{'disabled': currentPage == 1}">
+                        <span>
+                            <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
+                        </span>
+                        </li>
+                        <li *ngFor="let page of pageArray; let i = index;" 
+                        [ngClass]="{'active': page == currentPage, 'disabled': page === '...'}"
+                        (click)="emitUpdateCurrentPage(page)">
+                        <span>{{page}}</span>
+                        </li>
+                        <li (click)="emitUpdateCurrentPage(currentPage + 1)" [ngClass]="{'disabled': currentPage == totalPages}">
+                        <span>
+                            <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                        </span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div> -->
+    <table class="table table-hover table-bordered no-footer identities-table">
+        <tbody>
+            <tr role="row" class="odd" *ngFor="let group of identityGroups; let i = index">
+                <td>
+                    <i class="fa"[ngClass]="{'fa-users': !group.parentGroup, 'fa-user-friends': group.parentGroup}"></i>&nbsp;{{group.name}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+      

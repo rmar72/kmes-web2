@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
   Users,
-  UsersServiceProxy
+  UsersServiceProxy,
+  UserGroup,
+  UserGroupsServiceProxy
 } from '../shared/api/service-proxies';
 import { Subject, ReplaySubject } from 'rxjs';
 
@@ -17,20 +19,22 @@ export class IdentityManagementComponent implements OnInit {
   showIdtyDetail = false;
   showCreateGroup = false;
   showCreateIdentity = false;
-  // usersGet$ = this.usersService.usersGet();
   identities$ = new ReplaySubject<Users[]>();
   identityCount$ = new Subject<string>();
   displayIdentity$ = new Subject<any>();
   displayIdentityGroup$ = new Subject<any>();
+  identityGroups$ = new ReplaySubject<any[]>();
+  groupCount$ = new Subject<string>();
   currentPage: number = 1;
   pageCount: number = 20;
   totalPages: number;
   pageArray: any[];
 
-  constructor(private usersService: UsersServiceProxy) {}
+  constructor(private usersService: UsersServiceProxy, private userGroupsService: UserGroupsServiceProxy) {}
 
   ngOnInit() {
     this.getUsers();
+    this.getUserGroups();
   }
 
   getUsers(): void {
@@ -41,6 +45,58 @@ export class IdentityManagementComponent implements OnInit {
       this.identityCount$.next(`${resp.responseData.totalItems}`);
       this.createPaginationArray();
     });
+  }
+
+  getUserGroups(): void {
+    let mockData = [
+      {
+        "name": "Group 1",
+        "parentGroup": null,
+        "permisions": {},
+        "passPolicy": {},
+        "loginsRequired": 2, 
+        "userLocation": "",
+        "ldapVerify": true, 
+        "ldapGroup": "",
+        "oauthSettings": {},
+        "otpSettings": {}
+
+      },
+      {
+        "name": "Group 2",
+        "parentGroup": null,
+        "permisions": {},
+        "passPolicy": {},
+        "loginsRequired": 2, 
+        "userLocation": "",
+        "ldapVerify": true, 
+        "ldapGroup": "",
+        "oauthSettings": {},
+        "otpSettings": {
+          "required": true
+        }
+      },
+      {
+        "name": "Child Group 1",
+        "parentGroup": "Group 1",
+        "permisions": {},
+        "passPolicy": {},
+        "loginsRequired": 2, 
+        "userLocation": "",
+        "ldapVerify": true, 
+        "ldapGroup": "",
+        "oauthSettings": {},
+        "otpSettings": {
+          "required": true
+        }
+      }
+    ]
+    this.identityGroups$.next(mockData);
+    this.groupCount$.next('3');
+    // this.userGroupsService.usergroupsGet(undefined).subscribe(resp => {
+    //   this.identityGroups$.next(resp.responseData.usergroups);
+    //   this.groupcount$.next(resp.responseData.usergroups.length());
+    // });
   }
 
   toggleFullscreen() {

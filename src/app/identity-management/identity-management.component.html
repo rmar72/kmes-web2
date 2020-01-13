@@ -16,7 +16,7 @@
           <ul class="nav nav-tabs" role="tablist">
               <li class="active nav-item btn-group" role="presentation" (click)="resetForms()">
                   <a id="idGroupBtn" href="#groups" aria-controls="groups" role="tab" data-toggle="tab"
-                      aria-expanded="false" class="">Identity Groups<span class="label blue-label">(0)</span></a>
+                      aria-expanded="false" class="">Identity Groups<span style="display: inline-block; min-width: 27px;" class="label blue-label">({{(groupCount$ | async) || '0'}})</span></a>
               </li>
               <li class="nav-item btn-group" role="presentation" (click)="resetForms()">
                   <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab"
@@ -38,7 +38,10 @@
                     class="create-btn btn btn-primary btn-sm"><i
                         class="fa fa-save mr-5"></i>Create</button>
               </div>
-              <div *ngIf="!showCreateGroup">Identity Group List</div>
+              <div *ngIf="!showCreateGroup">
+                <app-identity-group-list 
+                [identityGroups]="identityGroups$ | async" ></app-identity-group-list>
+              </div>
               <div *ngIf="showCreateGroup">Create Identity Groups</div>
             </div>
             <div class="tab-pane" id="allusers">
