@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+declare var $;
+
 @Component({
   selector: 'app-identity-group-list',
   templateUrl: './identity-group-list.component.html',
@@ -11,6 +13,9 @@ export class IdentityGroupListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(() => {
+      $(".toggle-popover").popover({ trigger: "hover" });
+    });
   }
 
 }

@@ -52,43 +52,33 @@ export class IdentityManagementComponent implements OnInit {
       {
         "name": "Group 1",
         "parentGroup": null,
-        "permisions": {},
-        "passPolicy": {},
-        "loginsRequired": 2, 
-        "userLocation": "",
-        "ldapVerify": true, 
-        "ldapGroup": "",
-        "oauthSettings": {},
+        "loginsRequired": 2,
+        "ldapVerify": true,
+        "created": "",
+        "active": true,
+        "numUsers": 3,
         "otpSettings": {}
 
       },
       {
-        "name": "Group 2",
+        "name": "Group 1",
         "parentGroup": null,
-        "permisions": {},
-        "passPolicy": {},
-        "loginsRequired": 2, 
-        "userLocation": "",
-        "ldapVerify": true, 
-        "ldapGroup": "",
-        "oauthSettings": {},
-        "otpSettings": {
-          "required": true
-        }
+        "loginsRequired": 2,
+        "ldapVerify": true,
+        "created": "",
+        "active": false,
+        "numUsers": 1,
+        "otpSettings": {}
       },
       {
         "name": "Child Group 1",
         "parentGroup": "Group 1",
-        "permisions": {},
-        "passPolicy": {},
-        "loginsRequired": 2, 
-        "userLocation": "",
-        "ldapVerify": true, 
-        "ldapGroup": "",
-        "oauthSettings": {},
-        "otpSettings": {
-          "required": true
-        }
+        "loginsRequired": 2,
+        "ldapVerify": true,
+        "created": "",
+        "active": true,
+        "numUsers": 1,
+        "otpSettings": {}
       }
     ]
     this.identityGroups$.next(mockData);

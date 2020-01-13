@@ -76,3 +76,17 @@ body {
 .txt-rd-light {
     color: #ad1817;
 }
+
+.avatar-circle {
+    width: 30px;
+    height: 30px;
+    background-color: #3c8dbc;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+    i {
+        color: white;
+        font-size: 15px;
+        line-height: 30px;
+    }
+}
