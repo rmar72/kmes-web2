@@ -63,10 +63,26 @@
               </ul> -->
             </div>
           </th>
-          <th>Username</th>
-          <th>Group</th>
-          <th class="status-col">Status</th>
-          <th class="login-col">Last login</th>
+          <th (click)="sort('username', 'usernameSetter')">
+            Username&nbsp;
+            <i *ngIf="usernameSetter === 'DESC'" class="fa fa-caret-up" aria-hidden="true"></i>
+            <i *ngIf="usernameSetter === 'ASC'" class="fa fa-caret-down" aria-hidden="true"></i>
+          </th>
+          <th (click)="sort('primaryGroup', 'groupSetter')">
+            Group&nbsp;
+            <i *ngIf="groupSetter === 'DESC'" class="fa fa-caret-up" aria-hidden="true"></i>
+            <i *ngIf="groupSetter === 'ASC'" class="fa fa-caret-down" aria-hidden="true"></i>
+          </th>
+          <th (click)="sort('valid', 'statusSetter')" class="status-col">
+            Status&nbsp;
+            <i *ngIf="statusSetter === 'DESC'" class="fa fa-caret-up" aria-hidden="true"></i>
+            <i *ngIf="statusSetter === 'ASC'" class="fa fa-caret-down" aria-hidden="true"></i>
+          </th>
+          <th (click)="dateSort()" class="login-col">
+            Last login&nbsp;
+            <i *ngIf="dateSetter === 'DESC'" class="fa fa-caret-up" aria-hidden="true"></i>
+            <i *ngIf="dateSetter === 'ASC'" class="fa fa-caret-down" aria-hidden="true"></i>
+          </th>
           <th></th>
         </tr>
       </thead>
