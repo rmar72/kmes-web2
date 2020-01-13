@@ -22,10 +22,6 @@ export class IdentityListComponent implements OnInit {
   @Output() updatePageCount = new EventEmitter<any>();
   @Output() updateCurrentPage = new EventEmitter<any>();
 
-  usernameSetter = "";
-  groupSetter = "";
-  statusSetter = "";
-  dateSetter = "";
   // identityCount: number;
   deleteError = '';
   errorIndex: number;
@@ -39,23 +35,7 @@ export class IdentityListComponent implements OnInit {
     private toast: AppToastService
   ) {}
 
-  ngOnInit() {
-    setTimeout( () => {
-      this.identities = [
-        {username: "Ruben", primaryGroup: "Child", subGroups: Array(2), valid: true, lastLogin: "1993-05-03 23:59:59"},
-        {username: "Jason", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-        {username: "Juan Carlos", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-        {username: "User1", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-        {username: "Juan Carlos9", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-        {username: "Juan Charlie", primaryGroup: "Admin", subGroups: Array(0), valid: false, lastLogin: "1990-05-03 23:59:59"},
-        {username: "Esvyn", primaryGroup: "Child Group2", subGroups: Array(0), valid: false, lastLogin: "1991-05-03 23:59:59"},
-        {username: "Matt", primaryGroup: "Child", subGroups: Array(2), valid: false, lastLogin: "1994-05-03 23:59:59"},
-        {username: "User2", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-        {username: "Chris", primaryGroup: "Redemption", subGroups: Array(0), valid: true, lastLogin: "1996-05-03 23:59:59"},
-        {username: "Neto", primaryGroup: "Game", subGroups: Array(0), valid: false, lastLogin: "1999-05-03 23:59:59"},
-      ]
-    }, 4000)
-  }
+  ngOnInit() {}
 
 
   selectIdentity(identity: any) {
@@ -177,34 +157,59 @@ export class IdentityListComponent implements OnInit {
     }
   }
 
-  sort(prop, order){
-    console.time()
-    if(this[order]===''){
-      this[order]="ASC";
+  sortMap = {
+    usernameAsc: null,
+    groupAsc: null,
+    statusAsc: null,
+    dateAsc: null
+  }
+
+  caretDirection(mode){
+    if(this.sortMap[mode] === null){
+      this.sortMap[mode] = true;
     }
-    if(this[order]==="ASC"){
-      this.identities.sort((a,b) => b[prop] > a[prop] ? -1 : 1 );
-      this[order]="DESC";
+
+    for(let key in this.sortMap){
+      if(key !== mode){
+        this.sortMap[key] = null;
+      }
     }
-    else {
-      this.identities.sort((a,b) => a[prop] > b[prop] ? -1 : 1 );
-      this[order]="ASC";
+  }
+
+  sortTable(header, sortMode){
+
+    this.identities = [
+      {username: "Ruben", primaryGroup: "Child", subGroups: Array(2), valid: true, lastLogin: "1993-05-03 23:59:59"},
+      {username: "Jason", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
+      {username: "John Doe", primaryGroup: "Admin2", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
+      {username: "User1", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
+      {username: "John Doe9", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
+      {username: "John Dope", primaryGroup: "Admin1", subGroups: Array(0), valid: false, lastLogin: "1990-05-03 23:59:59"},
+      {username: "Esvyn", primaryGroup: "Child Group2", subGroups: Array(0), valid: false, lastLogin: "1991-05-03 23:59:59"},
+      {username: "Matt", primaryGroup: "Child", subGroups: Array(2), valid: false, lastLogin: "1994-05-03 23:59:59"},
+      {username: "User2", primaryGroup: "Admin8", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
+      {username: "Chris", primaryGroup: "Redemption", subGroups: Array(0), valid: true, lastLogin: "1996-05-03 23:59:59"},
+      {username: "User3", primaryGroup: "Game", subGroups: Array(0), valid: false, lastLogin: "1999-05-03 23:59:59"},
+    ]
+
+    this.caretDirection(sortMode);
+
+    if(this.sortMap[sortMode]){ // asc mode
+      if(header === "lastLogin"){
+        this.identities.sort((a,b) => +new Date(a.lastLogin) - +new Date(b.lastLogin) );
+      }
+      this.identities.sort((a,b) => b[header] > a[header] ? -1 : 1 );
+      this.sortMap[sortMode]=false;
     }
-    console.timeEnd()
+    else { // desc mode
+      if(header === "lastLogin"){ 
+        this.identities.sort((a,b) => +new Date(b.lastLogin) - +new Date(a.lastLogin) );
+      }
+      this.identities.sort((a,b) => a[header] > b[header] ? -1 : 1 );
+      this.sortMap[sortMode]=true;
+    }
+
   }
   
-  dateSort(){
-    if(this.dateSetter===''){
-      this.dateSetter="ASC";
-    }
-    if(this.dateSetter==="ASC"){
-      this.dateSetter="DESC";
-      this.identities.sort((a,b) => +new Date(a.lastLogin) - +new Date(b.lastLogin) );
-    }
-    else {
-      this.dateSetter="ASC";
-      this.identities.sort((a,b) => +new Date(b.lastLogin) - +new Date(a.lastLogin) );
-    }
-  }
   
 }

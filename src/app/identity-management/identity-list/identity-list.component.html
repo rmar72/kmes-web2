@@ -56,7 +56,7 @@
                   class="table-checkbox master-checkbox" type="checkbox" name="master-box" />
               </a>
               <a type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
+                <span class="caret selectAllCaret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-left" role="menu">
@@ -65,25 +65,25 @@
               </ul> 
             </div>
           </th>
-          <th (click)="sort('username', 'usernameSetter')">
+          <th (click)="sortTable('username', 'usernameAsc')">
             Username&nbsp;
-            <i *ngIf="usernameSetter === 'DESC'" class="fa fa-caret-up" aria-hidden="true"></i>
-            <i *ngIf="usernameSetter === 'ASC'" class="fa fa-caret-down" aria-hidden="true"></i>
+            <i *ngIf="sortMap.usernameAsc" class="fa fa-caret-up" aria-hidden="true"></i>
+            <i *ngIf="!sortMap.usernameAsc && sortMap.usernameAsc !== null" class="fa fa-caret-down" aria-hidden="true"></i>
           </th>
-          <th (click)="sort('primaryGroup', 'groupSetter')">
+          <th (click)="sortTable('primaryGroup', 'groupAsc')">
             Group&nbsp;
-            <i *ngIf="groupSetter === 'DESC'" class="fa fa-caret-up" aria-hidden="true"></i>
-            <i *ngIf="groupSetter === 'ASC'" class="fa fa-caret-down" aria-hidden="true"></i>
+            <i *ngIf="sortMap.groupAsc" class="fa fa-caret-up" aria-hidden="true"></i>
+            <i *ngIf="!sortMap.groupAsc && sortMap.groupAsc !== null" class="fa fa-caret-down" aria-hidden="true"></i>
           </th>
-          <th (click)="sort('valid', 'statusSetter')" class="status-col">
+          <th (click)="sortTable('valid', 'statusAsc')" class="status-col">
             Status&nbsp;
-            <i *ngIf="statusSetter === 'DESC'" class="fa fa-caret-up" aria-hidden="true"></i>
-            <i *ngIf="statusSetter === 'ASC'" class="fa fa-caret-down" aria-hidden="true"></i>
+            <i *ngIf="sortMap.statusAsc" class="fa fa-caret-up" aria-hidden="true"></i>
+            <i *ngIf="!sortMap.statusAsc && sortMap.statusAsc !== null" class="fa fa-caret-down" aria-hidden="true"></i>
           </th>
-          <th (click)="dateSort()" class="login-col">
+          <th (click)="sortTable('lastLogin', 'dateAsc')" class="login-col">
             Last login&nbsp;
-            <i *ngIf="dateSetter === 'DESC'" class="fa fa-caret-up" aria-hidden="true"></i>
-            <i *ngIf="dateSetter === 'ASC'" class="fa fa-caret-down" aria-hidden="true"></i>
+            <i *ngIf="sortMap.dateAsc" class="fa fa-caret-up" aria-hidden="true"></i>
+            <i *ngIf="!sortMap.dateAsc && sortMap.dateAsc !== null" class="fa fa-caret-down" aria-hidden="true"></i>
           </th>
           <th></th>
         </tr>
