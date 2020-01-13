@@ -18,4 +18,8 @@ export class IdentityGroupListComponent implements OnInit {
     });
   }
 
+  getLoginsRequired(count) {
+    return `${count} identities required for login`
+  }
+
 }

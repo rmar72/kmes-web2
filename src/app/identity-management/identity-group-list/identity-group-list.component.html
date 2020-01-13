@@ -46,33 +46,79 @@
                     </nav>
                 </div>
             </div> -->
-            <div *ngFor="let group of identityGroups" class="panel panel-default" [ngClass]="{'child-group': group.parentGroup}" >
-                <div class="panel-heading clickable collapsed"data-toggle="collapse" data-target="#groupParent1" data-parent="#groupAccordion1">
-                    <div class="avatar-circle avatar-circle-sm"><i class="fas" [ngClass]="{'fa-users': !group.parentGroup, 'fa-user-friends': group.parentGroup}"></i></div>&nbsp;
-                    <div class="group-title">
-                        <h6>{{group.name}}&nbsp;<span>({{group.numUsers}})</span></h6>
-                        <div>CREATED: {{group.created}}</div>
+            <div *ngFor="let group of identityGroups">
+                <div class="panel panel-default">
+                    <div class="panel-heading clickable collapsed"data-toggle="collapse" data-target="#groupParent1" data-parent="#groupAccordion1">
+                        <div class="avatar-circle avatar-circle-sm"><i class="fas" [ngClass]="{'fa-users': !group.parentGroup, 'fa-user-friends': group.parentGroup}"></i></div>&nbsp;
+                        <div class="group-title">
+                            <h6>{{group.name}}&nbsp;<span>({{group.numUsers}})</span></h6>
+                            <div>CREATED: {{group.created | date : 'longDate'}}</div>
+                        </div>
+                        <div class="panel-heading-addons pull-right">
+                            <span class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" [attr.data-content]="getLoginsRequired(group.loginsRequired)">
+                                <i class="fas fa-check-double"></i>
+                            </span>
+                            <span *ngIf="group.ldapVerify" class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="LDAP enabled">
+                                <i class="fa fa-users"></i>
+                            </span>
+                            <span *ngIf="!group.ldapVerify" class="code-info code-info-danger toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="LDAP disabled">
+                                <i class="fa fa-users"></i>
+                            </span>
+                            <span *ngIf="group.otpEnabled" class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="One-time password enabled">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
+                            <span *ngIf="!group.otpEnabled" class="code-info code-info-danger toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="One-time password disabled">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
+                            <span *ngIf="group.active" class="code-info code-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Status: Active">Active</span>
+                            <span *ngIf="!group.active" class="code-info code-danger toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Status: Inactive">Inactive</span>
+                        </div>
                     </div>
-                    <div class="panel-heading-addons pull-right">
-                        <span class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="group.loginsRequired identities required for login">
-                            <i class="fas fa-check-double"></i>
-                        </span>
-                        <span class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="LDAP enabled">
-                            <i class="fa fa-users"></i>
-                        </span>
-                        <span class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="One-time password enabled">
-                            <i class="fa fa-ellipsis-h"></i>
-                        </span>
-                        <span class="code-info code-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Status: Active">Active</span>
+                    <div class="panel-heading-buttons">
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-default panel-heading-view-btn" type="button"><i class="fa fa-eye"></i></button>
+                            <button class="btn btn-default dropdown-toggle pull-right" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <li></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="panel-heading-buttons">
-                    <div class="btn-group btn-group-sm">
-                        <button class="btn btn-default panel-heading-view-btn" type="button"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-default dropdown-toggle pull-right" type="button" data-toggle="dropdown"><span class="caret"></span></button>
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                            <li></li>
-                        </ul>
+                <div *ngFor="let child of group.childGroups" class="panel panel-default child-group">
+                    <div class="panel-heading clickable collapsed"data-toggle="collapse" data-target="#groupParent1" data-parent="#groupAccordion1">
+                        <div class="avatar-circle avatar-circle-sm"><i class="fas" [ngClass]="{'fa-users': !group.parentGroup, 'fa-user-friends': group.parentGroup}"></i></div>&nbsp;
+                        <div class="group-title">
+                            <h6>{{child.name}}&nbsp;<span>({{child.numUsers}})</span></h6>
+                            <div>CREATED: {{child.created | date : 'longDate'}}</div>
+                        </div>
+                        <div class="panel-heading-addons pull-right">
+                                <span class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" [attr.data-content]="getLoginsRequired(child.loginsRequired)">
+                                    <i class="fas fa-check-double"></i>
+                                </span>
+                                <span *ngIf="child.ldapVerify" class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="LDAP enabled">
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                <span *ngIf="!child.ldapVerify" class="code-info code-info-danger toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="LDAP disabled">
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                <span *ngIf="child.otpEnabled" class="code-info code-info-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="One-time password enabled">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </span>
+                                <span *ngIf="!child.otpEnabled" class="code-info code-info-danger toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="One-time password disabled">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </span>
+                                <span *ngIf="child.active" class="code-info code-success toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Status: Active">Active</span>
+                                <span *ngIf="!child.active" class="code-info code-danger toggle-popover" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Status: Inactive">Inactive</span>
+                        </div>
+                    </div>
+                    <div class="panel-heading-buttons">
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-default panel-heading-view-btn" type="button"><i class="fa fa-eye"></i></button>
+                            <button class="btn btn-default dropdown-toggle pull-right" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <li></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

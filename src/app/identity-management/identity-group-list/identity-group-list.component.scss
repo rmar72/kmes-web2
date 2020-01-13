@@ -50,6 +50,17 @@
                     color: #769976;
                 }
             }
+            .code-info-danger {
+                color: #997676;
+                i {
+                    color: #997676;
+                }
+            }
+            span.code-danger {
+                color: #997676;
+                background-color: #f5ecec;
+                border: 1px solid #dfc6c6;
+            }
             span.code-success {
                 color: #769976;
                 border-color: #769976;

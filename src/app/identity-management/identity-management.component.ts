@@ -51,34 +51,44 @@ export class IdentityManagementComponent implements OnInit {
     let mockData = [
       {
         "name": "Group 1",
-        "parentGroup": null,
         "loginsRequired": 2,
         "ldapVerify": true,
-        "created": "",
+        "created": "2019-12-10 23:59:59",
         "active": true,
         "numUsers": 3,
-        "otpSettings": {}
-
+        "otpEnabled": true,
+        "childGroups": [
+          {
+            "name": "Child Group 1",
+            "loginsRequired": 2,
+            "ldapVerify": true,
+            "created": "2019-12-10 23:59:59",
+            "active": true,
+            "numUsers": 1,
+            "otpEnabled": true,
+            "childGroups": []
+          },
+          {
+            "name": "Child Group 2",
+            "loginsRequired": 2,
+            "ldapVerify": true,
+            "created": "2019-12-10 23:59:59",
+            "active": true,
+            "numUsers": 1,
+            "otpEnabled": true,
+            "childGroups": []
+          }
+        ]
       },
       {
         "name": "Group 1",
-        "parentGroup": null,
         "loginsRequired": 2,
-        "ldapVerify": true,
-        "created": "",
+        "ldapVerify": false,
+        "created": "2019-12-10 23:59:59",
         "active": false,
         "numUsers": 1,
-        "otpSettings": {}
-      },
-      {
-        "name": "Child Group 1",
-        "parentGroup": "Group 1",
-        "loginsRequired": 2,
-        "ldapVerify": true,
-        "created": "",
-        "active": true,
-        "numUsers": 1,
-        "otpSettings": {}
+        "otpEnabled": false,
+        "childGroups": []
       }
     ]
     this.identityGroups$.next(mockData);
