@@ -1,18 +1,29 @@
 .identity-groups-list {
-    .child-group {
-        margin-left: 15px;
-    }
     .panel {
         display: flex;
         flex-wrap: wrap;
+        border: none;
+        margin-top: 20px;
         .panel-heading-buttons {
             width: 60px;
+            .btn-group {
+                height: 100%;
+            }
             button {
-                height: 60px;
+                height: 100%;
+                min-height: 60px;
+                color: #888;
+                border: 1px solid #cccccc;
+                border-bottom-color: #b3b3b3;
+                background: linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(241,241,241,1) 35%, rgba(238,238,238,1) 100%);
+                border-radius: 0px;
             }
         }
         .panel-heading {
+            cursor: pointer;
             width: calc(100% - 60px);
+            border: 1px solid #ddd;
+            border-right: none;
             .avatar-circle, .panel-heading-addons, .group-title {
                 display: inline-block;
             }
@@ -63,9 +74,15 @@
             }
             span.code-success {
                 color: #769976;
-                border-color: #769976;
+                border-color: #c6dfca;
                 background-color: #ecf5ec;
             }
+        }
+    }
+    .child-group {
+        margin: 0px 0px 0px 15px;
+        .panel-heading {
+            border-radius: 0px;
         }
     }
 }

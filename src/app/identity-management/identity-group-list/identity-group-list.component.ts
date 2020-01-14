@@ -9,6 +9,7 @@ declare var $;
 })
 export class IdentityGroupListComponent implements OnInit {
   @Input() identityGroups: any[];
+  @Input() groupCount: string;
 
   constructor() { }
 
@@ -19,7 +20,7 @@ export class IdentityGroupListComponent implements OnInit {
   }
 
   getLoginsRequired(count) {
-    return `${count} identities required for login`
+    return `${count} identities required for login`;
   }
 
 }

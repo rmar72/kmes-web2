@@ -5,7 +5,7 @@ import {
   UserGroup,
   UserGroupsServiceProxy
 } from '../shared/api/service-proxies';
-import { Subject, ReplaySubject } from 'rxjs';
+import { Subject, ReplaySubject, } from 'rxjs';
 
 @Component({
   selector: 'app-identity-management',
@@ -24,7 +24,7 @@ export class IdentityManagementComponent implements OnInit {
   displayIdentity$ = new Subject<any>();
   displayIdentityGroup$ = new Subject<any>();
   identityGroups$ = new ReplaySubject<any[]>();
-  groupCount$ = new Subject<string>();
+  groupCount: string;
   currentPage: number = 1;
   pageCount: number = 20;
   totalPages: number;
@@ -91,8 +91,9 @@ export class IdentityManagementComponent implements OnInit {
         "childGroups": []
       }
     ]
+
+    this.groupCount = '4';
     this.identityGroups$.next(mockData);
-    this.groupCount$.next('3');
     // this.userGroupsService.usergroupsGet(undefined).subscribe(resp => {
     //   this.identityGroups$.next(resp.responseData.usergroups);
     //   this.groupcount$.next(resp.responseData.usergroups.length());
