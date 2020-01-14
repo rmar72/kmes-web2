@@ -10,5 +10,5 @@ pipelines:
           - echo $ENV_DEV | base64 -d > env-file
           - chmod 400 ~/.ssh/id_rsa
           - echo -e "Host  *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-          - ssh ubuntu@ec2-3-133-191-59.us-east-2.compute.amazonaws.com "cd /opt/futurex && git stash && git pull origin devel && git checkout devel && npm install && ng build"
+          - ssh ubuntu@ec2-3-133-191-59.us-east-2.compute.amazonaws.com -t 'bash -ic "cd /opt/futurex && git stash && git pull origin devel && git checkout devel && npm install && ng build"'
          
