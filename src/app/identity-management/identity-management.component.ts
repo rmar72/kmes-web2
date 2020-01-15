@@ -37,24 +37,24 @@ export class IdentityManagementComponent implements OnInit {
     this.usersService.usersGet(undefined, undefined, this.currentPage, this.pageCount).subscribe(resp => {
       // this.totalPages = 8;
       this.totalPages = resp.responseData.totalPages;
-      // this.identities$.next(resp.responseData.users);
-      // this.identityCount$.next(`${resp.responseData.totalItems}`);
-      this.identities$.next(
-        [
-          {username: "User2", primaryGroup: "IoT", subGroups: Array(0), valid: true, lastLogin: "2010-05-03 23:59:59"},
-          {username: "Jonathan Muniz", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "2019-11-03 23:59:59"},
-          {username: "John Doe", primaryGroup: "Healthcare", subGroups: Array(0), valid: true, lastLogin: "2019-11-03 23:59:59"},
-          {username: "Anna Casper", primaryGroup: "Child", subGroups: ["Management", "Custom1"], valid: true, lastLogin: "2015-05-03 23:59:59"},
-          {username: "User1", primaryGroup: "Telecomm", subGroups: Array(0), valid: true, lastLogin: "2016-05-03 23:59:59"},
-          {username: "John Doe9", primaryGroup: "Power", subGroups: Array(0), valid: true, lastLogin: "2017-05-03 23:59:59"},
-          {username: "Foo 23", primaryGroup: "Admin1", subGroups: Array(0), valid: false, lastLogin: "2019-05-03 23:59:59"},
-          {username: "Ruben Sol", primaryGroup: "Child Group2", subGroups: Array(0), valid: false, lastLogin: "2012-12-03 23:59:59"},
-          {username: "Matt", primaryGroup: "Aerospace", subGroups: ["Management", "Custom1"], valid: false, lastLogin: "2019-05-04 23:59:59"},
-          {username: "Chris", primaryGroup: "Redemption", subGroups: Array(0), valid: true, lastLogin: "1996-05-03 23:59:59"},
-          {username: "User3", primaryGroup: "Telecomm 2", subGroups: Array(0), valid: false, lastLogin: "1999-05-03 23:59:59"}
-        ]
-      );
-      this.identityCount$.next(`11`);
+      this.identities$.next(resp.responseData.users);
+      this.identityCount$.next(`${resp.responseData.totalItems}`);
+      // this.identities$.next(
+      //   [
+      //     {username: "User2", primaryGroup: "IoT", subGroups: Array(0), valid: true, lastLogin: "2010-05-03 23:59:59"},
+      //     {username: "Jonathan Muniz", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "2019-11-03 23:59:59"},
+      //     {username: "John Doe", primaryGroup: "Healthcare", subGroups: Array(0), valid: true, lastLogin: "2019-11-03 23:59:59"},
+      //     {username: "Anna Casper", primaryGroup: "Child", subGroups: ["Management", "Custom1"], valid: true, lastLogin: "2015-05-03 23:59:59"},
+      //     {username: "User1", primaryGroup: "Telecomm", subGroups: Array(0), valid: true, lastLogin: "2016-05-03 23:59:59"},
+      //     {username: "John Doe9", primaryGroup: "Power", subGroups: Array(0), valid: true, lastLogin: "2017-05-03 23:59:59"},
+      //     {username: "Foo 23", primaryGroup: "Admin1", subGroups: Array(0), valid: false, lastLogin: "2019-05-03 23:59:59"},
+      //     {username: "Ruben Sol", primaryGroup: "Child Group2", subGroups: Array(0), valid: false, lastLogin: "2012-12-03 23:59:59"},
+      //     {username: "Matt", primaryGroup: "Aerospace", subGroups: ["Management", "Custom1"], valid: false, lastLogin: "2019-05-04 23:59:59"},
+      //     {username: "Chris", primaryGroup: "Redemption", subGroups: Array(0), valid: true, lastLogin: "1996-05-03 23:59:59"},
+      //     {username: "User3", primaryGroup: "Telecomm 2", subGroups: Array(0), valid: false, lastLogin: "1999-05-03 23:59:59"}
+      //   ]
+      // );
+      // this.identityCount$.next(`11`);
       this.createPaginationArray();
     });
   }
