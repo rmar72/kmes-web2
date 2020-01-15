@@ -37,7 +37,6 @@ export class IdentityListComponent implements OnInit {
 
   ngOnInit() {}
 
-
   selectIdentity(identity: any) {
     this.selectedIdentity.emit(identity);
   }
@@ -157,58 +156,53 @@ export class IdentityListComponent implements OnInit {
     }
   }
 
-  sortMap = {
+  sortColumns = {
     usernameAsc: null,
     groupAsc: null,
     statusAsc: null,
     dateAsc: null
   }
 
-  caretDirection(mode){
-    if(this.sortMap[mode] === null){
-      this.sortMap[mode] = true;
+  ascendColumn(column){
+    switch(column){ // determine asc/desc
+      case true:
+        return false;
+      case false:
+        return true;
+      default:
+        return true;
     }
+  }
 
-    for(let key in this.sortMap){
-      if(key !== mode){
-        this.sortMap[key] = null;
+  activateCaret(columnToAscend){
+    for(let col in this.sortColumns){
+      if(col !== columnToAscend){
+        this.sortColumns[col] = null;
       }
     }
   }
 
-  sortTable(header, sortMode){
-
-    this.identities = [
-      {username: "Ruben", primaryGroup: "Child", subGroups: Array(2), valid: true, lastLogin: "1993-05-03 23:59:59"},
-      {username: "Jason", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-      {username: "John Doe", primaryGroup: "Admin2", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-      {username: "User1", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-      {username: "John Doe9", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-      {username: "John Dope", primaryGroup: "Admin1", subGroups: Array(0), valid: false, lastLogin: "1990-05-03 23:59:59"},
-      {username: "Esvyn", primaryGroup: "Child Group2", subGroups: Array(0), valid: false, lastLogin: "1991-05-03 23:59:59"},
-      {username: "Matt", primaryGroup: "Child", subGroups: Array(2), valid: false, lastLogin: "1994-05-03 23:59:59"},
-      {username: "User2", primaryGroup: "Admin8", subGroups: Array(0), valid: true, lastLogin: "1990-05-03 23:59:59"},
-      {username: "Chris", primaryGroup: "Redemption", subGroups: Array(0), valid: true, lastLogin: "1996-05-03 23:59:59"},
-      {username: "User3", primaryGroup: "Game", subGroups: Array(0), valid: false, lastLogin: "1999-05-03 23:59:59"},
-    ]
-
-    this.caretDirection(sortMode);
-
-    if(this.sortMap[sortMode]){ // asc mode
+  sortTable(header, column){
+    if(this.ascendColumn(this.sortColumns[column])){ // asc mode
       if(header === "lastLogin"){
         this.identities.sort((a,b) => +new Date(a.lastLogin) - +new Date(b.lastLogin) );
       }
-      this.identities.sort((a,b) => b[header] > a[header] ? -1 : 1 );
-      this.sortMap[sortMode]=false;
+      else {
+        this.identities.sort((a,b) => b[header] > a[header] ? -1 : 1 );
+      }
+      this.sortColumns[column]=true;
     }
     else { // desc mode
       if(header === "lastLogin"){ 
         this.identities.sort((a,b) => +new Date(b.lastLogin) - +new Date(a.lastLogin) );
       }
-      this.identities.sort((a,b) => a[header] > b[header] ? -1 : 1 );
-      this.sortMap[sortMode]=true;
+      else {
+        this.identities.sort((a,b) => a[header] > b[header] ? -1 : 1 );
+      }
+      this.sortColumns[column]=false;
     }
 
+    this.activateCaret(column);
   }
   
   
