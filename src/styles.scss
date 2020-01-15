@@ -94,3 +94,18 @@ body {
 .dropdown-menu {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
+
+.name-circle {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background: #a43c76;
+    background-color: #a43c76;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 12px;
+    margin-right: 5px;
+    line-height: 22px;
+}
