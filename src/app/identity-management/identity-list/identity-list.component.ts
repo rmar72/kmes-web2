@@ -22,7 +22,7 @@ export class IdentityListComponent implements OnInit {
   @Output() updatePageCount = new EventEmitter<any>();
   @Output() updateCurrentPage = new EventEmitter<any>();
 
-//   identityCount: number;
+  // identityCount: number;
   deleteError = '';
   errorIndex: number;
   idtyIsChecked = {};
@@ -33,7 +33,7 @@ export class IdentityListComponent implements OnInit {
     private usersService: UsersServiceProxy,
     private checkbox: ElementRef,
     private toast: AppToastService
-    ) {}
+  ) {}
 
   ngOnInit() {}
 
@@ -64,15 +64,14 @@ export class IdentityListComponent implements OnInit {
   }
 
   emitUpdateCurrentPage(page: number) {
-      if(page != this.currentPage && page >= 1 && page <= this.totalPages) {
-        this.updateCurrentPage.emit(page);
-      }
+    if(page != this.currentPage && page >= 1 && page <= this.totalPages) {
+      this.updateCurrentPage.emit(page);
+    }
   }
 
-    counter(i: number) {
-        return new Array(i);
-    }
-
+  counter(i: number) {
+    return new Array(i);
+  }
 
   deleteSelectAll(){
     let checkboxes = this.checkbox.nativeElement.querySelectorAll('.idty-checkbox');
@@ -99,7 +98,6 @@ export class IdentityListComponent implements OnInit {
       this.deleteIdtys = [];
     }
   }
-
 
   onBoxCheck(e, checkIdty){
     this.idtyIsChecked[checkIdty.username] = e.target.checked;
@@ -157,5 +155,55 @@ export class IdentityListComponent implements OnInit {
       alert("No identities have been selected.");
     }
   }
+
+  sortColumns = {
+    usernameAsc: null,
+    groupAsc: null,
+    statusAsc: null,
+    dateAsc: null
+  }
+
+  ascendColumn(column){
+    switch(column){ // determine asc/desc
+      case true:
+        return false;
+      case false:
+        return true;
+      default:
+        return true;
+    }
+  }
+
+  activateCaret(columnToAscend){
+    for(let col in this.sortColumns){
+      if(col !== columnToAscend){
+        this.sortColumns[col] = null;
+      }
+    }
+  }
+
+  sortTable(header, column){
+    if(this.ascendColumn(this.sortColumns[column])){ // asc mode
+      if(header === "lastLogin"){
+        this.identities.sort((a,b) => +new Date(a.lastLogin) - +new Date(b.lastLogin) );
+      }
+      else {
+        this.identities.sort((a,b) => b[header] > a[header] ? -1 : 1 );
+      }
+      this.sortColumns[column]=true;
+    }
+    else { // desc mode
+      if(header === "lastLogin"){ 
+        this.identities.sort((a,b) => +new Date(b.lastLogin) - +new Date(a.lastLogin) );
+      }
+      else {
+        this.identities.sort((a,b) => a[header] > b[header] ? -1 : 1 );
+      }
+      this.sortColumns[column]=false;
+    }
+
+    this.activateCaret(column);
+  }
+  
   
 }

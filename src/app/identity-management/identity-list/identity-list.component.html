@@ -47,6 +47,7 @@
     <table class="table table-hover table-bordered no-footer identities-table">
       <thead class="">
         <tr role="row">
+
           <th class="identities-dropdown-col master-checkbox-header">
             <div class="identities-dropdown btn-group">
               <a class="btn btn-default btn-xs checkbox-btn-wrapper">
@@ -56,7 +57,7 @@
                   class="table-checkbox master-checkbox" type="checkbox" name="master-box" />
               </a>
               <a type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
+                <span class="caret selectAllCaret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-left" role="menu">
@@ -65,15 +66,53 @@
               </ul> 
             </div>
           </th>
-          <th>Username</th>
-          <th>Group</th>
-          <th class="status-col">Status</th>
-          <th class="login-col">Last login</th>
+
+          <th (click)="sortTable('username', 'usernameAsc')" class="username-col">
+            <span class="header-span">Username</span>
+            <span class="caret-sorts">
+              <i [ngClass]="{'activeCaret': sortColumns.usernameAsc}" 
+                class="fa fa-caret-up" aria-hidden="true"></i>
+              <i [ngClass]="{'activeCaret': !sortColumns.usernameAsc && sortColumns.usernameAsc !== null}"  
+                class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </th>
+
+          <th (click)="sortTable('primaryGroup', 'groupAsc')" class="primarygroup-col">
+            <span class="header-span">Group</span>
+            <span class="caret-sorts">
+              <i [ngClass]="{'activeCaret': sortColumns.groupAsc}" 
+                class="fa fa-caret-up" aria-hidden="true"></i>
+              <i [ngClass]="{'activeCaret': !sortColumns.groupAsc && sortColumns.groupAsc !== null}"  
+                class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </th>
+
+          <th (click)="sortTable('valid', 'statusAsc')" class="status-col">
+            <span class="header-span">Status</span>
+            <span class="caret-sorts">
+              <i [ngClass]="{'activeCaret': sortColumns.statusAsc}" 
+                class="fa fa-caret-up" aria-hidden="true"></i>
+              <i [ngClass]="{'activeCaret': !sortColumns.statusAsc && sortColumns.statusAsc !== null}"  
+                class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </th>
+
+          <th (click)="sortTable('lastLogin', 'dateAsc')" class="login-col">
+            <span class="header-span">Last login</span>
+            <span class="caret-sorts">
+              <i [ngClass]="{'activeCaret': sortColumns.dateAsc}" 
+                class="fa fa-caret-up" aria-hidden="true"></i>
+              <i [ngClass]="{'activeCaret': !sortColumns.dateAsc && sortColumns.dateAsc !== null}"  
+                class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </th>
+
           <th></th>
+
         </tr>
       </thead>
       <tbody>
-        <tr role="row" class="odd" *ngFor="let identity of identities; let i = index">
+        <tr role="row" class="odd idty-rows" *ngFor="let identity of identities; let i = index">
           <td class="checkbox-col">
             <input 
                 (click)="onBoxCheck($event, identity)"
@@ -85,7 +124,6 @@
           </td>
           <td class="identity-group-col">
               <span class="badge badge-default"><span class="badge-text-inner">1</span>{{identity.primaryGroup}}</span>
-              <br />
               <span class="badge badge-default" *ngFor="let group of identity.subGroups; let i = index">
                 <span class="badge-text-inner">{{i + 2}}</span>{{group}}
               </span>
