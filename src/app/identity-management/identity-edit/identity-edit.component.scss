@@ -46,6 +46,16 @@
       width: 250px;
       height: 34px;
       border-radius: 4px;
+
+      &::placeholder {
+        font-size: 12px;
+      }
+      &:ms-input-placeholder {
+        font-size: 12px;
+      }
+      &::-ms-input-placeholder {
+        font-size: 12px;
+      }
     }
   }
   .input-group {
