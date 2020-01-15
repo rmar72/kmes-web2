@@ -13,6 +13,9 @@
     line-height: 22px;
 }
 
+.identities-table thead{
+    font-size: 12px;
+}
 .identities-table .identity-group-col .badge {
     font-weight: normal;
     font-size: 11px;
@@ -140,9 +143,6 @@
         padding-bottom: 2px;
         border-bottom-color: #b3b3b3 !important;
     }
-    // .caret{
-    //     padding-bottom: 3px;
-    // }
     .fa {
         color: #97a0b3;
     }
@@ -208,7 +208,8 @@
 
 .master-checkbox-header, .checkbox-col {
     text-align: center;
-    width: 70px;
+    width: 65px;
+    padding: 8px 0;
 }
 
 .idty-checkbox{
@@ -251,4 +252,41 @@ table input[type="checkbox"]{
     &:hover, &:active, &:focus{
         outline: 0;
     }
+}
+
+@media only screen and(max-width: 835px){
+    .username-col {
+        width: 74px;
+        padding: 8px 3px;
+    }
+}
+
+.status-col {
+    width: 70px;
+}
+
+.header-span {
+    margin-top: 7px;
+}
+
+.caret-sorts {
+    float: right;
+    margin-right: 3%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    cursor: pointer;
+
+    .fa-caret-up, .fa-caret-down{
+        color:#adb5c7;
+    }
+    .fa-caret-up{
+        margin-bottom: -3px;
+    }
+    .activeCaret{
+        color: black;
+    }
+}
+.idty-rows{
+    font-size: 11px;
 }
