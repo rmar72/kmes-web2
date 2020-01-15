@@ -1,22 +1,27 @@
+.edit-group-tab, .edit-forms{
+  margin-top: 10px;
+}
+
 .nav-pills {
   border: 1px solid #c6d1df;
   border-radius: 4px;
   .nav-item {
-      font-size: 13px;
-      color: #888;
-      border-bottom: 1px solid #c6d1df;
-      margin-top: 0px;
+    font-size: 13px;
+    color: #888;
+    border-bottom: 1px solid #c6d1df;
+    margin-top: 0px;
   }
   .nav-item:last-child {
-      border-bottom: none;
+    border-bottom: none;
   }
-  .nav-item.active {
-      font-weight: normal;
-      background-color: #ecf0f5;
-      a {
-          border: none;
-      }
-  }
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  background-color: #ecf0f5;
+  color: black;
+  font-weight: normal;
+  border-left:none;
+  transition: ease-in-out 0.200s, ease-in-out 0.200s;
 }
 
 .list-group-item {
@@ -31,21 +36,21 @@
   font-size: 13px;
 
   .list-group-title {
-      color: #97a0b3;
-      margin-bottom: 5px;
-      margin-top: 5px;
-      display: inline-block;
+    color: #97a0b3;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: inline-block;
   }
   .user-input {
-      input {
-          width: 250px;
-          height: 34px;
-          border-radius: 4px;
-      }
+    input {
+      width: 250px;
+      height: 34px;
+      border-radius: 4px;
+    }
   }
   .input-group {
-      width: 250px;
-      max-height: 34px;
+    width: 250px;
+    max-height: 34px;
   }
   .dropdown {
     .dropdown-toggle {
@@ -57,6 +62,6 @@
 }
 
 .dropdown-toggle {
-color: #888;
-background: linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(241,241,241,1) 35%, rgba(238,238,238,1) 100%);
+  color: #888;
+  background: linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(241,241,241,1) 35%, rgba(238,238,238,1) 100%);
 }

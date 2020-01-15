@@ -1,11 +1,25 @@
-<div class="panel panel-default" *ngIf="displayIdentity" [ngClass]="showUserEdit ? 'panel-fullscreen-partial' : ''">
+<div 
+  class="panel panel-default" 
+  *ngIf="displayIdentity" 
+  [ngClass]="showUserEdit ? 'panel-fullscreen-partial' : ''"
+>
   <div class="panel-heading secondary-heading">
-    <span><i class="fas fa-eye mr-10"></i>Details</span>
+    <span class="secondary-title"><i class="fas fa-eye mr-10"></i>Details</span>
     <div class="heading-tools btn-group" role="group">
-      <button *ngIf="!showUserEdit" class="btn header-btn" (click)="editUser()">Edit</button>
-      <button *ngIf="showUserEdit" class="btn header-btn" (click)="cancelEdit()"><i class="fa fa-times"></i></button>
-      <button *ngIf="showUserEdit" class="btn header-btn btn-primary" (click)="saveEdits()"><i
-          class="fa fa-save mr-5"></i>Save</button>
+      <button *ngIf="!showUserEdit" id="edit-btn" (click)="editUser()">
+        Edit
+      </button>
+      <span class="edit-group-btns">
+        <button *ngIf="showUserEdit" id="cancel-btn" (click)="cancelEdit()">
+          <i class="fa fa-times"></i>
+        </button>
+
+        <button *ngIf="showUserEdit" class="btn header-btn" id="btn-save-primary" (click)="saveEdits()">
+          <i class="fa fa-save mr-5"></i>Save
+        </button>
+      </span>
+      
+      
     </div>
   </div> <!-- end of panel heading -->
   <div class="panel-body" *ngIf="displayIdentity">
@@ -22,20 +36,24 @@
             <div class="users-preview__login" title="Date Created">
               <span>Created: {{ createdAt | date: 'mediumDate' }}</span>
             </div>
-            <hr class="hr-less">
-            <p class="assigned-groups-title">ASSIGNED TO GROUP(S):</p>
-            <ul class="assigned-groups-list">
-              <li><i class="fa fa-caret-right icon-right"></i>&nbsp;{{ displayIdentity.primaryGroup }}</li>
-              <li *ngFor="let subGroup of displayIdentity.subGroups">
-                <i class="fa fa-caret-right icon-right subgroup-item"></i>&nbsp;
-                {{ subGroup }}
-              </li>
-            </ul>
+            
+            <span [hidden]="showUserEdit">
+              <hr class="hr-less">
+              <p class="assigned-groups-title">ASSIGNED TO GROUP(S):</p>
+              <ul class="assigned-groups-list">
+                <li><i class="fa fa-caret-right icon-right"></i>&nbsp;{{ displayIdentity.primaryGroup }}</li>
+                <li *ngFor="let subGroup of displayIdentity.subGroups">
+                  <i class="fa fa-caret-right icon-right subgroup-item"></i>&nbsp;
+                  {{ subGroup }}
+                </li>
+              </ul>
+            </span>
+            
           </div>
         </div>
 
         <!-- 2 idty details  -->
-        <div class="details-summary-list col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div [hidden]="showUserEdit" class="details-summary-list col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <hr class="divider">
           <div class="detail-pane-list">
             Status
