@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {
   Users,
-  UsersServiceProxy
+  UsersServiceProxy,
+  GetUserList
 } from '../shared/api/service-proxies';
 import { Subject, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-identity-management',
   templateUrl: './identity-management.component.html',
-  styleUrls: ['./identity-management.component.scss']
+  styleUrls: ['./identity-management.component.scss'],
 })
 export class IdentityManagementComponent implements OnInit {
   showFullscreen = false;
@@ -17,8 +18,9 @@ export class IdentityManagementComponent implements OnInit {
   showIdtyDetail = false;
   showCreateGroup = false;
   showCreateIdentity = false;
-  // usersGet$ = this.usersService.usersGet();
-  identities$ = new ReplaySubject<any[]>(); // set back to <Users[]>
+  identityCount = 0;
+  usersGet$ = this.usersService.usersGet();
+  identities$ = new ReplaySubject<Users[]>();
   identityCount$ = new Subject<string>();
   displayIdentity$ = new Subject<any>();
   displayIdentityGroup$ = new Subject<any>();
@@ -27,7 +29,7 @@ export class IdentityManagementComponent implements OnInit {
   totalPages: number;
   pageArray: any[];
 
-  constructor(private usersService: UsersServiceProxy) {}
+  constructor(private usersService: UsersServiceProxy) { }
 
   ngOnInit() {
     this.getUsers();
@@ -73,7 +75,7 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateGroup = !this.showCreateGroup;
   }
 
-  submitCreateGroup(): void {}
+  submitCreateGroup(): void { }
 
   toggleCreateIdentity(): void {
     this.showCreateIdentity = !this.showCreateIdentity;
@@ -84,7 +86,7 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateIdentity = !this.showCreateIdentity;
   }
 
-  submitCreateIdentity(): void {}
+  submitCreateIdentity(): void { }
 
   resetForms(): void {
     this.showCreateGroup = false;
@@ -97,14 +99,14 @@ export class IdentityManagementComponent implements OnInit {
 
   detailViewSwitch(subject, selectedEntity, dictateView, showCurrentView) {
 
-    if(this.showDetailView === false){
+    if (this.showDetailView === false) {
       this.toggleFullscreen();
     }
 
-    if(this.showDetailView){
+    if (this.showDetailView) {
       subject.next(selectedEntity);
 
-      if(this[dictateView] === false){
+      if (this[dictateView] === false) {
         this[dictateView] = true;
         this[showCurrentView] = false;
       }
@@ -115,76 +117,78 @@ export class IdentityManagementComponent implements OnInit {
     // api call will replace mock objects below
 
     const mockIdty = {
-      username:	"Main User",
-      primaryGroup:	"Admin",
-      subGroups:	["Cool Group1", "Cool Group2"],
-      valid:	false,
-      lastLogin:	"2020-01-03 06:36:00",
-      createdAt: "2020-01-02 01:01:01",
-      personalInfo:	{
-        firstName:	"John",
-        lastName:	"Doe",
-        commonName:	"foo",
-        givenName:	"foo",
-        surname:	"Jonny",
-        mobileCarrier:	"Verizon",
-        phone:	"303-303-3030",
-        email: "foo@email.com"
+      username: 'Main User',
+      primaryGroup: 'Admin',
+      subGroups: ['Cool Group1', 'Cool Group2'],
+      valid: false,
+      lastLogin: '2020-01-03 06:36:00',
+      createdAt: '2020-01-02 01:01:01',
+      personalInfo: {
+        firstName: 'John',
+        lastName: 'Doe',
+        commonName: 'foo',
+        givenName: 'foo',
+        surname: 'Jonny',
+        mobileCarrier: 'Verizon',
+        phone: '303-303-3030',
+        email: 'foo@email.com'
       }
-    }
+    };
     const mockIdtyGroup = {
-      name: "Admin",
-      parentGroup: "n/a",
+      name: 'Admin',
+      parentGroup: 'n/a',
       permissions: {
         logs: [
-          "Modify",
-          "Export"
+          'Modify',
+          'Export'
         ],
         users: [
-          "Add",
-          "Delete",
-          "Modify"
+          'Add',
+          'Delete',
+          'Modify'
         ],
         keys: []
       },
       passPolicy: {
-        length: {min:8, max: 99},
-        alphabetical:{min:2, max: 50},
-        uppercase: {min:1, max: 10},
-        lowercase: {min:1, max: 10},
-        numeric: {min:1, max: 25},
-        symbols: {min:1, max: 25}
+        length: { min: 8, max: 99 },
+        alphabetical: { min: 2, max: 50 },
+        uppercase: { min: 1, max: 10 },
+        lowercase: { min: 1, max: 10 },
+        numeric: { min: 1, max: 25 },
+        symbols: { min: 1, max: 25 }
       },
       loginsRequired: 2,
-      userLocation: "Database",
+      userLocation: 'Database',
       ldapVerify: false,
-      ldapGroup: "string",
+      ldapGroup: 'string',
       oauthSettings: {
-        enabled:	true,
-        tokenLifetime:	700,
-        clientId:	"23t5dfw4rxwa",
-        macKeyName:	"87tgf5e4ec34"
+        enabled: true,
+        tokenLifetime: 700,
+        clientId: '23t5dfw4rxwa',
+        macKeyName: '87tgf5e4ec34'
       },
       otpSettings: {
         required: true,
         portList: ["Client", "Web"],
         timeout: 800
       }
+    };
+
+    for (const key in mockIdtyGroup.permissions) {
+      if (key) {
+        mockIdtyGroup.permissions[key].unshift('View');
+      }
     }
 
-    for(let key in mockIdtyGroup.permissions){
-      mockIdtyGroup.permissions[key].unshift("View");
-    }
-    
     const identityDetail = {
       mockIdty,
       mockIdtyGroup
-    }
+    };
 
     return identityDetail;
   }
 
-  selectIdentity(identity: any): void {
+  selectIdentity_deprecated(identity: any): void {
     this.detailViewSwitch(
       this.displayIdentity$,
       this.getUserDetails(identity),
@@ -193,12 +197,19 @@ export class IdentityManagementComponent implements OnInit {
     );
   }
 
+  selectIdentity(identity: Users) {
+    this.showFullscreen = true;
+    this.showDetailView = true;
+    this.showIdtyDetail = true;
+    this.displayIdentity$.next(identity);
+  }
+
   selectIdentityGroup(identityGroup: any): void {
     this.detailViewSwitch(
-        this.displayIdentityGroup$, 
-        identityGroup,
-        'showIdtyGroupDetail',
-        'showIdtyDetail'
+      this.displayIdentityGroup$,
+      identityGroup,
+      'showIdtyGroupDetail',
+      'showIdtyDetail'
     );
   }
 

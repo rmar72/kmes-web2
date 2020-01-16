@@ -47,7 +47,7 @@ export class IdentityListComponent implements OnInit {
 
   deleteIdentity(identity: any, index: number) {
     this.usersService.usersDelete(identity.username).subscribe(
-      (response) => {
+      response => {
         this.identityDeleted.emit(response.message);
         this.toast.success('Identity was deleted');
       },

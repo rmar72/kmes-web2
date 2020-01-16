@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { InitialsPipe } from 'src/app/shared/pipes/initials.pipe';
 import { IdentityDetailComponent } from './identity-detail.component';
+import { IdentityEditComponent } from '../identity-edit/identity-edit.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
+import { UserGroupsServiceProxy } from 'src/app/shared/api/service-proxies';
 
 describe('IdentityDetailComponent', () => {
   let component: IdentityDetailComponent;
@@ -8,9 +12,11 @@ describe('IdentityDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IdentityDetailComponent, InitialsPipe ]
+      imports: [HttpClientTestingModule, FormsModule],
+      declarations: [IdentityDetailComponent, InitialsPipe, IdentityEditComponent],
+      providers: [IdentityEditComponent, UserGroupsServiceProxy]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
