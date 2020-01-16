@@ -29,14 +29,7 @@ export class IdentityCreateComponent implements OnInit {
   }
 
   submitCreateIdentity() {
-    console.log(this.carrier);
-    if (this.pForm.valid) {
-      this.createUser();
-      this.toast.success('Identity was created');
-    } else {
-      this.markAllAsTouched(this.pForm);
-      this.toast.warning('Invalid form');
-    }
+    this.createUser();
   }
 
   createUser(): void {
