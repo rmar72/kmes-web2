@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {
   Users,
   UsersServiceProxy,
-  GetUserList
+  GetUserList,
+  GetUserDetails
 } from '../shared/api/service-proxies';
 import { Subject, ReplaySubject } from 'rxjs';
 
@@ -38,9 +39,10 @@ export class IdentityManagementComponent implements OnInit {
   getUsers(): void {
     this.usersService.usersGet(undefined, undefined, this.currentPage, this.pageCount).subscribe(resp => {
       // this.totalPages = 8;
-      this.totalPages = resp.responseData.totalPages;
-      this.identities$.next(resp.responseData.users);
-      this.identityCount$.next(`${resp.responseData.totalItems}`);
+      let data = resp.responseData as GetUserList;
+      this.totalPages = data.totalPages;
+      this.identities$.next(data.users);
+      this.identityCount$.next(`${data.totalItems}`);
       // this.identities$.next(
       //   [
       //     {username: "User2", primaryGroup: "IoT", subGroups: Array(0), valid: true, lastLogin: "2010-05-03 23:59:59"},
