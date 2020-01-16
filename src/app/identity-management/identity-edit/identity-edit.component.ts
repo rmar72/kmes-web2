@@ -70,13 +70,8 @@ export class IdentityEditComponent implements OnInit, OnChanges {
   }
 
   submitEditIdentity() {
-    if (this.pForm.valid) {
       this.updateUser();
       this.toast.success('Identity was updated');
-    } else {
-      this.markAllAsTouched(this.pForm);
-      this.toast.warning('Invalid form');
-    }
   }
 
   updateUser(): void {
