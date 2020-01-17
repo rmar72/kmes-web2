@@ -3,14 +3,16 @@ import {
   Users,
   UsersServiceProxy,
   UserGroup,
-  UserGroupsServiceProxy
+  UserGroupsServiceProxy,
+  GetUserList,
+  GetUserDetails
 } from '../shared/api/service-proxies';
 import { Subject, ReplaySubject, } from 'rxjs';
 
 @Component({
   selector: 'app-identity-management',
   templateUrl: './identity-management.component.html',
-  styleUrls: ['./identity-management.component.scss']
+  styleUrls: ['./identity-management.component.scss'],
 })
 export class IdentityManagementComponent implements OnInit {
   showFullscreen = false;
@@ -19,6 +21,7 @@ export class IdentityManagementComponent implements OnInit {
   showIdtyDetail = false;
   showCreateGroup = false;
   showCreateIdentity = false;
+  usersGet$ = this.usersService.usersGet();
   identities$ = new ReplaySubject<Users[]>();
   identityCount$ = new Subject<string>();
   displayIdentity$ = new Subject<any>();
@@ -40,9 +43,26 @@ export class IdentityManagementComponent implements OnInit {
   getUsers(): void {
     this.usersService.usersGet(undefined, undefined, this.currentPage, this.pageCount).subscribe(resp => {
       // this.totalPages = 8;
-      this.totalPages = resp.responseData.totalPages;
-      this.identities$.next(resp.responseData.users);
-      this.identityCount$.next(`${resp.responseData.totalItems}`);
+      let data = resp.responseData as GetUserList;
+      this.totalPages = data.totalPages;
+      this.identities$.next(data.users);
+      this.identityCount$.next(`${data.totalItems}`);
+      // this.identities$.next(
+      //   [
+      //     {username: "User2", primaryGroup: "IoT", subGroups: Array(0), valid: true, lastLogin: "2010-05-03 23:59:59"},
+      //     {username: "Jonathan Muniz", primaryGroup: "Admin", subGroups: Array(0), valid: true, lastLogin: "2019-11-03 23:59:59"},
+      //     {username: "John Doe", primaryGroup: "Healthcare", subGroups: Array(0), valid: true, lastLogin: "2019-11-03 23:59:59"},
+      //     {username: "Anna Casper", primaryGroup: "Child", subGroups: ["Management", "Custom1"], valid: true, lastLogin: "2015-05-03 23:59:59"},
+      //     {username: "User1", primaryGroup: "Telecomm", subGroups: Array(0), valid: true, lastLogin: "2016-05-03 23:59:59"},
+      //     {username: "John Doe9", primaryGroup: "Power", subGroups: Array(0), valid: true, lastLogin: "2017-05-03 23:59:59"},
+      //     {username: "Foo 23", primaryGroup: "Admin1", subGroups: Array(0), valid: false, lastLogin: "2019-05-03 23:59:59"},
+      //     {username: "Ruben Sol", primaryGroup: "Child Group2", subGroups: Array(0), valid: false, lastLogin: "2012-12-03 23:59:59"},
+      //     {username: "Matt", primaryGroup: "Aerospace", subGroups: ["Management", "Custom1"], valid: false, lastLogin: "2019-05-04 23:59:59"},
+      //     {username: "Chris", primaryGroup: "Redemption", subGroups: Array(0), valid: true, lastLogin: "1996-05-03 23:59:59"},
+      //     {username: "User3", primaryGroup: "Telecomm 2", subGroups: Array(0), valid: false, lastLogin: "1999-05-03 23:59:59"}
+      //   ]
+      // );
+      // this.identityCount$.next(`11`);
       this.createPaginationArray();
     });
   }
@@ -103,7 +123,7 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateGroup = !this.showCreateGroup;
   }
 
-  submitCreateGroup(): void {}
+  submitCreateGroup(): void { }
 
   toggleCreateIdentity(): void {
     this.showCreateIdentity = !this.showCreateIdentity;
@@ -114,7 +134,7 @@ export class IdentityManagementComponent implements OnInit {
     this.showCreateIdentity = !this.showCreateIdentity;
   }
 
-  submitCreateIdentity(): void {}
+  submitCreateIdentity(): void { }
 
   resetForms(): void {
     this.showCreateGroup = false;
@@ -127,14 +147,14 @@ export class IdentityManagementComponent implements OnInit {
 
   detailViewSwitch(subject, selectedEntity, dictateView, showCurrentView) {
 
-    if(this.showDetailView === false){
+    if (this.showDetailView === false) {
       this.toggleFullscreen();
     }
 
-    if(this.showDetailView){
+    if (this.showDetailView) {
       subject.next(selectedEntity);
 
-      if(this[dictateView] === false){
+      if (this[dictateView] === false) {
         this[dictateView] = true;
         this[showCurrentView] = false;
       }
@@ -145,76 +165,78 @@ export class IdentityManagementComponent implements OnInit {
     // api call will replace mock objects below
 
     const mockIdty = {
-      username:	"Main User",
-      primaryGroup:	"Admin",
-      subGroups:	["Cool Group1", "Cool Group2"],
-      valid:	false,
-      lastLogin:	"2020-01-03 06:36:00",
-      createdAt: "2020-01-02 01:01:01",
-      personalInfo:	{
-        firstName:	"John",
-        lastName:	"Doe",
-        commonName:	"foo",
-        givenName:	"foo",
-        surname:	"Jonny",
-        mobileCarrier:	"Verizon",
-        phone:	"303-303-3030",
-        email: "foo@email.com"
+      username: 'Main User',
+      primaryGroup: 'Admin',
+      subGroups: ['Cool Group1', 'Cool Group2'],
+      valid: false,
+      lastLogin: '2020-01-03 06:36:00',
+      createdAt: '2020-01-02 01:01:01',
+      personalInfo: {
+        firstName: 'John',
+        lastName: 'Doe',
+        commonName: 'foo',
+        givenName: 'foo',
+        surname: 'Jonny',
+        mobileCarrier: 'Verizon',
+        phone: '303-303-3030',
+        email: 'foo@email.com'
       }
-    }
+    };
     const mockIdtyGroup = {
-      name: "Admin",
-      parentGroup: "n/a",
+      name: 'Admin',
+      parentGroup: 'n/a',
       permissions: {
         logs: [
-          "Modify",
-          "Export"
+          'Modify',
+          'Export'
         ],
         users: [
-          "Add",
-          "Delete",
-          "Modify"
+          'Add',
+          'Delete',
+          'Modify'
         ],
         keys: []
       },
       passPolicy: {
-        length: {min:8, max: 99},
-        alphabetical:{min:2, max: 50},
-        uppercase: {min:1, max: 10},
-        lowercase: {min:1, max: 10},
-        numeric: {min:1, max: 25},
-        symbols: {min:1, max: 25}
+        length: { min: 8, max: 99 },
+        alphabetical: { min: 2, max: 50 },
+        uppercase: { min: 1, max: 10 },
+        lowercase: { min: 1, max: 10 },
+        numeric: { min: 1, max: 25 },
+        symbols: { min: 1, max: 25 }
       },
       loginsRequired: 2,
-      userLocation: "Database",
+      userLocation: 'Database',
       ldapVerify: false,
-      ldapGroup: "string",
+      ldapGroup: 'string',
       oauthSettings: {
-        enabled:	true,
-        tokenLifetime:	700,
-        clientId:	"23t5dfw4rxwa",
-        macKeyName:	"87tgf5e4ec34"
+        enabled: true,
+        tokenLifetime: 700,
+        clientId: '23t5dfw4rxwa',
+        macKeyName: '87tgf5e4ec34'
       },
       otpSettings: {
         required: true,
         portList: ["Client", "Web"],
         timeout: 800
       }
+    };
+
+    for (const key in mockIdtyGroup.permissions) {
+      if (key) {
+        mockIdtyGroup.permissions[key].unshift('View');
+      }
     }
 
-    for(let key in mockIdtyGroup.permissions){
-      mockIdtyGroup.permissions[key].unshift("View");
-    }
-    
     const identityDetail = {
       mockIdty,
       mockIdtyGroup
-    }
+    };
 
     return identityDetail;
   }
 
-  selectIdentity(identity: any): void {
+  selectIdentity_deprecated(identity: any): void {
     this.detailViewSwitch(
       this.displayIdentity$,
       this.getUserDetails(identity),
@@ -223,12 +245,19 @@ export class IdentityManagementComponent implements OnInit {
     );
   }
 
+  selectIdentity(identity: Users) {
+    this.showFullscreen = true;
+    this.showDetailView = true;
+    this.showIdtyDetail = true;
+    this.displayIdentity$.next(identity);
+  }
+
   selectIdentityGroup(identityGroup: any): void {
     this.detailViewSwitch(
-        this.displayIdentityGroup$, 
-        identityGroup,
-        'showIdtyGroupDetail',
-        'showIdtyDetail'
+      this.displayIdentityGroup$,
+      identityGroup,
+      'showIdtyGroupDetail',
+      'showIdtyDetail'
     );
   }
 

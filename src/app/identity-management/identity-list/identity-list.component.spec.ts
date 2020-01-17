@@ -33,7 +33,7 @@ describe('IdentityListComponent', () => {
 
   afterEach(() => {
     sessionStorage.clear();
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

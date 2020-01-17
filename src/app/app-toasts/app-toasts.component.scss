@@ -4,3 +4,7 @@ ngb-toast .toast-header .close {
 ngb-toast .toast-header {
     padding: 5px;
 }
+
+ngb-toast {
+    z-index: 1000;
+}

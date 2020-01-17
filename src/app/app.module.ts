@@ -24,6 +24,7 @@ import { API_BASE_URL } from './shared/api/service-proxies';
 import { environment } from 'src/environments/environment';
 import { AppToastsComponent } from './app-toasts/app-toasts.component';
 import { IdentityGroupListComponent } from './identity-management/identity-group-list/identity-group-list.component';
+import { IdentityEditComponent } from './identity-management/identity-edit/identity-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { IdentityGroupListComponent } from './identity-management/identity-group
     InitialsPipe,
     AppToastsComponent,
     IdentityGroupListComponent,
+    IdentityEditComponent,
   ],
   imports: [
     BrowserModule,
