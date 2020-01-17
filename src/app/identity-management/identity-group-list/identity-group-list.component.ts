@@ -25,9 +25,9 @@ export class IdentityGroupListComponent implements OnInit {
     return `${count} identities required for login`;
   }
 
-  getIdentitiesForGroup(groupName: string, i: number, c?: number) {
+  getIdentitiesAndChildren(groupName: string, i: number, c?: number) {
     if(this.identityGroups[i].numUsers > 0) {
-      let mockData = [
+      let mockIdentities = [
         {
           "username": "User1",
           "primaryGroup": "Admin",
@@ -49,10 +49,33 @@ export class IdentityGroupListComponent implements OnInit {
           "lastLogin": "2019-12-10 23:59:59"
         }
       ]
+
+      let mockChildGroups = [
+        {
+          "name": "Child Group 1",
+          "active": true,
+          "created": "2019-11-02 23:59:59",
+          "numUsers": 1,
+          "loginsRequired": 2,
+          "ldapVerify": true,
+          "otpEnabled": true
+        },
+        {
+          "name": "Child Group 2",
+          "active": false,
+          "created": "2019-11-02 23:59:59",
+          "numUsers": 1,
+          "loginsRequired": 2,
+          "ldapVerify": false,
+          "otpEnabled": false
+        }
+      ]
+
       if(c && this.identityGroups[i].childGroups[c] && !this.identityGroups[i].childGroups[c].identities) {
-        this.identityGroups[i].childGroups[c].identities = mockData;
+        this.identityGroups[i].childGroups[c].identities = mockIdentities;
       } else if(!this.identityGroups[i].identities) {
-        this.identityGroups[i].identities = mockData;
+        this.identityGroups[i].identities = mockIdentities;
+        this.identityGroups[i].childGroups = mockChildGroups;
   
         $(".toggle-popover").popover({ trigger: "hover" });
   

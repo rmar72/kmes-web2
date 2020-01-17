@@ -24,7 +24,7 @@ export class IdentityManagementComponent implements OnInit {
   displayIdentity$ = new Subject<any>();
   displayIdentityGroup$ = new Subject<any>();
   identityGroups$ = new ReplaySubject<any[]>();
-  groupCount: string;
+  groupCount: number;
   currentPage: number = 1;
   pageCount: number = 20;
   totalPages: number;
@@ -48,55 +48,44 @@ export class IdentityManagementComponent implements OnInit {
   }
 
   getUserGroups(): void {
-    let mockData = [
+    let mockData = 
       {
-        "name": "Group 1",
-        "loginsRequired": 2,
-        "ldapVerify": true,
-        "created": "2019-12-10 23:59:59",
-        "active": true,
-        "numUsers": 3,
-        "otpEnabled": true,
-        "childGroups": [
-          {
-            "name": "Child Group 1",
-            "loginsRequired": 2,
-            "ldapVerify": true,
-            "created": "2019-12-10 23:59:59",
-            "active": true,
-            "numUsers": 1,
-            "otpEnabled": true,
-            "childGroups": []
-          },
-          {
-            "name": "Child Group 2",
-            "loginsRequired": 2,
-            "ldapVerify": true,
-            "created": "2019-12-10 23:59:59",
-            "active": true,
-            "numUsers": 1,
-            "otpEnabled": true,
-            "childGroups": []
-          }
-        ]
-      },
-      {
-        "name": "Group 1",
-        "loginsRequired": 2,
-        "ldapVerify": false,
-        "created": "2019-12-10 23:59:59",
-        "active": false,
-        "numUsers": 1,
-        "otpEnabled": false,
-        "childGroups": []
+        "status": "success",
+        "message": "",
+        "responseData": {
+          "totalItems": 2,
+          "totalPages": 1,
+          "pageCount": 50,
+          "currentPage": 1,
+          "nextPage": 1,
+          "userGroups": [
+            {
+              "name": "Group 1",
+              "active": true,
+              "created": "2019-11-02 23:59:59",
+              "numUsers": 2,
+              "loginsRequired": 2,
+              "ldapVerify": true,
+              "otpEnabled": true
+            },
+            {
+              "name": "Group 2",
+              "active": false,
+              "created": "2019-11-02 23:59:59",
+              "numUsers": 2,
+              "loginsRequired": 2,
+              "ldapVerify": false,
+              "otpEnabled": false
+            }
+          ]
+        }
       }
-    ]
 
-    this.groupCount = '4';
-    this.identityGroups$.next(mockData);
+    this.groupCount = mockData.responseData.totalItems;
+    this.identityGroups$.next(mockData.responseData.userGroups);
     // this.userGroupsService.usergroupsGet(undefined).subscribe(resp => {
     //   this.identityGroups$.next(resp.responseData.usergroups);
-    //   this.groupcount$.next(resp.responseData.usergroups.length());
+    //   this.groupcount$.next(resp.responseData.totalItems);
     // });
   }
 

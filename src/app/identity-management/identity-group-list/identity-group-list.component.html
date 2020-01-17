@@ -47,7 +47,7 @@
                 </div>
             </div> -->
             <div *ngFor="let group of identityGroups; let i = index">
-                <div (click)="getIdentitiesForGroup(group.name, i)" class="panel panel-default">
+                <div (click)="getIdentitiesAndChildren(group.name, i)" class="panel panel-default">
                     <div class="panel-heading clickable collapsed" data-toggle="collapse" [attr.data-target]="'#parentGroup' + i" data-parent="#groupAccordion1">
                         <div class="avatar-circle avatar-circle-sm"><i class="fas" [ngClass]="{'fa-users': !group.parentGroup, 'fa-user-friends': group.parentGroup}"></i></div>&nbsp;
                         <div class="group-title">
@@ -118,7 +118,7 @@
                     </div>
                 </div>
                 <div *ngFor="let child of group.childGroups; let c = index">
-                    <div (click)="getIdentitiesForGroup(child.name, i, c)" class="panel panel-default child-group">
+                    <div (click)="getIdentitiesAndChildren(child.name, i, c)" class="panel panel-default child-group">
                         <div class="panel-heading clickable collapsed"data-toggle="collapse" [attr.data-target]="'#childGroup' + c" data-parent="#groupAccordion1">
                             <div class="avatar-circle avatar-circle-sm"><i class="fas" [ngClass]="{'fa-users': !group.parentGroup, 'fa-user-friends': group.parentGroup}"></i></div>&nbsp;
                             <div class="group-title">
