@@ -16,11 +16,12 @@ export class IdentityListComponent implements OnInit {
   @Input() identityCount: number;
   @Input() totalPages: number;
   @Input() pageArray: any[];
-  @Output() identityDeleted = new EventEmitter<string>();
   @Output() selectedIdentity = new EventEmitter<any>();
   @Output() selectedIdentityGroup = new EventEmitter<any>();
   @Output() updatePageCount = new EventEmitter<any>();
   @Output() updateCurrentPage = new EventEmitter<any>();
+  @Output() deleteIdentity = new EventEmitter<any>();
+  @Output() identityDeleted = new EventEmitter<any>();
 
   // identityCount: number;
   deleteError = '';
@@ -45,16 +46,8 @@ export class IdentityListComponent implements OnInit {
     this.selectedIdentityGroup.emit(identity);
   }
 
-  deleteIdentity(identity: any, index: number) {
-    this.usersService.usersDelete(identity.username).subscribe(
-      response => {
-        this.identityDeleted.emit(response.message);
-        this.toast.success('Identity was deleted');
-      },
-      (error) => {
-        this.toast.error('Unable to delete identity');
-      }
-    );
+  emitDeleteIdentity(identity, index) {
+    this.deleteIdentity.emit(identity);
   }
 
   emitUpdatePageCount(count: number) {

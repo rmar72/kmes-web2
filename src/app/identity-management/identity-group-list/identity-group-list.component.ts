@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersServiceProxy } from 'src/app/shared/api/service-proxies';
 
 declare var $;
@@ -11,6 +11,10 @@ declare var $;
 export class IdentityGroupListComponent implements OnInit {
   @Input() identityGroups: any[];
   @Input() groupCount: string;
+  @Output() selectIdentity = new EventEmitter<any>();
+  @Output() deleteIdentity = new EventEmitter<any>();
+
+  childIndex = 1;
 
   constructor(
     private usersService: UsersServiceProxy) { }
@@ -21,12 +25,54 @@ export class IdentityGroupListComponent implements OnInit {
     });
   }
 
-  getLoginsRequired(count) {
-    return `${count} identities required for login`;
+  emitSelectIdentity(identity) {
+    this.selectIdentity.emit(identity);
   }
 
-  getIdentitiesAndChildren(groupName: string, i: number, c?: number) {
-    if(this.identityGroups[i].numUsers > 0) {
+  emitDeleteIdentity(identity) {
+    this.deleteIdentity.emit(identity);
+  }
+
+  getChildren(group) {
+    let mockChildGroups = [
+      {
+        "name": "Child Group ",
+        "active": true,
+        "created": "2019-11-02 23:59:59",
+        "numUsers": 2,
+        "loginsRequired": 2,
+        "ldapVerify": true,
+        "otpEnabled": true
+      },
+      {
+        "name": "Child Group ",
+        "active": false,
+        "created": "2019-11-02 23:59:59",
+        "numUsers": 2,
+        "loginsRequired": 2,
+        "ldapVerify": false,
+        "otpEnabled": false
+      }
+    ]
+
+    mockChildGroups.forEach(group => {
+      group.name += this.childIndex; 
+      this.childIndex++;
+    })
+
+    group.childGroups = mockChildGroups;
+
+    // TO DO use actual service call when API is working 
+    // this.userGroupsService.usergroupsGet(group.name).subscribe(
+    // (resp) => {
+    //   group.childGroups(resp.responseData.usergroups);
+    // },
+    // (error) => {
+    //   console.log(error)
+    // });
+  }
+
+  getIdentities(group) {
       let mockIdentities = [
         {
           "username": "User1",
@@ -50,45 +96,18 @@ export class IdentityGroupListComponent implements OnInit {
         }
       ]
 
-      let mockChildGroups = [
-        {
-          "name": "Child Group 1",
-          "active": true,
-          "created": "2019-11-02 23:59:59",
-          "numUsers": 1,
-          "loginsRequired": 2,
-          "ldapVerify": true,
-          "otpEnabled": true
-        },
-        {
-          "name": "Child Group 2",
-          "active": false,
-          "created": "2019-11-02 23:59:59",
-          "numUsers": 1,
-          "loginsRequired": 2,
-          "ldapVerify": false,
-          "otpEnabled": false
-        }
-      ]
+      group.identities = mockIdentities;
 
-      if(c && this.identityGroups[i].childGroups[c] && !this.identityGroups[i].childGroups[c].identities) {
-        this.identityGroups[i].childGroups[c].identities = mockIdentities;
-      } else if(!this.identityGroups[i].identities) {
-        this.identityGroups[i].identities = mockIdentities;
-        this.identityGroups[i].childGroups = mockChildGroups;
-  
-        $(".toggle-popover").popover({ trigger: "hover" });
-  
-        // TO DO use actual service call when API is working 
-        // this.usersService.usersGet(undefined, groupName, undefined, undefined).subscribe(
-        //   (response) => {
-        //     this.identityGroups[i].identities = response.responseData.users;
-        //   },
-        //   (error) => {
-        //     console.log(error)
-        //   }
-        // );
-      }
+      $(".toggle-popover").popover({ trigger: "hover" });
+
+      // TO DO use actual service call when API is working 
+      // this.usersService.usersGet(undefined, groupName, undefined, undefined).subscribe(
+      //   (response) => {
+      //     this.identityGroups[i].identities = response.responseData.users;
+      //   },
+      //   (error) => {
+      //     console.log(error)
+      //   }
+      // );
     }
-  }
 }

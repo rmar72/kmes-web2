@@ -25,6 +25,7 @@ import { environment } from 'src/environments/environment';
 import { AppToastsComponent } from './app-toasts/app-toasts.component';
 import { IdentityGroupListComponent } from './identity-management/identity-group-list/identity-group-list.component';
 import { IdentityEditComponent } from './identity-management/identity-edit/identity-edit.component';
+import { IdentityGroupListItemComponent } from './identity-management/identity-group-list/identity-group-list-item/identity-group-list-item.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { IdentityEditComponent } from './identity-management/identity-edit/ident
     AppToastsComponent,
     IdentityGroupListComponent,
     IdentityEditComponent,
+    IdentityGroupListItemComponent,
   ],
   imports: [
     BrowserModule,
