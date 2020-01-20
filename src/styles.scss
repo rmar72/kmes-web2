@@ -7,7 +7,7 @@ body {
 .panel.panel-default .panel-heading {
     font-size: 16px;
     font-weight: 500;
-    color: #768599;
+    // color: #768599;
 }
 
 .nav-tabs li a {
@@ -108,4 +108,12 @@ body {
     font-size: 12px;
     margin-right: 5px;
     line-height: 22px;
+}
+
+.toggle-popover {
+    cursor: pointer;
+}
+
+.tooltip-inner {
+    color: black;
 }

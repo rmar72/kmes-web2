@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+declare var $;
+
 @Component({
   selector: 'app-identity-group-list-item',
   templateUrl: './identity-group-list-item.component.html',
@@ -15,6 +17,9 @@ export class IdentityGroupListItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(() => {
+      $(".toggle-popover").popover({ trigger: "hover" });
+    });
   }
 
   emitGetIdentities(group) {
