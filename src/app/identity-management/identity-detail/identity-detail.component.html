@@ -29,20 +29,20 @@
         <div class="col-xs-12">
           <div class="user-header">
             <div class="img-thumbnail">
-              <span class="name-circle">{{displayIdentity.username | initials}}</span>
+              <span class="name-circle">{{displayIdentity.selectedIdentity.username | initials}}</span>
             </div>
-            <div class="users-preview__name" title="Admin Group">{{ displayIdentity.username }}</div>
-            <div class="users-preview__role" title="Normal ">Primary Group: {{ displayIdentity.primaryGroup }}</div>
+            <div class="users-preview__name" title="Admin Group">{{ displayIdentity.selectedIdentity.username }}</div>
+            <div class="users-preview__role" title="Normal ">Primary Group: {{ displayIdentity.selectedIdentity.primaryGroup }}</div>
             <div class="users-preview__login" title="Date Created">
-              <span>Created: {{ createdAt | date: 'mediumDate' }}</span>
+              <span>Created: {{ displayIdentity.selectedIdentity.createdAt | date: 'mediumDate' }}</span>
             </div>
             
             <span>
               <hr class="hr-less">
               <p class="assigned-groups-title">ASSIGNED TO GROUP(S):</p>
               <ul class="assigned-groups-list">
-                <li><i class="fa fa-caret-right icon-right"></i>&nbsp;{{ displayIdentity.primaryGroup }}</li>
-                <li *ngFor="let subGroup of displayIdentity.subGroups">
+                <li><i class="fa fa-caret-right icon-right"></i>&nbsp;{{ displayIdentity.selectedIdentity.primaryGroup }}</li>
+                <li *ngFor="let subGroup of displayIdentity.selectedIdentity.subGroups">
                   <i class="fa fa-caret-right icon-right subgroup-item"></i>&nbsp;
                   {{ subGroup }}
                 </li>
@@ -57,19 +57,19 @@
           <hr class="divider">
           <div class="detail-pane-list">
             Status
-            <span *ngIf="displayIdentity.valid"> <i class="fa fa-check"></i> </span>
-            <code *ngIf="!displayIdentity.valid" class="code-danger"> <i class="fa fa-times"></i></code>
+            <span *ngIf="displayIdentity.selectedIdentity.valid"> <i class="fa fa-check"></i> </span>
+            <code *ngIf="!displayIdentity.selectedIdentity.valid" class="code-danger"> <i class="fa fa-times"></i></code>
           </div>
           <hr class="divider">
           <!-- <div class="detail-pane-list">Smart Card<span><i class="fa fa-check"></i></span></div>
             <hr class="divider"> -->
           <div class="detail-pane-list">
             One-time Password
-            <span *ngIf="mockIdtyGroup.otpSettings.required"> <i class="fa fa-check"></i> </span>
-            <code *ngIf="!mockIdtyGroup.otpSettings.required" class="code-danger"> <i class="fa fa-times"></i></code>
+            <span *ngIf="displayIdentity.mockIdtyGroup.otpSettings.required"> <i class="fa fa-check"></i> </span>
+            <code *ngIf="!displayIdentity.mockIdtyGroup.otpSettings.required" class="code-danger"> <i class="fa fa-times"></i></code>
           </div>
           <hr class="divider">
-          <div class="detail-pane-list">Last Login<span>{{ displayIdentity.lastLogin | date: 'mediumDate' }}</span>
+          <div class="detail-pane-list">Last Login<span>{{ displayIdentity.selectedIdentity.lastLogin | date: 'mediumDate' }}</span>
           </div>
           <hr class="divider">
         </div>
@@ -91,32 +91,32 @@
               </a>
             </span>
             <ul class="list-group">
-              <li *ngIf="mockIdtyGroup.permissions.logs" id="perm-0" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.logs" id="perm-0" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-0" aria-controls="permsub-0" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>View logs
                 </a>
 
                 <ul id="permsub-0" class="collapse nested-group-list" aria-labelledby="perm-0"
                   data-parent="#user-preview__view-permissions">
-                  <li class="nested-group-item" *ngFor="let log of mockIdtyGroup.permissions.logs">
+                  <li class="nested-group-item" *ngFor="let log of displayIdentity.mockIdtyGroup.permissions.logs">
                     <i class="fa fa-caret-right"></i> {{ log }}
                   </li>
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.users" id="perm-1" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.users" id="perm-1" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-1" aria-controls="permsub-1" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage users
                 </a>
                 <ul id="permsub-1" aria-labelledby="perm-1" data-parent="#user-preview__view-permissions"
                   class="collapse">
-                  <li class="nested-group-item" *ngFor="let userPermission of mockIdtyGroup.permissions.users">
+                  <li class="nested-group-item" *ngFor="let userPermission of displayIdentity.mockIdtyGroup.permissions.users">
                     <i class="fa fa-caret-right"></i>{{ userPermission }}
                   </li>
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.sysConfig" id="perm-2" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.sysConfig" id="perm-2" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-2" aria-controls="permsub-2" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Update system configuration
                 </a>
@@ -128,7 +128,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.dbRestore" id="perm-4" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.dbRestore" id="perm-4" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-4" aria-controls="permsub-4" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Database restore
                 </a>
@@ -140,7 +140,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.hostNetworks" id="perm-5" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.hostNetworks" id="perm-5" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-5" aria-controls="permsub-5" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage hosts/networks
                 </a>
@@ -152,7 +152,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.templates" id="perm-6" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.templates" id="perm-6" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-6" aria-controls="permsub-6" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage templates
                 </a>
@@ -164,18 +164,18 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.keys" id="perm-7" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.keys" id="perm-7" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-7" aria-controls="permsub-7" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage keys
                 </a>
                 <ul id="permsub-7" aria-labelledby="perm-7" data-parent="#user-preview__view-permissions"
                   class="collapse">
-                  <li class="nested-group-item" *ngFor="let key of mockIdtyGroup.permissions.keys">
+                  <li class="nested-group-item" *ngFor="let key of displayIdentity.mockIdtyGroup.permissions.keys">
                     <i class="fa fa-caret-right"></i>{{ key }}</li>
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.encryptDeviceGroups" id="perm-8" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.encryptDeviceGroups" id="perm-8" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-8" aria-controls="permsub-8" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage encryption device groups
                 </a>
@@ -187,7 +187,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.peers" id="perm-9" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.peers" id="perm-9" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-9" aria-controls="permsub-9" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>View peers
                 </a>
@@ -199,7 +199,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.printReports" id="perm-10" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.printReports" id="perm-10" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-10" aria-controls="permsub-10" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage and print reports
                 </a>
@@ -211,7 +211,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.approvals" id="perm-11" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.approvals" id="perm-11" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-11" aria-controls="permsub-11" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage signing approvals
                 </a>
@@ -223,7 +223,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.profiles" id="perm-12" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.profiles" id="perm-12" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-12" aria-controls="permsub-12" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage X.509 v3 extension profiles
                 </a>
@@ -235,7 +235,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.dnProfiles" id="perm-13" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.dnProfiles" id="perm-13" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-13" aria-controls="permsub-13" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage X.509 DN profiles
                 </a>
@@ -247,7 +247,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.ldapServers" id="perm-14" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.ldapServers" id="perm-14" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-14" aria-controls="permsub-14" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage remote LDAP servers
                 </a>
@@ -259,7 +259,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.secretData" id="perm-15" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.secretData" id="perm-15" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-15" aria-controls="permsub-15" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage secret data
                 </a>
@@ -271,7 +271,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.kmipTemplates" id="perm-16" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.kmipTemplates" id="perm-16" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-16" aria-controls="permsub-16" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage KMIP templates</a>
                 <ul id="permsub-16" aria-labelledby="perm-16" data-parent="#user-preview__view-permissions"
@@ -282,7 +282,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.tokenization" id="perm-17" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.tokenization" id="perm-17" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-17" aria-controls="permsub-17" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Tokenization
                 </a>
@@ -294,7 +294,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.pkiTemplates" id="perm-18" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.pkiTemplates" id="perm-18" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-18" aria-controls="permsub-18" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Manage Windows PKI templates
                 </a>
@@ -306,7 +306,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.enrollments" id="perm-19" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.enrollments" id="perm-19" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-19" aria-controls="permsub-19" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Perform Windows enrollments
                 </a>
@@ -318,7 +318,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.sftpServer" id="perm-20" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.sftpServer" id="perm-20" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-20" aria-controls="permsub-20" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Use the system SFTP server
                 </a>
@@ -330,7 +330,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.cryptoOps" id="perm-21" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.cryptoOps" id="perm-21" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-21" aria-controls="permsub-21" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>Perform cryptographic operations
                 </a>
@@ -342,7 +342,7 @@
                 </ul>
               </li>
 
-              <li *ngIf="mockIdtyGroup.permissions.fileEncryption" id="perm-22" class="group-item">
+              <li *ngIf="displayIdentity.mockIdtyGroup.permissions.fileEncryption" id="perm-22" class="group-item">
                 <a data-toggle="collapse" data-target="#permsub-22" aria-controls="permsub-22" aria-expanded="true">
                   <i class="fa fa-caret-right"></i>File encryption
                 </a>
@@ -369,38 +369,38 @@
 
               <li class="list-group-item">
                 <span class="list-group-title">Length</span>
-                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.length.max }}</code>
-                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.length.min }}</code>
+                <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.length.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.length.min }}</code>
               </li>
 
               <li class="list-group-item">
                 <span class="list-group-title">Letters</span>
-                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.alphabetical.max }}</code>
-                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.alphabetical.min }}</code>
+                <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.alphabetical.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.alphabetical.min }}</code>
               </li>
 
               <li class="list-group-item">
                 <span class="list-group-title">Uppercase letters</span>
-                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.uppercase.max }}</code>
-                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.uppercase.min }}</code>
+                <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.uppercase.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.uppercase.min }}</code>
               </li>
 
               <li class="list-group-item">
                 <span class="list-group-title">Lowercase letters</span>
-                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.lowercase.max }}</code>
-                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.lowercase.min }}</code>
+                <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.lowercase.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.lowercase.min }}</code>
               </li>
 
               <li class="list-group-item">
                 <span class="list-group-title">Numbers</span>
-                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.numeric.max }}</code>
-                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.numeric.min }}</code>
+                <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.numeric.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.numeric.min }}</code>
               </li>
 
               <li class="list-group-item">
                 <span class="list-group-title">Special characters</span>
-                <code class="code-xs pull-right">Max: {{ mockIdtyGroup.passPolicy.symbols.max }}</code>
-                <code class="code-xs pull-right mr-5">Min: {{ mockIdtyGroup.passPolicy.symbols.min }}</code>
+                <code class="code-xs pull-right">Max: {{ displayIdentity.mockIdtyGroup.passPolicy.symbols.max }}</code>
+                <code class="code-xs pull-right mr-5">Min: {{ displayIdentity.mockIdtyGroup.passPolicy.symbols.min }}</code>
               </li>
             </ul>
           </div>
@@ -413,14 +413,14 @@
               data-toggle="collapse">Oauth<i class="fa fa-caret-down"></i></a>
 
             <div id="oauth-preview__view-permissions2" class="collapse">
-              <div *ngIf="!mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
+              <div *ngIf="!displayIdentity.mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
                 <p class="list-group-item"><i class="fa fa-exclamation-triangle"></i>Not enabled</p>
               </div>
-              <div *ngIf="mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
-                <p class="list-group-item">Enabled: {{ mockIdtyGroup.oauthSettings.enabled }}</p>
-                <p class="list-group-item">Token Lifetime: {{ mockIdtyGroup.oauthSettings.tokenLifetime }}</p>
-                <p class="list-group-item">Client Id: {{ mockIdtyGroup.oauthSettings.clientId }}</p>
-                <p class="list-group-item">Mac Key Name: {{ mockIdtyGroup.oauthSettings.macKeyName }}</p>
+              <div *ngIf="displayIdentity.mockIdtyGroup.oauthSettings.enabled" class="list-group list-group-flush">
+                <p class="list-group-item">Enabled: {{ displayIdentity.mockIdtyGroup.oauthSettings.enabled }}</p>
+                <p class="list-group-item">Token Lifetime: {{ displayIdentity.mockIdtyGroup.oauthSettings.tokenLifetime }}</p>
+                <p class="list-group-item">Client Id: {{ displayIdentity.mockIdtyGroup.oauthSettings.clientId }}</p>
+                <p class="list-group-item">Mac Key Name: {{ displayIdentity.mockIdtyGroup.oauthSettings.macKeyName }}</p>
               </div>
             </div>
           </div>

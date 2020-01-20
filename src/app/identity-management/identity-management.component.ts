@@ -114,27 +114,20 @@ export class IdentityManagementComponent implements OnInit {
     // });
   }
 
-  getUserDetails(username) {
+  getUserDetails(selectedIdentity) {
     // api call will replace mock objects below
 
-    const mockIdty = {
-      username: 'Main User',
-      primaryGroup: 'Admin',
-      subGroups: ['Cool Group1', 'Cool Group2'],
-      valid: false,
-      lastLogin: '2020-01-03 06:36:00',
-      createdAt: '2020-01-02 01:01:01',
-      personalInfo: {
-        firstName: 'John',
-        lastName: 'Doe',
-        commonName: 'foo',
-        givenName: 'foo',
-        surname: 'Jonny',
-        mobileCarrier: 'Verizon',
-        phone: '303-303-3030',
-        email: 'foo@email.com'
-      }
-    };
+    selectedIdentity.createdAt = '2020-01-02 01:01:01';
+    selectedIdentity.personalInfo = {
+      firstName: 'John',
+      lastName: 'Doe',
+      commonName: 'foo',
+      givenName: 'foo',
+      surname: 'Jonny',
+      mobileCarrier: 'Verizon',
+      phone: '303-303-3030',
+      email: 'foo@email.com'
+    }
     const mockIdtyGroup = {
       name: 'Admin',
       parentGroup: 'n/a',
@@ -182,7 +175,7 @@ export class IdentityManagementComponent implements OnInit {
     }
 
     const identityDetail = {
-      mockIdty,
+      selectedIdentity,
       mockIdtyGroup
     };
 
