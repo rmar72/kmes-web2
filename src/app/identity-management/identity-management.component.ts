@@ -109,58 +109,6 @@ export class IdentityManagementComponent implements OnInit {
     // });
   }
 
-  toggleFullscreen() {
-    this.showFullscreen = !this.showFullscreen;
-    this.showDetailView = !this.showDetailView;
-  }
-
-  toggleCreateGroup(): void {
-    this.showCreateGroup = !this.showCreateGroup;
-  }
-
-  // clear create group form
-  discardCreateGroup(): void {
-    this.showCreateGroup = !this.showCreateGroup;
-  }
-
-  submitCreateGroup(): void { }
-
-  toggleCreateIdentity(): void {
-    this.showCreateIdentity = !this.showCreateIdentity;
-  }
-
-  // clear create identity form
-  discardCreateIdentity(): void {
-    this.showCreateIdentity = !this.showCreateIdentity;
-  }
-
-  submitCreateIdentity(): void { }
-
-  resetForms(): void {
-    this.showCreateGroup = false;
-    this.showCreateIdentity = false;
-  }
-
-  onIdentityDeleted(res: string) {
-    this.getUsers();
-  }
-
-  detailViewSwitch(subject, selectedEntity, dictateView, showCurrentView) {
-
-    if (this.showDetailView === false) {
-      this.toggleFullscreen();
-    }
-
-    if (this.showDetailView) {
-      subject.next(selectedEntity);
-
-      if (this[dictateView] === false) {
-        this[dictateView] = true;
-        this[showCurrentView] = false;
-      }
-    }
-  }
-
   getUserDetails(username) {
     // api call will replace mock objects below
 
@@ -236,20 +184,66 @@ export class IdentityManagementComponent implements OnInit {
     return identityDetail;
   }
 
-  selectIdentity_deprecated(identity: any): void {
+  toggleFullscreen() {
+    this.showFullscreen = !this.showFullscreen;
+    this.showDetailView = !this.showDetailView;
+  }
+
+  toggleCreateGroup(): void {
+    this.showCreateGroup = !this.showCreateGroup;
+  }
+
+  // clear create group form
+  discardCreateGroup(): void {
+    this.showCreateGroup = !this.showCreateGroup;
+  }
+
+  submitCreateGroup(): void { }
+
+  toggleCreateIdentity(): void {
+    this.showCreateIdentity = !this.showCreateIdentity;
+  }
+
+  // clear create identity form
+  discardCreateIdentity(): void {
+    this.showCreateIdentity = !this.showCreateIdentity;
+  }
+
+  submitCreateIdentity(): void { }
+
+  resetForms(): void {
+    this.showCreateGroup = false;
+    this.showCreateIdentity = false;
+  }
+
+  onIdentityDeleted(res: string) {
+    this.getUsers();
+  }
+
+  // detail section
+  detailViewSwitch(subject, selectedEntity, dictateView, showCurrentView) {
+
+    if (this.showDetailView === false) {
+      this.toggleFullscreen();
+    }
+
+    if (this.showDetailView) {
+      subject.next(selectedEntity);
+
+      if (this[dictateView] === false) {
+        this[dictateView] = true;
+        this[showCurrentView] = false;
+      }
+    }
+  }
+
+  selectIdentity(identity: any): void {
     this.detailViewSwitch(
       this.displayIdentity$,
       this.getUserDetails(identity),
       'showIdtyDetail',
       'showIdtyGroupDetail'
     );
-  }
-
-  selectIdentity(identity: Users) {
-    this.showFullscreen = true;
-    this.showDetailView = true;
-    this.showIdtyDetail = true;
-    this.displayIdentity$.next(identity);
   }
 
   selectIdentityGroup(identityGroup: any): void {
@@ -261,6 +255,7 @@ export class IdentityManagementComponent implements OnInit {
     );
   }
 
+  // pagination
   updatePageCount(count: number) {
     this.pageCount = count; 
     this.getUsers();

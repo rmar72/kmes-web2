@@ -57,6 +57,7 @@ export class IdentityListComponent implements OnInit {
     );
   }
 
+  // pagination
   emitUpdatePageCount(count: number) {
     if(count != this.pageCount) {
         this.updatePageCount.emit(count);
@@ -73,6 +74,7 @@ export class IdentityListComponent implements OnInit {
     return new Array(i);
   }
 
+  // master checkbox delete all
   deleteSelectAll(){
     let checkboxes = this.checkbox.nativeElement.querySelectorAll('.idty-checkbox');
     this.masterCheckbox= !this.masterCheckbox;
@@ -156,6 +158,7 @@ export class IdentityListComponent implements OnInit {
     }
   }
 
+  // sorting table cols
   sortColumns = {
     usernameAsc: null,
     groupAsc: null,
