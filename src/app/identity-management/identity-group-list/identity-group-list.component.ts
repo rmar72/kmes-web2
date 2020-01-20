@@ -20,9 +20,6 @@ export class IdentityGroupListComponent implements OnInit {
     private usersService: UsersServiceProxy) { }
 
   ngOnInit() {
-    $(document).ready(() => {
-      $(".toggle-popover").popover({ trigger: "hover" });
-    });
   }
 
   emitSelectIdentity(identity) {
@@ -98,7 +95,7 @@ export class IdentityGroupListComponent implements OnInit {
 
       group.identities = mockIdentities;
 
-      $(".toggle-popover").popover({ trigger: "hover" });
+      // $(".toggle-popover").popover({ trigger: "hover" });
 
       // TO DO use actual service call when API is working 
       // this.usersService.usersGet(undefined, groupName, undefined, undefined).subscribe(
