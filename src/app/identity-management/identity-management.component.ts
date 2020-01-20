@@ -8,6 +8,7 @@ import {
   GetUserDetails
 } from '../shared/api/service-proxies';
 import { Subject, ReplaySubject, } from 'rxjs';
+import { AppToastService } from 'src/app/shared/services/app-toast.service';
 
 @Component({
   selector: 'app-identity-management',
@@ -33,7 +34,11 @@ export class IdentityManagementComponent implements OnInit {
   totalPages: number;
   pageArray: any[];
 
-  constructor(private usersService: UsersServiceProxy, private userGroupsService: UserGroupsServiceProxy) {}
+  constructor(
+    private usersService: UsersServiceProxy, 
+    private userGroupsService: UserGroupsServiceProxy,
+    private toast: AppToastService
+    ) {}
 
   ngOnInit() {
     this.getUsers();
@@ -290,6 +295,18 @@ export class IdentityManagementComponent implements OnInit {
         this.pageArray.push(this.totalPages);
       }
     }
+  }
+
+  deleteIdentity(identity: any) {
+    this.usersService.usersDelete(identity.username).subscribe(
+      response => {
+        this.getUsers();
+        this.toast.success('Identity was deleted');
+      },
+      (error) => {
+        this.toast.error('Unable to delete identity');
+      }
+    );
   }
 
 }

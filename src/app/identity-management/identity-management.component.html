@@ -41,6 +41,8 @@
               <div *ngIf="!showCreateGroup">
                 <app-identity-group-list 
                 [identityGroups]="identityGroups$ | async"
+                (selectIdentity)="selectIdentity($event)"
+                (deleteIdentity)="deleteIdentity($event)"
                 ></app-identity-group-list>
               </div>
               <div *ngIf="showCreateGroup">Create Identity Groups</div>
@@ -70,6 +72,7 @@
                   (updateCurrentPage)="updateCurrentPage($event)"
                   [totalPages]="totalPages"
                   [pageArray]="pageArray"
+                  (deleteIdentity)="deleteIdentity($event)"
                   ></app-identity-list>
               </div>
               <div [hidden]="!showCreateIdentity">
