@@ -1,13 +1,13 @@
 <section class="content">
   <div class="row">
-    <div [ngClass]="showFullscreen ? 'col-lg-8 col-md-8 col-sm-12 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" >
+    <div [ngClass]="showFullscreen ? 'col-lg-8 col-md-12 col-sm-12 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" >
       <div class="panel panel-default">
         <div class="panel-heading primary-heading">
           <span>
             Identity Management
           </span>
-          
-          <button (click)="toggleFullscreen()" id="close-btn" [ngClass]="showFullscreen? '' : 'btn btn-primary btn-sm close-btn' ">
+
+          <button (click)="toggleFullscreen()" id="close-btn" [ngClass]="showFullscreen? '' : 'btn btn-primary btn-sm' ">
             <i [ngClass]="showFullscreen ? 'fas fa-expand' : 'fas fa-compress'"></i>
             <span *ngIf="!showFullscreen" class="btn-close-wording">Close fullscreen</span>
           </button>
@@ -16,11 +16,11 @@
           <ul class="nav nav-tabs" role="tablist">
               <li class="active nav-item btn-group" role="presentation" (click)="resetForms()">
                   <a id="idGroupBtn" href="#groups" aria-controls="groups" role="tab" data-toggle="tab"
-                      aria-expanded="false" class="">Identity Groups<span class="label blue-label">(0)</span></a>
+                      aria-expanded="false" class="">Identity Groups<span style="display: inline-block; min-width: 27px;" class="label blue-label">({{groupCount}})</span></a>
               </li>
               <li class="nav-item btn-group" role="presentation" (click)="resetForms()">
                   <a id="idIdentityBtn" href="#allusers" aria-controls="allusers" role="tab" data-toggle="tab"
-                  aria-expanded="false" class="">Identities<span style="display: inline-block; min-width: 27px;" class="label blue-label">{{(identityCount$ | async) || '(0)'}}</span></a>
+                  aria-expanded="false" class="">Identities<span style="display: inline-block; min-width: 27px;" class="label blue-label">({{(identityCount$ | async) || '0'}})</span></a>
               </li>
           </ul>
         </div>
@@ -38,7 +38,13 @@
                     class="create-btn btn btn-primary btn-sm"><i
                         class="fa fa-save mr-5"></i>Create</button>
               </div>
-              <div *ngIf="!showCreateGroup">Identity Group List</div>
+              <div *ngIf="!showCreateGroup">
+                <app-identity-group-list 
+                [identityGroups]="identityGroups$ | async"
+                (selectIdentity)="selectIdentity($event)"
+                (deleteIdentity)="deleteIdentity($event)"
+                ></app-identity-group-list>
+              </div>
               <div *ngIf="showCreateGroup">Create Identity Groups</div>
             </div>
             <div class="tab-pane" id="allusers">
@@ -54,11 +60,19 @@
                         class="fa fa-save mr-5"></i>Create</button>
               </div>
               <div *ngIf="!showCreateIdentity">
-                <app-identity-list 
-                  [identities]="identities$ | async" 
+                <app-identity-list
+                  [identities]="identities$ | async"
                   (identityDeleted)="onIdentityDeleted($event)"
                   (selectedIdentity)="selectIdentity($event)"
                   (selectedIdentityGroup)="selectIdentityGroup($event)"
+                  [currentPage]="currentPage"
+                  [pageCount]="pageCount"
+                  [identityCount]="identityCount$ | async"
+                  (updatePageCount)="updatePageCount($event)"
+                  (updateCurrentPage)="updateCurrentPage($event)"
+                  [totalPages]="totalPages"
+                  [pageArray]="pageArray"
+                  (deleteIdentity)="deleteIdentity($event)"
                   ></app-identity-list>
               </div>
               <div [hidden]="!showCreateIdentity">
@@ -69,7 +83,7 @@
         </div>
       </div>
     </div>
-    <div [hidden]="!showDetailView" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div [hidden]="!showDetailView" class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
       <app-identity-detail [hidden]="!showIdtyDetail" [displayIdentity]="displayIdentity$ | async"></app-identity-detail>
       <app-identity-group-detail [hidden]="!showIdtyGroupDetail"  [displayIdentityGroup]="displayIdentityGroup$ | async"></app-identity-group-detail>
     </div>

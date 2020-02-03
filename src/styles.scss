@@ -7,7 +7,7 @@ body {
 .panel.panel-default .panel-heading {
     font-size: 16px;
     font-weight: 500;
-    color: #768599;
+    // color: #768599;
 }
 
 .nav-tabs li a {
@@ -47,7 +47,6 @@ body {
 
 .btn-group {
     button {
-        width: 250px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -76,4 +75,45 @@ body {
 }
 .txt-rd-light {
     color: #ad1817;
+}
+
+.avatar-circle {
+    width: 30px;
+    height: 30px;
+    background-color: #3c8dbc;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+    i {
+        color: white;
+        font-size: 15px;
+        line-height: 30px;
+    }
+}
+
+.dropdown-menu {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.name-circle {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background: #a43c76;
+    background-color: #a43c76;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 12px;
+    margin-right: 5px;
+    line-height: 22px;
+}
+
+.toggle-popover {
+    cursor: pointer;
+}
+
+.tooltip-inner {
+    color: black;
 }

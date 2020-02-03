@@ -20562,15 +20562,15 @@ export interface IUsergroupsGetResponse extends IResponseBase {
 
 export class UsersGetResponse extends ResponseBase
   implements IUsersGetResponse {
-  responseData?: GetUserList;
+  responseData?: GetUserList | GetUserDetails;
 
   constructor(data?: IUsersGetResponse) {
     super(data);
     if (data) {
       this.responseData =
         data.responseData && !(<any>data.responseData).toJSON
-          ? new GetUserList(data.responseData)
-          : <GetUserList>this.responseData;
+          ? ((data.responseData instanceof GetUserList) ? new GetUserList(data.responseData as IGetUserList) : new GetUserDetails(data.responseData as IGetUserDetails))
+          : ((data.responseData instanceof GetUserList) ? <GetUserList>this.responseData : <GetUserDetails>this.responseData);
     }
   }
 
@@ -20601,7 +20601,7 @@ export class UsersGetResponse extends ResponseBase
 }
 
 export interface IUsersGetResponse extends IResponseBase {
-  responseData?: IGetUserList;
+  responseData?: IGetUserList | IGetUserDetails;
 }
 
 export class WebserverGetResponse extends ResponseBase
@@ -21445,7 +21445,7 @@ export class PersonalInfo implements IPersonalInfo {
   givenName?: string;
   surname?: string;
   mobileCarrier?: string;
-  phone?: PersonalInfoPhone;
+  phone?: string;
   email?: string;
 
   constructor(data?: IPersonalInfo) {
@@ -21498,7 +21498,7 @@ export interface IPersonalInfo {
   givenName?: string;
   surname?: string;
   mobileCarrier?: string;
-  phone?: PersonalInfoPhone;
+  phone?: string;
   email?: string;
 }
 
@@ -22037,23 +22037,23 @@ export enum Permissions3Setting {
   Empty = ''
 }
 
-export enum PersonalInfoPhone {
-  Alltel = 'Alltel',
-  ATT = 'ATT',
-  Boost = 'Boost',
-  Comcast = 'Comcast',
-  Qwest = 'Qwest',
-  Sprint = 'Sprint',
-  Tmobile = 'Tmobile',
-  Trac = 'Trac',
-  Verizon = 'Verizon',
-  Virgin = 'Virgin',
-  Rogers = 'Rogers',
-  Vodacom = 'Vodacom',
-  MTNGroup = 'MTNGroup',
-  Custom = 'Custom',
-  None = 'None'
-}
+export const PERSONAL_INFO_PHONE: string[] = ['Alltel', 'ATT','Boost', 'Comcast', 'Qwest', 'Sprint', 'Tmobile', 'Trac', 'Verizon', 'Virgin', 'Rogers', 'Vodacom', 'MTNGroup', 'Custom', 'None'];
+//   Alltel = 'Alltel',
+//   ATT = 'ATT',
+//   Boost = 'Boost',
+//   Comcast = 'Comcast',
+//   Qwest = 'Qwest',
+//   Sprint = 'Sprint',
+//   Tmobile = 'Tmobile',
+//   Trac = 'Trac',
+//   Verizon = 'Verizon',
+//   Virgin = 'Virgin',
+//   Rogers = 'Rogers',
+//   Vodacom = 'Vodacom',
+//   MTNGroup = 'MTNGroup',
+//   Custom = 'Custom',
+//   None = 'None'
+// }
 
 export class ApiException extends Error {
   message: string;
